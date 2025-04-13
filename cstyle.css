@@ -55,7 +55,14 @@ ul a
     justify-content: space-between;
     background-color:rgb(23 ,113 ,101);
     padding: 0 15rem;
+
+    overflow: visible;
+    position: relative;
+}
+.content
+{
     padding-top:10rem ;
+    padding-bottom: 10rem;
 }
 .custom-line-text {
     display: flex;
@@ -75,4 +82,31 @@ ul a
     font-size: 6rem;
     line-height: 7.8rem;
     color:white;
+    width: 31.6vw;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+  .garden img
+  {
+    width: 38.2vw;
+    height: fit-content;
+    margin-top: -10rem;
+    transform: translateY(20%);
+  }
+  .button
+  {
+    height: 4.4rem;
+    background: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    border-radius: 0px;
+    width: fit-content;
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: #177165;
+    line-height: 2.6rem;
+    padding: 0 5.8rem;
+    display: flex;
+    align-items:center;
+    margin-top: 7rem;
   }
