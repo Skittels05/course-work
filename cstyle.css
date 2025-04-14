@@ -280,8 +280,6 @@ ul a
   {
     display: flex;
     flex-direction: column;
-
-
   }
   .p_button .text
   {
@@ -295,4 +293,40 @@ ul a
     line-height: 2.9rem;
     color: #FFFFFF;
   }
-  
+  .members_section
+  {
+    padding: 0 15rem;
+    padding-top:10rem ;
+    padding-bottom: 10rem;
+  }
+  .members_section h2
+  {
+    margin-top: 2rem;
+    color:#177165;
+  }
+  .members
+  {
+    display: flex;
+    gap:5rem;
+    margin-top: 11rem;
+  }
+  .member
+  {
+    width: 24.3vw;
+  }
+  .member h4
+  {
+    font-size: 2.6rem;
+    color:#177165;
+  }
+  .member .custom-line-text2
+  {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+  }
+  .member p
+  {
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+    width: 20.3vw;
+  }
