@@ -207,10 +207,7 @@ ul a
     padding-top:10rem;
     padding-bottom: 11rem;
   }
-  .services_section .custom-line-text2
-  {
 
-  }
   .services_section h2
   {
     margin-top: 2rem;
@@ -245,3 +242,57 @@ ul a
     margin: 0 auto;
     margin-top: 8rem;
   }
+  .action
+  {
+    background-color:#177165;
+    padding: 0 15rem;
+    padding-top:8rem ;
+    padding-bottom: 8rem;
+    display: flex;
+  }
+  .action h2
+  {
+    margin-top: 2rem;
+    width: 44.4vw;
+    color:#A4D6CF
+  }
+  .call_us
+  {
+    display: flex;
+    gap: 3rem;
+    background-color:#23786D;
+    height: fit-content;
+    padding-bottom:2rem;
+    padding-top: 2rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex:1;
+    justify-content: center;
+  }
+  .call_us img
+  {
+    width: 4.4rem;
+    height: fit-content;
+    margin-top: 0.5rem;
+    margin-left: 3rem;
+  }
+  .p_button
+  {
+    display: flex;
+    flex-direction: column;
+
+
+  }
+  .p_button .text
+  {
+    font-size: 1.7rem;
+    line-height: 2.9rem;
+    color: #A4D6CF;
+  }
+  .p_button .number
+  {
+    font-size: 1.7rem;
+    line-height: 2.9rem;
+    color: #FFFFFF;
+  }
+  
