@@ -330,3 +330,249 @@ ul a
     font-size: 1.5rem;
     width: 20.3vw;
   }
+  .video
+  {
+    background-color:#177165;
+    padding: 0 15rem;
+    display: flex;
+  }
+  .v_content
+  {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+  }
+  .video h2
+  {
+    font-weight: bold;
+    color:white;
+    margin-top: 1.5rem;
+  }
+  .statistic
+  {
+    margin: 0 15rem;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    background-color:#E1F4F2;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .stat-item {
+    text-align: center;
+    margin: 0 20px;
+    margin-top: 6.4rem;
+    margin-bottom: 6.4rem;
+}
+.snumber {
+    font-size: 4.5rem;
+    color:#177165;
+}
+.statistic .custom-line-text2
+{
+  margin-top: 1.5rem;
+}
+.project
+{
+  background-image: url(./assets/farm.png);
+  width:114rem;
+  height: 53rem;
+  margin: 0 15rem;
+  margin-bottom: -3rem;
+  display: flex;
+}
+.project_info
+{
+  background-color:#177165;
+  width: fit-content;
+  padding: 0 5rem;
+  padding-top: 6rem;
+  padding-bottom: 2.5rem;
+  margin-top: auto;
+}
+.project_info p
+{
+  color:#A4D6CF;
+}
+.project_info h4
+{
+  color:white;
+  margin-bottom: 2.5rem;
+}
+.pr_buttons
+{
+  margin: 0 15rem;
+  display: flex;
+  gap:6.6rem;
+}
+.pr_buttons .button
+{
+  width: 7rem;
+  height: 7rem;
+  padding: 0 0rem;
+  text-align: center;
+  border:2px solid,#177165;
+  display: flex;
+  justify-content: center;
+}
+.right
+{
+  transform: scale(-1);
+}
+.clients_section
+{
+  padding: 0 15rem;
+  background-color:#D2ECE9;
+  margin-top: 10rem;
+}
+.clients_section .custom-line-text2
+{
+  padding-top:10.5rem;
+}
+.clients_section h2
+{
+  color:#177165;
+  margin-top: 1.7rem;
+}
+.feedbacks
+{
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  padding-bottom: 10rem;
+}
+.feedback
+{
+
+  width: 54rem;
+  height: 45rem;
+  background-color:white;
+}
+.news_section
+{
+  padding-top: 10.7rem;
+  margin: 0 15rem;
+  margin-bottom: 10rem;
+}
+.news_section h2
+{
+  color:#177165;
+  margin-top:1.5rem ;
+}
+.news
+{
+  margin-top: 5rem;
+  display: flex;
+  gap: 3rem;
+}
+.news_post
+{
+  background-color:#E1F4F2;
+}
+.news p
+{
+  color:#777;
+}
+.date_author
+{
+  margin-top: 3rem;
+  margin-left: 3rem;
+  display: flex;
+  gap: 2.5rem;
+}
+.green
+{
+  color:#177165;
+}
+.news h3
+{
+  font-size: 2.5rem;
+  color:#177165;
+  margin-top: 2.6rem;
+  margin-left: 3rem;
+  line-height: 4rem;
+}
+.news_text
+{
+  width: 42rem;
+  margin-top: 2rem;
+  margin-left: 3rem;
+}
+.news .button
+{
+  margin-top:4rem;
+  margin-left: 3rem;
+  margin-bottom: 5rem;
+}
+footer
+{
+  background-color:#177165;
+  padding-top: 4.5rem;
+}
+.one
+{
+  padding-top: 4.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15rem;
+}
+.left_f
+{
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+.left_f p
+{
+  margin-top: 0.5rem;
+}
+.right_f
+{
+  margin-top: 1.3rem;
+  margin-right: 1.2rem;
+  display:flex;
+  align-items:center;
+  gap: 3rem;
+}
+.right_f p
+{
+  display: flex;
+  flex-direction: column;
+
+}
+.copyright
+{
+  background-color:#0A312C;
+}
+footer h2
+{
+  color:white;
+  margin-top: 4rem;
+  margin-bottom: 6rem;
+  padding: 0 15rem;
+}
+footer p
+{
+  color:white;
+}
+.map
+{
+  background-color:#777;
+  width: 80vw;
+  height: 35rem;
+  margin: 0 auto;
+}
+.copyright
+{
+  margin-top: 5rem;
+  padding-top:2rem ;
+  padding-bottom: 2rem;
+  text-align: center;
+}
+.green2
+{
+  color:#A4D6CF;
+}
+footer .text
+{
+  color: #A4D6CF;
+}
