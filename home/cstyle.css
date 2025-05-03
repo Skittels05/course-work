@@ -3,13 +3,18 @@
     padding: 0;
     box-sizing: border-box;
 }
+:root {
+  --main-padding: 15rem;
+  --primary-color: #177165;
+}
+
 html
 {
     font-size: 10px;
+  
 }
 body {
     font-family: 'Roboto', sans-serif;
-
   }
   
   h1, h2, h3,h4 {
@@ -85,7 +90,7 @@ ul a
     display: flex;
     justify-content: space-between;
     background-color:rgb(23 ,113 ,101);
-    padding: 0 15rem;
+    padding: 0 var(--main-padding);
     flex-wrap: wrap;
     margin-top: -1rem;
 }
@@ -142,7 +147,7 @@ ul a
   }
   .experience
   {
-    margin: 0 15rem;
+    margin: 0 var(--main-padding);
     margin-top: 22rem;
   }
   .custom-line-text2 {
@@ -223,7 +228,7 @@ ul a
   {
     margin-top: 10rem;
     background-color:#E1F4F2;
-    padding: 0 15rem;
+    padding: 0 var(--main-padding);
     padding-top:10rem;
     padding-bottom: 11rem;
   }
@@ -264,7 +269,7 @@ ul a
   .action
   {
     background-color:#177165;
-    padding: 0 15rem;
+    padding: 0 var(--main-padding);
     padding-top:8rem ;
     padding-bottom: 8rem;
     display: flex;
@@ -314,7 +319,7 @@ ul a
   }
   .members_section
   {
-    padding: 0 15rem;
+    padding: 0 var(--main-padding);
     padding-top:10rem ;
     padding-bottom: 10rem;
   }
@@ -357,7 +362,7 @@ ul a
   .video
   {
     background-color:#177165;
-    padding: 0 15rem;
+    padding: 0 var(--main-padding);
     
     display: flex;
   }
@@ -378,7 +383,7 @@ ul a
   }
   .statistic
   {
-    margin: 0 15rem;
+    margin: 0 var(--main-padding);
     margin-top: 10rem;
     margin-bottom: 10rem;
     background-color:#E1F4F2;
@@ -408,7 +413,7 @@ ul a
   background-size: cover;
   flex: 1;
   height: 53rem;
-  margin: 0 15rem;
+  margin: 0 var(--main-padding);
   margin-bottom: -3rem;
   display: flex;
 }
@@ -432,7 +437,7 @@ ul a
 }
 .pr_buttons
 {
-  margin: 0 15rem;
+  margin: 0 var(--main-padding);
   display: flex;
   gap:6.6rem;
 }
@@ -452,7 +457,7 @@ ul a
 }
 .clients_section
 {
-  padding: 0 15rem;
+  padding: 0 var(--main-padding);
   background-color:#D2ECE9;
   margin-top: 10rem;
 }
@@ -482,7 +487,7 @@ ul a
 .news_section
 {
   padding-top: 10.7rem;
-  margin: 0 15rem;
+  margin: 0 var(--main-padding);
   margin-bottom: 10rem;
 }
 .news_section h2
@@ -508,7 +513,7 @@ ul a
 .news p
 {
   color:#777;
-  width:34vw;
+  max-width:100%;
 }
 .date_author
 {
@@ -528,11 +533,11 @@ ul a
   margin-top: 2.6rem;
   margin-left: 3rem;
   line-height: 4rem;
-  max-width: 34vw;
+  max-width: 100%;
 }
 .news_text
 {
-  width: 42rem;
+  max-width: 100%;
   margin-top: 2rem;
   margin-left: 3rem;
 }
@@ -542,9 +547,9 @@ ul a
   margin-left: 3rem;
   margin-bottom: 5rem;
 }
-.news img
-{
-  width:38.5vw;;
+.news img {
+  width: 100%;
+  display: block;
 }
 footer
 {
@@ -556,7 +561,7 @@ footer
   padding-top: 4.5rem;
   display: flex;
   justify-content: space-between;
-  padding: 0 15rem;
+  padding: 0 var(--main-padding);
 }
 .left_f
 {
@@ -593,7 +598,7 @@ footer h2
   color:white;
   margin-top: 4rem;
   margin-bottom: 6rem;
-  padding: 0 15rem;
+  padding: 0 var(--main-padding);
 }
 footer p
 {
@@ -633,10 +638,7 @@ footer .text
     max-width: 45vw;
     margin: 0 auto;
   }
-  .member img
-  {
-    
-  }
+
 }
 @media (max-width:1024px) {
  
@@ -759,7 +761,8 @@ h1{width: 100%;
 }
 .member
 {
-  width: 50vw;
+  max-width:100%;
+  width:100%
 }
 .member p
 {
@@ -771,7 +774,7 @@ h1{width: 100%;
 }
 .news_post
 {
-  width: 50vw;
+  width: 100%;
 }
 .news_post img
 {
@@ -796,4 +799,29 @@ h1{width: 100%;
   width: 100%;
   justify-content: space-between;
 }
+}
+@media (max-width:520px) {
+  :root {
+    --main-padding: 1.6rem;
+  }
+  header
+  {
+    flex-wrap: wrap;
+  }
+  .experience h2
+  {
+    width: 100%;
+  }
+  .experience p,   .experience img,   .experience h3,   .experience h4
+  {
+    width: 100%;
+  }
+  .service
+  {
+    width: 80%;
+  }
+  .members_section h2
+  {
+    width: 100%;
+  }
 }
