@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
+    <link rel="stylesheet" href="../base_css/header.css">
+    <link rel="stylesheet" href="../base_css/footer.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,17 +15,28 @@
 <script src="index.js"></script>
 <body>
     <header>
-        <img src="../assets/logo.png" alt="logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">About</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Blog</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="../shop/index.html">Shop</a></li>
-            </ul>
-        </nav>
+        <div class="first_group">
+            <img src="../assets/logo.png" alt="logo" class="logo">
+            <img src="../assets/mode.svg" alt="mode">
+        </div>
+        <div class="burger-wrapper">
+            <input type="checkbox" id="burger-toggle" class="burger-toggle">
+            <label for="burger-toggle" class="burger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <nav class="nav-container">
+                <ul class="nav">
+                    <li><a href="">Home</a></li>
+                    <li><a href="">About</a></li>
+                  <li><a href="">Services</a></li>
+                  <li><a href="">Blog</a></li>
+                   <li><a href="">Contact</a></li>
+                  <li><a href="../shop/index.html">Shop</a></li>
+                  </ul>
+            </nav>
+        </div>
         <div class="header_icons">
             <div class="lang_view">
                 <img src="../assets/view.svg" alt="view">
@@ -31,6 +44,7 @@
             </div>
             <img src="../assets/login.svg" alt="login">
             <img src="../assets/korzina.svg" alt="korzina">
+            <img src="../assets/wish.svg" alt="wish">
         </div>
     </header>
     <main>
@@ -39,7 +53,7 @@
           <!-- Товары будут здесь -->
         </div>
       </main>
-    <footer>
+      <footer>
         <div class="one">
             <div class="left_f">
                 <img src="../assets/logo.png" alt="logo">
