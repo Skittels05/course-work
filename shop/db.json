@@ -6,7 +6,6 @@
       "price": 29.99,
       "category": "Tools",
       "description": "Professional-grade pruning shears with ergonomic handles.",
-      "image": "/images/pruners.jpg",
       "rating": 4.8,
       "stock": 50
     },
@@ -16,7 +15,6 @@
       "price": 14.95,
       "category": "Tools",
       "description": "Leather gloves with reinforced fingertips for protection.",
-      "image": "/images/gloves.jpg",
       "rating": 4.6,
       "stock": 75
     },
@@ -26,7 +24,6 @@
       "price": 39.99,
       "category": "Tools",
       "description": "Extendable handles for trimming high hedges comfortably.",
-      "image": "/images/hedge-shears.jpg",
       "rating": 4.5,
       "stock": 30
     },
@@ -36,7 +33,6 @@
       "price": 12.99,
       "category": "Tools",
       "description": "Durable trowel for planting and transplanting.",
-      "image": "/images/trowel.jpg",
       "rating": 4.7,
       "stock": 60
     },
@@ -46,7 +42,6 @@
       "price": 18.5,
       "category": "Soil & Fertilizers",
       "description": "Slow-release fertilizer for vegetable gardens.",
-      "image": "/images/veg-fertilizer.jpg",
       "rating": 4.6,
       "stock": 45
     },
@@ -56,7 +51,6 @@
       "price": 24.95,
       "category": "Accessories",
       "description": "Foldable kneeler with tool pockets and handles.",
-      "image": "/images/kneeler.jpg",
       "rating": 4.4,
       "stock": 25
     },
@@ -66,7 +60,6 @@
       "price": 59.99,
       "category": "Watering",
       "description": "Programmable system for efficient watering.",
-      "image": "/images/drip-irrigation.jpg",
       "rating": 4.9,
       "stock": 20
     },
@@ -76,7 +69,6 @@
       "price": 34.99,
       "category": "Containers",
       "description": "20-inch diameter glazed ceramic planter.",
-      "image": "/images/ceramic-planter.jpg",
       "rating": 4.3,
       "stock": 15
     },
@@ -86,7 +78,6 @@
       "price": 29.95,
       "category": "Decor",
       "description": "Weather-resistant LED pathway lights.",
-      "image": "/images/solar-lights.jpg",
       "rating": 4.7,
       "stock": 40
     },
@@ -96,7 +87,6 @@
       "price": 129.99,
       "category": "Planters",
       "description": "Cedar wood construction with protective liner.",
-      "image": "/images/raised-bed.jpg",
       "rating": 4.8,
       "stock": 10
     },
@@ -106,7 +96,6 @@
       "price": 19.99,
       "category": "Composting",
       "description": "Stainless steel compost turning tool.",
-      "image": "/images/compost-tool.jpg",
       "rating": 4.5,
       "stock": 35
     },
@@ -116,7 +105,6 @@
       "price": 27.95,
       "category": "Storage",
       "description": "Wall-mounted rack for tool organization.",
-      "image": "/images/tool-rack.jpg",
       "rating": 4.2,
       "stock": 20
     },
@@ -126,7 +114,6 @@
       "price": 14.99,
       "category": "Pest Control",
       "description": "Natural formula safe for edible plants.",
-      "image": "/images/pest-spray.jpg",
       "rating": 4.6,
       "stock": 55
     },
@@ -136,7 +123,6 @@
       "price": 39.95,
       "category": "Indoor Gardening",
       "description": "Includes 5 herb plants and hanging planter.",
-      "image": "/images/herb-garden.jpg",
       "rating": 4.7,
       "stock": 18
     },
@@ -146,7 +132,6 @@
       "price": 149.99,
       "category": "Tools",
       "description": "Heavy-duty cart with 300 lb capacity.",
-      "image": "/images/garden-cart.jpg",
       "rating": 4.9,
       "stock": 8
     },
@@ -156,7 +141,6 @@
       "price": 44.95,
       "category": "Containers",
       "description": "24-inch reservoir planter for patio gardening.",
-      "image": "/images/self-watering.jpg",
       "rating": 4.4,
       "stock": 22
     },
@@ -166,7 +150,6 @@
       "price": 22.99,
       "category": "Tools",
       "description": "Folding saw for thick branches up to 4 inches.",
-      "image": "/images/pruning-saw.jpg",
       "rating": 4.5,
       "stock": 30
     },
@@ -176,7 +159,6 @@
       "price": 32.5,
       "category": "Decor",
       "description": "Set of 6 concrete stones with leaf designs.",
-      "image": "/images/stepping-stones.jpg",
       "rating": 4.3,
       "stock": 15
     },
@@ -186,7 +168,6 @@
       "price": 12.99,
       "category": "Supports",
       "description": "54-inch tall galvanized steel cage.",
-      "image": "/images/tomato-cage.jpg",
       "rating": 4.6,
       "stock": 40
     },
@@ -196,7 +177,6 @@
       "price": 89.99,
       "category": "Storage",
       "description": "50-gallon capacity with locking lid.",
-      "image": "/images/storage-box.jpg",
       "rating": 4.7,
       "stock": 12
     },
@@ -206,7 +186,6 @@
       "price": 16.95,
       "category": "Harvesting",
       "description": "Ventilated plastic basket with handle.",
-      "image": "/images/berry-basket.jpg",
       "rating": 4.4,
       "stock": 25
     },
@@ -216,7 +195,6 @@
       "price": 49.99,
       "category": "Supports",
       "description": "Powder-coated steel climbing panel.",
-      "image": "/images/trellis.jpg",
       "rating": 4.5,
       "stock": 18
     },
@@ -226,7 +204,6 @@
       "price": 9.99,
       "category": "Soil & Fertilizers",
       "description": "Complete kit with 50 tests.",
-      "image": "/images/ph-test.jpg",
       "rating": 4.2,
       "stock": 60
     },
@@ -236,7 +213,6 @@
       "price": 34.95,
       "category": "Watering",
       "description": "Adjustable height up to 5 feet.",
-      "image": "/images/sprinkler.jpg",
       "rating": 4.3,
       "stock": 20
     },
@@ -246,7 +222,6 @@
       "price": 27.99,
       "category": "Harvesting",
       "description": "Three-tier wooden drying rack.",
-      "image": "/images/drying-rack.jpg",
       "rating": 4.6,
       "stock": 15
     },
@@ -256,7 +231,6 @@
       "price": 15.99,
       "category": "Tools",
       "description": "Dual-grit sharpening stone for blades.",
-      "image": "/images/tool-sharpener.jpg",
       "rating": 4.4,
       "stock": 35
     },
@@ -266,7 +240,6 @@
       "price": 129.99,
       "category": "Decor",
       "description": "Solar-powered cascading water feature.",
-      "image": "/images/fountain.jpg",
       "rating": 4.8,
       "stock": 5
     },
@@ -276,7 +249,6 @@
       "price": 19.95,
       "category": "Indoor Gardening",
       "description": "Includes tray, dome, and peat pellets.",
-      "image": "/images/seed-starter.jpg",
       "rating": 4.7,
       "stock": 30
     },
@@ -286,7 +258,6 @@
       "price": 8.99,
       "category": "Watering",
       "description": "Fixes leaks in standard garden hoses.",
-      "image": "/images/hose-repair.jpg",
       "rating": 4.1,
       "stock": 45
     },
@@ -296,17 +267,11 @@
       "price": 12.95,
       "category": "Accessories",
       "description": "Analog thermometer with humidity gauge.",
-      "image": "/images/thermometer.jpg",
       "rating": 4.3,
       "stock": 25
     }
   ],
   "favorites": [],
   "cart": [
-    {
-      "id": "2d37",
-      "productId": 1,
-      "quantity": 1
-    }
   ]
 }
