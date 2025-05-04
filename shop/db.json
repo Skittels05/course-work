@@ -273,5 +273,10 @@
   ],
   "favorites": [],
   "cart": [
+    {
+      "id": "dee8",
+      "productId": 1,
+      "quantity": 1
+    }
   ]
 }
