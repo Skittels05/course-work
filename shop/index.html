@@ -53,12 +53,61 @@
                 <input type="text" id="search-input" placeholder="Search products...">
                 <img src="../assets/shop/search.png" alt="Search" class="search-icon">
             </div>
-            <div class="sort-button">
-                <button id="sort-toggle">
-                    <span class="arrow-up">↑</span>
-                    <span class="arrow-down">↓</span>
-                </button>
-              </div>
+            <div class="right_container">
+                <div class="sort-button">
+                    <button id="sort-toggle">
+                        <span class="arrow-up">↑</span>
+                        <span class="arrow-down">↓</span>
+                    </button>
+                </div>
+                <div class="filter-controls">
+                    <button id="filter-toggle" class="filter-button">
+                      <i class="fas fa-filter"></i> Filters
+                    </button>
+                  </div>
+                  
+                  <div class="filters-sidebar" id="filters-sidebar">
+                    <div class="sidebar-header">
+                      <h3>Filters</h3>
+                      <button id="close-filters" class="close-btn">&times;</button>
+                    </div>
+                    
+                    <div class="filter-group">
+                      <h4>Categories</h4>
+                      <div class="category-filters">
+                        <label><input type="checkbox" name="category" value="Tools" checked> Tools</label>
+                        <label><input type="checkbox" name="category" value="Soil & Fertilizers" checked> Soil & Fertilizers</label>
+                        <label><input type="checkbox" name="category" value="Accessories" checked> Accessories</label>
+                        <label><input type="checkbox" name="category" value="Watering" checked> Watering</label>
+                        <label><input type="checkbox" name="category" value="Decor" checked> Decor</label>
+                        <label><input type="checkbox" name="category" value="Composting" checked> Composting</label>
+                        <label><input type="checkbox" name="category" value="Storage" checked> Storage</label>
+                      </div>
+                    </div>
+                  
+                    <div class="filter-group">
+                      <h4>Price Range ($)</h4>
+                      <div class="price-range">
+                        <div class="price-inputs">
+                          <input type="number" id="min-price" placeholder="Min" min="0" max="150" value="0">
+                          <span>—</span>
+                          <input type="number" id="max-price" placeholder="Max" min="0" max="150" value="150">
+                        </div>
+                        <div class="range-slider">
+                          <input type="range" id="price-slider-min" min="0" max="150" step="5" value="0">
+                          <input type="range" id="price-slider-max" min="0" max="150" step="5" value="150">
+                          <div class="active-range"></div> <!-- Это обязательно! -->
+                        </div>
+                      </div>
+                    </div>
+                    <button id="reset-filters" class="reset-btn">Reset Filters</button>
+                    <button id="apply-filters" class="apply-btn">Apply Filters</button>
+                  </div>
+                  
+                  <div class="overlay" id="overlay"></div>
+            </div>
+            
+            
         </div>
         <div class="products-grid" id="products-container">
           <!-- Товары будут здесь -->
