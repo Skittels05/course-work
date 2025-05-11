@@ -21,49 +21,10 @@ main
   padding-left: 15rem;
   padding-right: 15rem;
 }
-.one
+hr
 {
-  padding-top: 4.5rem;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 15rem;
+  border: 1px solid #177165;
 }
-.left_f
-{
-  display: flex;
-  align-items: center;
-  gap: 5rem;
-}
-.left_f p
-{
-  margin-top: 0.5rem;
-}
-.right_f
-{
-  margin-top: 1.3rem;
-  margin-right: 1.2rem;
-  display:flex;
-  align-items:center;
-  gap: 3rem;
-}
-.right_f p
-{
-  display: flex;
-  flex-direction: column;
-
-}
-.copyright
-{
-  background-color:#0A312C;
-}
-footer h2
-{
-  color:white;
-  margin-top: 4rem;
-  margin-bottom: 6rem;
-  padding: 0 15rem;
-}
-
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -123,7 +84,10 @@ footer h2
   background: #0A312C;
 }
 
-
+.above_pag
+{
+  margin-top: 3rem;
+}
 .shop-header {
   display: flex;
   justify-content: space-between;
@@ -373,7 +337,6 @@ footer h2
   font-size: 1.4rem;
   cursor: pointer;
 }
-
 .apply-btn {
   width: 100%;
   padding: 1.2rem;
@@ -415,7 +378,6 @@ footer h2
   visibility: hidden;
   transition: all 0.3s;
 }
-
 .overlay.active {
   opacity: 1;
   visibility: visible;
@@ -424,4 +386,46 @@ footer h2
 {
   display: flex;
   align-items:center;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 30px 0;
+}
+
+.pagination button {
+  padding: 8px 12px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #177165;
+  color: white;
+  border-color: #177165;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 5px;
+}
+
+.page-numbers button {
+  min-width: 36px;
+}
+
+.page-numbers button.active {
+  background: #177165;
+  color: white;
+  border-color: #177165;
 }
