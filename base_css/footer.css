@@ -3,6 +3,16 @@ footer
   background-color:#177165;
   padding-top: 4.5rem;
 }
+h2
+  {
+    font-size: 4.8rem;
+    line-height: 5.8rem;
+  }
+    p
+  {
+    font-size: 1.6rem;
+    line-height: 2.6rem;
+  }
 .one
 {
   padding-top: 4.5rem;
