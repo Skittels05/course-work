@@ -124,7 +124,6 @@ hr
   height: 1.6rem;
 }
 
-/* Стили для сортировки */
 .sort-dropdown {
   position: relative;
   margin-right: 15px;
@@ -275,9 +274,6 @@ hr
   -webkit-appearance: none;
   border: 2px solid white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-.filter-controls {
-  padding: 0 6rem;
 }
 .filter-button {
   background: #177165;
@@ -445,4 +441,32 @@ hr
   background: #177165;
   color: white;
   border-color: #177165;
+}
+@media (max-width:768px) {
+  main
+  {
+    padding: 0 1.6rem;
+  }
+  .products-grid
+  {
+    display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+   gap: 5rem;
+   padding: 0 1.6rem;
+   margin-top: 3rem;
+  }
+  .shop-header
+  {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .search-container
+  {
+    width: 100%;
+  }
+  .right_container
+  {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
