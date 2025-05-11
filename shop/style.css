@@ -123,36 +123,53 @@ hr
   width: 1.6rem;
   height: 1.6rem;
 }
-.sort-button {
-  margin-left: 20px;
+
+/* Стили для сортировки */
+.sort-dropdown {
+  position: relative;
+  margin-right: 15px;
 }
 
 #sort-toggle {
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  border:2px solid #177165;
+  border-radius: 4px ;
+  cursor: pointer;
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+#sort-toggle:hover {
+  background: #eee;
+}
+
+.sort-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
   border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: 200px;
+  z-index: 100;
+  display: none;
+}
+
+.sort-options.active {
+  display: block;
+}
+
+.sort-option {
+  padding: 8px 15px;
   cursor: pointer;
-  background-color:white;
-  transition: all 1s;
-  border:none;
-}
-.arrows {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-
-}
-.arrow-up, .arrow-down {
-  font-size: 5rem;
-  line-height: 1;
-  color:#777;
-}
-#sort-toggle.asc .arrow-up {
-  color: #177165;
 }
 
-#sort-toggle.desc .arrow-down {
-  color: #177165;
+.sort-option:hover {
+  background: #f5f5f5;
 }
 .filters-container {
   display: flex;
