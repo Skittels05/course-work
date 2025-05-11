@@ -271,12 +271,67 @@
       "stock": 25
     }
   ],
-  "favorites": [],
+  "favorites": [
+    {
+      "productId": 1,
+      "id": 3
+    },
+    {
+      "productId": 2,
+      "id": 4
+    }
+  ],
   "cart": [
     {
-      "id": "dee8",
       "productId": 1,
-      "quantity": 1
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "productId": 2,
+      "quantity": 1,
+      "id": 2
+    }
+  ],
+  "orders": [
+    {
+      "date": "2025-05-11T10:48:24.111Z",
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 1,
+          "id": 1
+        },
+        {
+          "productId": 2,
+          "quantity": 1,
+          "id": 2
+        }
+      ],
+      "total": 50.93,
+      "id": 1
+    },
+    {
+      "date": "2025-05-11T13:28:43.277Z",
+      "items": [
+        {
+          "productId": "1",
+          "quantity": 1,
+          "id": "1"
+        },
+        {
+          "productId": "2",
+          "quantity": 1,
+          "id": "2"
+        },
+        {
+          "productId": 5,
+          "quantity": 1,
+          "id": "0XPmCce"
+        }
+      ],
+      "total": 63.44,
+      "id": 2
     }
   ]
 }

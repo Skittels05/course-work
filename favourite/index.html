@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+    <link rel="stylesheet" href="../base_css/header.css">
+    <link rel="stylesheet" href="../base_css/footer.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="first_group">
+            <img src="../assets/logo.png" alt="logo" class="logo">
+            <img src="../assets/mode.svg" alt="mode">
+        </div>
+        <div class="burger-wrapper">
+            <input type="checkbox" id="burger-toggle" class="burger-toggle">
+            <label for="burger-toggle" class="burger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <nav class="nav-container">
+                <ul class="nav">
+                    <li><a href="../home/index.html">Home</a></li>
+                    <li><a href="../about/index.html">About</a></li>
+                  <li><a href="../services/index.html">Services</a></li>
+                  <li><a href="../blog/index.html">Blog</a></li>
+                   <li><a href="../contact/index.html">Contact</a></li>
+                  <li><a href="../shop/index.html">Shop</a></li>
+                  </ul>
+            </nav>
+        </div>
+        <div class="header_icons">
+            <div class="lang_view">
+                <img src="../assets/view.svg" alt="view">
+                <p>ENG</p>
+            </div>
+            <a href="../login/index.html"><img src="../assets/login.svg" alt="login"></a>
+            <a href="../cart/index.html"><img src="../assets/korzina.svg" alt="korzina"></a>
+            <a href="../favourite/index.html"><img src="../assets/wish.svg" alt="wish"></a>
+        </div>
+    </header>
+    <main class="favorites-container">
+        <h1>Your Favorites</h1>
+        
+        <div class="favorites-content">
+            <div class="favorites-items" id="favorites-items">
+                <!-- Товары будут загружаться здесь -->
+                <div class="empty-favorites">
+                    <i class="fas fa-heart"></i>
+                    <p>Your favorites list is empty</p>
+                    <a href="../shop/index.html" class="continue-shopping">Browse Products</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="one">
+            <div class="left_f">
+                <img src="../assets/logo.png" alt="logo">
+                <p>Berloga,street 18</p>
+            </div>
+            <div class="right_f">
+                <img src="../assets/phone.png" alt="phone">
+                <p>
+                    <span class="text">Call us:</span>
+                    <span>+00 89 458 648</span>
+                </p>
+            </div>
+        </div>
+        <h2>Check us on the map</h2>
+        <div class="map">
+            <!-- Карта -->
+        </div>
+        <div class="copyright">
+            <p>
+                <span>© 2024 design and developed by</span>
+                <span class="green2">Brandbes</span>
+                <span>. Powered by</span>
+                <span class="green2">Webflow.</span>
+            </p>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

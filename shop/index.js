@@ -67,9 +67,29 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  function displayProducts(products) {
-    productsContainer.innerHTML = products?.length ? products.map(product => `
+
+// Добавьте эту функцию для проверки избранного
+async function checkFavorite(productId) {
+  try {
+    const response = await fetch(`http://localhost:3000/favorites?productId=${productId}`);
+    const favorites = await response.json();
+    return favorites.some(item => item.productId == productId);
+  } catch (error) {
+    console.error('Error checking favorites:', error);
+    return false;
+  }
+}
+
+// Обновленная функция displayProducts
+async function displayProducts(products) {
+  const productsHTML = await Promise.all(products.map(async (product) => {
+    const isFavorite = await checkFavorite(product.id);
+    
+    return `
       <div class="product-card" data-id="${product.id}">
+        <button class="favorite-btn ${isFavorite ? 'active' : ''}" data-id="${product.id}">
+          <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
+        </button>
         <img src="../assets/shop/${product.id}.jpg" alt="${product.name}" 
              class="product-image" onerror="this.src='../assets/shop/placeholder.jpg'">
         <div class="product-info">
@@ -83,11 +103,60 @@ document.addEventListener('DOMContentLoaded', () => {
           <button class="add-to-cart">Add to Cart</button>
         </div>
       </div>
-    `).join('') : '<p class="no-results">No products found</p>';
-    document.querySelectorAll('.add-to-cart').forEach(btn => {
-      btn.addEventListener('click', addToCart);
-    });
+    `;
+  }));
+
+  productsContainer.innerHTML = productsHTML.join('') || '<p class="no-results">No products found</p>';
+
+  // Обработчики событий
+  document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', addToCart);
+  });
+
+  document.querySelectorAll('.favorite-btn').forEach(btn => {
+    btn.addEventListener('click', toggleFavorite);
+  });
+}
+
+// Добавьте новую функцию для работы с избранным
+async function toggleFavorite(event) {
+  event.stopPropagation();
+  const btn = event.currentTarget;
+  const productId = btn.dataset.id;
+  const heartIcon = btn.querySelector('i');
+  const isCurrentlyFavorite = btn.classList.contains('active');
+
+  try {
+    if (isCurrentlyFavorite) {
+      // Находим ID элемента в избранном для удаления
+      const favoritesResponse = await fetch(`http://localhost:3000/favorites?productId=${productId}`);
+      const favorites = await favoritesResponse.json();
+      
+      if (favorites.length > 0) {
+        const favoriteId = favorites[0].id;
+        await fetch(`http://localhost:3000/favorites/${favoriteId}`, {
+          method: 'DELETE'
+        });
+      }
+    } else {
+      // Добавляем в избранное
+      await fetch('http://localhost:3000/favorites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId: +productId })
+      });
+    }
+
+    // Переключаем визуальное состояние
+    btn.classList.toggle('active');
+    heartIcon.classList.toggle('far');
+    heartIcon.classList.toggle('fas');
+
+  } catch (error) {
+    console.error('Error updating favorites:', error);
+    // Можно добавить уведомление для пользователя
   }
+}
 
   function setupSorting() {
     const sortDropdown = document.createElement('div');

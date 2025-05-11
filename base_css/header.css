@@ -73,6 +73,7 @@ ul a
     display: flex;
     gap: 4rem;
     margin-top: 0.5rem;
+    align-items:center;
 }
 .lang_view
 {

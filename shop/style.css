@@ -470,3 +470,38 @@ hr
     justify-content: space-between;
   }
 }
+/* Добавьте в конец файла или в раздел с карточками товаров */
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.favorite-btn i {
+  color: #777;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn:hover i {
+  color: #ff0000;
+}
+
+.favorite-btn.active i {
+  color: #ff0000;
+}
+
+.product-card {
+  position: relative; /* Добавьте это к существующим стилям .product-card */
+}
