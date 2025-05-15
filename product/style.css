@@ -1,0 +1,238 @@
+:root {
+    --primary-color: #177165;
+    --secondary-color: #0A312C;
+    --error-color: #d32f2f;
+    --success-color: #2e7d32;
+    --border-color: #ddd;
+    --text-color: #333;
+    --light-text: #777;
+    --bg-color: #f9f9f9;
+    --star-color: #FFD700;
+}
+
+main {
+    padding: 0 15rem;
+}
+
+.product-container {
+    display: flex;
+    gap: 4rem;
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 2rem;
+}
+
+.product-image-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-title {
+    font-size: 2.4rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.product-price {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin: 1.5rem 0;
+}
+
+.product-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+
+.product-description {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.add-to-cart {
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 1.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.add-to-cart:hover {
+    background: var(--secondary-color);
+}
+
+.reviews-section {
+    margin: 4rem 0;
+    padding: 2rem;
+}
+
+.reviews-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.reviews-list {
+    margin: 2rem 0;
+}
+
+.review-card {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.review-author {
+    font-weight: bold;
+}
+
+.review-date {
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+.review-rating {
+    color: var(--star-color);
+    margin: 0.5rem 0;
+}
+
+.review-text {
+    line-height: 1.6;
+}
+
+.review-form-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+}
+
+.rating-stars {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+}
+
+.rating-stars i {
+    color: var(--border-color);
+    transition: color 0.2s;
+}
+
+.rating-stars i.active,
+.rating-stars i:hover {
+    color: var(--star-color);
+}
+
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    min-height: 150px;
+    resize: vertical;
+    font-family: 'Roboto', sans-serif;
+}
+
+.char-counter {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--light-text);
+}
+
+.submit-btn {
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background: var(--secondary-color);
+}
+
+.message-box {
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border-radius: 1rem;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.message-box a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.message-box a:hover {
+    text-decoration: underline;
+}
+.buy-now-btn {
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.3s;
+    display: block;
+    margin: 1rem auto 0;
+}
+
+.buy-now-btn:hover {
+    background: var(--secondary-color);
+}
+
+.message-box {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border-radius: 1rem;
+    margin: 2rem 0;
+}
+@media (max-width: 768px) {
+    main {
+        padding: 0 1.6rem;
+    }
+    
+    .product-container {
+        flex-direction: column;
+    }
+    
+    .product-image-container {
+        max-width: 100%;
+    }
+}

@@ -90,8 +90,10 @@ async function displayProducts(products) {
         <button class="favorite-btn ${isFavorite ? 'active' : ''}" data-id="${product.id}">
           <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
         </button>
-        <img src="../assets/shop/${product.id}.jpg" alt="${product.name}" 
-             class="product-image" onerror="this.src='../assets/shop/placeholder.jpg'">
+        <a href="../product/index.html?id=${product.id}" class="product-image-link">
+          <img src="../assets/shop/${product.id}.jpg" alt="${product.name}" 
+               class="product-image" onerror="this.src='../assets/shop/placeholder.jpg'">
+        </a>
         <div class="product-info">
           <h3 class="product-title">${product.name}</h3>
           <p>${product.description}</p>

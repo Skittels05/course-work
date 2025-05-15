@@ -91,6 +91,17 @@ ul a
     display: flex;
     gap: 3rem;
 }
+
+.admin-link {
+    display: none; 
+}
+
+.admin-link i {
+    color: #A4D6CF;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
 @media (max-width:1024px) {
  
     .burger-btn {
@@ -172,6 +183,8 @@ ul a
     header
     {
         flex-direction: column;
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
     .first_group
     {

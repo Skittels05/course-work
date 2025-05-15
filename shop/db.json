@@ -279,11 +279,6 @@
     },
     {
       "productId": 2,
-      "userId": 2,
-      "id": 7
-    },
-    {
-      "productId": 2,
       "userId": 1,
       "id": 8
     },
@@ -301,15 +296,14 @@
       "productId": 30,
       "userId": 1,
       "id": 11
+    },
+    {
+      "productId": 5,
+      "userId": 2,
+      "id": 12
     }
   ],
   "cart": [
-    {
-      "productId": 1,
-      "quantity": 27,
-      "userId": 1,
-      "id": 1
-    },
     {
       "productId": 2,
       "quantity": 1,
@@ -317,16 +311,10 @@
       "id": 2
     },
     {
-      "productId": 26,
-      "quantity": 19,
-      "userId": 1,
-      "id": 3
-    },
-    {
-      "productId": 30,
+      "productId": 9,
       "quantity": 1,
       "userId": 1,
-      "id": 4
+      "id": 3
     }
   ],
   "users": [
@@ -341,88 +329,85 @@
       "password": "^0rrfMnt7*%O",
       "registrationDate": "2025-05-15T14:56:35.237Z",
       "agreement": true,
-      "id": 1
+      "id": 1,
+      "role": "user"
     },
     {
-      "firstName": "vg hbjnk",
-      "lastName": "fgvhbjnk",
+      "firstName": "admincfvgybk",
+      "lastName": "v hjbnk",
       "middleName": "",
       "birthDate": "2009-05-08",
-      "phone": "+375257777788",
-      "email": "skitt999999els261105@gmail.com",
-      "nickname": "vg fgv34",
-      "password": "0*5T)PpkV0FV",
-      "registrationDate": "2025-05-15T14:57:46.781Z",
+      "phone": "+375257869405",
+      "email": "admin05@gmail.com",
+      "nickname": "admin228",
+      "password": "Pop@dmin228",
+      "registrationDate": "2025-05-15T14:56:35.237Z",
       "agreement": true,
+      "id": 2,
+      "role": "admin"
+    }
+  ],
+  "feedbacks": [
+    {
+      "id": 1,
+      "productId": 1,
+      "userId": 1,
+      "userName": "v bjhnk v hjbnk",
+      "rating": 5,
+      "text": "Отличные секаторы! Очень удобные и острые.",
+      "date": "2025-05-16T10:00:00Z"
+    },
+    {
+      "productId": 1,
+      "userId": 1,
+      "userName": "undefined undefined",
+      "rating": 5,
+      "text": "ампирлтодльампиртольдимполшпаекошргнпеагкпношщогнпегршоьштмнргшотодл опнг",
+      "date": "2025-05-15T17:35:26.801Z",
       "id": 2
     },
     {
-      "firstName": "l knjbh",
-      "lastName": "fghjbknlm",
-      "middleName": "",
-      "birthDate": "2009-05-10",
-      "phone": "+375257777990",
-      "email": "voldemar228@gmail.com",
-      "nickname": "lfgh_",
-      "password": "y1vLrhu&EFlF",
-      "registrationDate": "2025-05-15T14:59:30.501Z",
-      "agreement": true,
+      "productId": 26,
+      "userId": 1,
+      "userName": "undefined undefined",
+      "rating": 3,
+      "text": "ычвсампоирлтодльотрлосрсмипртоьлджтодирпмасвкаепнргошлщьжирпмоасрвкаегнргщ",
+      "date": "2025-05-15T17:36:54.276Z",
       "id": 3
-    },
-    {
-      "firstName": "vfgbhknjl",
-      "lastName": "kmjbhvg",
-      "middleName": "",
-      "birthDate": "2009-05-04",
-      "phone": "+375295315741",
-      "email": "petushkovva.pir231@gmail.com",
-      "nickname": "vfgk632",
-      "password": "1qt8EJmnO#UP",
-      "registrationDate": "2025-05-15T15:00:18.756Z",
-      "agreement": true,
-      "id": 4
     }
   ],
-  "feedbacks": [],
   "orders": [
     {
-      "date": "2025-05-11T10:48:24.111Z",
+      "date": "2025-05-15T17:10:17.241Z",
       "items": [
         {
           "productId": 1,
-          "quantity": 1,
+          "quantity": 27,
+          "userId": 1,
           "id": 1
         },
         {
-          "productId": 2,
-          "quantity": 1,
-          "id": 2
-        }
-      ],
-      "total": 50.93,
-      "id": 1
-    },
-    {
-      "date": "2025-05-11T13:28:43.277Z",
-      "items": [
-        {
-          "productId": "1",
-          "quantity": 1,
-          "id": "1"
+          "productId": 26,
+          "quantity": 19,
+          "userId": 1,
+          "id": 3
         },
         {
-          "productId": "2",
+          "productId": 30,
           "quantity": 1,
-          "id": "2"
+          "userId": 1,
+          "id": 4
         },
         {
-          "productId": 5,
+          "productId": 1,
           "quantity": 1,
-          "id": "0XPmCce"
+          "userId": 1,
+          "id": 5
         }
       ],
-      "total": 63.44,
-      "id": 2
+      "total": 1156.48,
+      "userId": 1,
+      "id": 3
     }
   ]
 }

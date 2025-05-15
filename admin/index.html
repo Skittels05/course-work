@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../base_css/header.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Admin Panel</h1>
+        
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="products">Products</button>
+            <button class="tab-btn" data-tab="reviews">Reviews</button>
+        </div>
+        
+        <div id="products-tab" class="tab-content active">
+            <div class="product-form">
+                <h2>Add/Edit Product</h2>
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <div class="form-group">
+                        <label for="product-name">Name</label>
+                        <input type="text" id="product-name" required>
+                        <div class="error-message" id="name-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-price">Price</label>
+                        <input type="number" id="product-price" min="0" step="0.01" required>
+                        <div class="error-message" id="price-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-category">Category</label>
+                        <input type="text" id="product-category" required>
+                        <div class="error-message" id="category-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-description">Description</label>
+                        <textarea id="product-description" required></textarea>
+                        <div class="error-message" id="description-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-stock">Stock</label>
+                        <input type="number" id="product-stock" min="0" required>
+                        <div class="error-message" id="stock-error"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="save-product" class="submit-btn" disabled>Save Product</button>
+                        <button type="button" id="reset-form" class="reset-btn">Reset</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="product-list">
+                <h2>Product List</h2>
+                <table id="products-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="reviews-tab" class="tab-content">
+            <div class="review-filters">
+                <div class="filter-group">
+                    <label for="filter-product">Filter by Product:</label>
+                    <select id="filter-product">
+                        <option value="">All Products</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-user">Filter by User:</label>
+                    <select id="filter-user">
+                        <option value="">All Users</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="review-list">
+                <table id="reviews-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>User</th>
+                            <th>Rating</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+    <script src="../base_js/admin.js"></script>
+    <script src="../header/header.js"></script>
+    <script src="../footer/footer.js"></script>
+</body>
+</html>

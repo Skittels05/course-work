@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="../base_css/header.css">
+    <link rel="stylesheet" href="../base_css/footer.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <main>
+        <div class="product-container" id="product-container">
+
+        </div>
+
+        <div class="reviews-section">
+            <h2>Customer Reviews</h2>
+            <div id="reviews-list" class="reviews-list">
+
+            </div>
+
+            <div id="review-form-container" class="review-form-container" style="display: none;">
+                <h3>Write a Review</h3>
+                <form id="review-form">
+                    <div class="form-group">
+                        <label for="review-rating">Rating</label>
+                        <div class="rating-stars">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                            <input type="hidden" id="review-rating" name="rating" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="review-text">Your Review</label>
+                        <textarea id="review-text" name="text" minlength="30" 
+                                placeholder="Write your review (minimum 30 characters)" required></textarea>
+                        <div class="char-counter"><span id="char-count">0</span>/30 characters</div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Review</button>
+                </form>
+            </div>
+
+            <div id="not-purchased-message" class="message-box" style="display: none;">
+                <p>You need to purchase this product before leaving a review.</p>
+            </div>
+
+            <div id="login-to-review" class="message-box" style="display: none;">
+                <p>Please <a href="../login/index.html">sign in</a> to leave a review.</p>
+            </div>
+        </div>
+    </main>
+    <script src="index.js"></script>
+    <script src="../base_js/admin.js"></script>
+    <script src="../header/header.js"></script>
+    <script src="../footer/footer.js"></script>
+</body>
+</html>
