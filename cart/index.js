@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const authUser = JSON.parse(sessionStorage.getItem('authUser'));
+    if (!authUser) {
+        sessionStorage.setItem('returnUrl', window.location.href);
+        window.location.href = '../login/index.html';
+        return;
+    }
+
     const cartItemsContainer = document.getElementById('cart-items');
     const subtotalElement = document.getElementById('subtotal');
     const shippingElement = document.getElementById('shipping');
@@ -12,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadCartData() {
         try {
             const [cartResponse, productsResponse] = await Promise.all([
-                fetch(`${apiUrl}/cart`),
+                fetch(`${apiUrl}/cart?userId=${authUser.id}`),
                 fetch(`${apiUrl}/products`)
             ]);
             
@@ -25,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error loading cart data:', error);
         }
     }
+
     function displayCartItems() {
         if (cartItems.length === 0) {
             cartItemsContainer.innerHTML = `
@@ -95,12 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`${apiUrl}/cart/${itemId}`, {
                 method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    quantity: newQuantity
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ quantity: newQuantity })
             });
             
             const updatedItem = await response.json();
@@ -145,10 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemId = itemElement.dataset.id;
         
         try {
-            await fetch(`${apiUrl}/cart/${itemId}`, {
-                method: 'DELETE'
-            });
-            
+            await fetch(`${apiUrl}/cart/${itemId}`, { method: 'DELETE' });
             cartItems = cartItems.filter(item => item.id !== itemId);
             displayCartItems();
             updateSummary();
@@ -157,40 +158,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-checkoutBtn.addEventListener('click', async () => {
-    try {
-        const orderResponse = await fetch(`${apiUrl}/orders`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                date: new Date().toISOString(),
-                items: cartItems,
-                total: parseFloat(totalElement.textContent.replace('$', ''))
-            })
-        });
-        
-        if (!orderResponse.ok) throw new Error('Order failed');
-        await Promise.all(
-            cartItems.map(item => 
-                fetch(`${apiUrl}/cart/${item.id}`, {
-                    method: 'DELETE'
+    checkoutBtn.addEventListener('click', async () => {
+        try {
+            const orderResponse = await fetch(`${apiUrl}/orders`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    date: new Date().toISOString(),
+                    items: cartItems,
+                    total: parseFloat(totalElement.textContent.replace('$', '')),
+                    userId: authUser.id
                 })
-            )
-        );
+            });
+            
+            if (!orderResponse.ok) throw new Error('Order failed');
+            
+            await Promise.all(
+                cartItems.map(item => 
+                    fetch(`${apiUrl}/cart/${item.id}`, { method: 'DELETE' })
+                )
+            );
 
-        alert('Order placed successfully! Your cart has been cleared.');
+            alert('Order placed successfully! Your cart has been cleared.');
+            cartItems = [];
+            displayCartItems();
+            updateSummary();
 
-        cartItems = [];
-        displayCartItems();
-        updateSummary();
-
-    } catch (error) {
-        console.error('Checkout error:', error);
-        alert('There was an error processing your order. Please try again.');
-    }
-});
+        } catch (error) {
+            console.error('Checkout error:', error);
+            alert('There was an error processing your order. Please try again.');
+        }
+    });
 
     loadCartData();
 });

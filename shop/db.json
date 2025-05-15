@@ -274,42 +274,113 @@
   "favorites": [
     {
       "productId": 1,
-      "id": 3
+      "userId": 1,
+      "id": 6
     },
     {
       "productId": 2,
-      "id": 4
+      "userId": 2,
+      "id": 7
     },
     {
-      "productId": 26,
-      "id": 5
+      "productId": 2,
+      "userId": 1,
+      "id": 8
+    },
+    {
+      "productId": 20,
+      "userId": 1,
+      "id": 9
+    },
+    {
+      "productId": 23,
+      "userId": 1,
+      "id": 10
+    },
+    {
+      "productId": 30,
+      "userId": 1,
+      "id": 11
     }
   ],
   "cart": [
     {
+      "productId": 1,
+      "quantity": 27,
+      "userId": 1,
+      "id": 1
+    },
+    {
       "productId": 2,
       "quantity": 1,
+      "userId": 2,
       "id": 2
+    },
+    {
+      "productId": 26,
+      "quantity": 19,
+      "userId": 1,
+      "id": 3
     },
     {
       "productId": 30,
       "quantity": 1,
-      "id": 3
+      "userId": 1,
+      "id": 4
     }
   ],
   "users": [
     {
-      "firstName": "hjnkm",
-      "lastName": "gbhjnkm",
+      "firstName": "v bjhnk",
+      "lastName": "v hjbnk",
       "middleName": "",
-      "birthDate": "2009-05-07",
+      "birthDate": "2009-05-08",
       "phone": "+375257777777",
       "email": "skittels261105@gmail.com",
-      "nickname": "h_gbh601",
-      "registrationDate": "2025-05-12T17:32:19.909Z",
-      "agreement": true,
+      "nickname": "v_v h941",
       "password": "^0rrfMnt7*%O",
+      "registrationDate": "2025-05-15T14:56:35.237Z",
+      "agreement": true,
       "id": 1
+    },
+    {
+      "firstName": "vg hbjnk",
+      "lastName": "fgvhbjnk",
+      "middleName": "",
+      "birthDate": "2009-05-08",
+      "phone": "+375257777788",
+      "email": "skitt999999els261105@gmail.com",
+      "nickname": "vg fgv34",
+      "password": "0*5T)PpkV0FV",
+      "registrationDate": "2025-05-15T14:57:46.781Z",
+      "agreement": true,
+      "id": 2
+    },
+    {
+      "firstName": "l knjbh",
+      "lastName": "fghjbknlm",
+      "middleName": "",
+      "birthDate": "2009-05-10",
+      "phone": "+375257777990",
+      "email": "voldemar228@gmail.com",
+      "nickname": "lfgh_",
+      "password": "y1vLrhu&EFlF",
+      "registrationDate": "2025-05-15T14:59:30.501Z",
+      "agreement": true,
+      "id": 3
+    },
+    {
+      "firstName": "vfgbhknjl",
+      "lastName": "kmjbhvg",
+      "middleName": "",
+      "birthDate": "2009-05-04",
+      "phone": "+375295315741",
+      "email": "petushkovva.pir231@gmail.com",
+      "nickname": "vfgk632",
+      "password": "1qt8EJmnO#UP",
+      "registrationDate": "2025-05-15T15:00:18.756Z",
+      "agreement": true,
+      "id": 4
     }
   ],
   "feedbacks": [],

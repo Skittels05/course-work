@@ -124,7 +124,24 @@ select:focus {
     border-radius: 4px;
     cursor: pointer;
 }
+.password-generator {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
 
+.password-generator input {
+    flex: 1;
+}
+
+.password-generator button {
+    padding: 0 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 .checkbox-group {
     display: flex;
     gap: 0.5rem;
@@ -168,6 +185,104 @@ select:focus {
 
 .login-link:hover {
     text-decoration: underline;
+}
+/* Новые стили */
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 12px;
+    color: var(--light-text);
+}
+
+.input-with-icon input {
+    padding-left: 40px !important;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+}
+
+.password-field {
+    display: flex;
+    gap: 1rem;
+}
+
+.generate-password-btn {
+    padding: 0 1rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.password-input-container {
+    position: relative;
+    display: flex;
+}
+
+.password-input {
+    width: 100%;
+    padding: 0.8rem 3.5rem 0.8rem 0.8rem !important;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.generate-password-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-password:hover,
+.generate-password-btn:hover {
+    color: var(--primary-color);
+}
+h1 i {
+    margin-right: 10px;
 }
 
 @media (max-width: 600px) {

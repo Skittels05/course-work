@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../base_css/header.css">
+    <link rel="stylesheet" href="../base_css/footer.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="authOnlyContent" style="display: none;">
+            <h1>User Profile</h1>
+            
+            <div class="profile-info">
+                <div class="user-details">
+                    <p><span class="detail-label">Name:</span> <span id="userFullName"></span></p>
+                    <p><span class="detail-label">Email:</span> <span id="userEmail"></span></p>
+                    <p><span class="detail-label">Phone:</span> <span id="userPhone"></span></p>
+                    <p><span class="detail-label">Registered:</span> <span id="userRegDate"></span></p>
+                </div>
+            </div>
+            
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="nickname">Nickname</label>
+                    <div class="input-with-button">
+                        <input type="text" id="nickname">
+                        <button type="button" id="generateNickname" class="icon-btn" title="Generate nickname">
+                            <i class="fas fa-dice"></i>
+                        </button>
+                    </div>
+                    <div class="error-message" id="nicknameError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <div class="password-input">
+                        <input type="password" id="currentPassword" placeholder="Enter current password">
+                        <button type="button" class="toggle-password icon-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <div class="password-input">
+                        <input type="password" id="newPassword" placeholder="Enter new password">
+                        <button type="button" class="toggle-password icon-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button type="button" id="generatePassword" class="icon-btn" title="Generate password">
+                            <i class="fas fa-key"></i>
+                        </button>
+                    </div>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <div class="password-input">
+                        <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                        <button type="button" class="toggle-password icon-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Save Changes</button>
+                <div class="success-message" id="successMessage"></div>
+            </form>
+            
+            <button id="logoutBtn" class="logout-btn">
+                Logout
+            </button>
+        </div>
+        
+        <div id="notAuthContent" class="not-auth-message">
+            <h2>Please sign in to view your profile</h2>
+            <a href="../login/index.html" class="login-link">Go to Login Page</a>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>

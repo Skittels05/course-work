@@ -3,10 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registrationForm');
     const submitBtn = document.getElementById('submitBtn');
     const successMessage = document.getElementById('successMessage');
-    const passwordOptionAuto = document.getElementById('autoPassword');
-    const passwordOptionManual = document.getElementById('manualPassword');
     const manualPasswordFields = document.getElementById('manualPasswordFields');
     const generateNicknameBtn = document.getElementById('generateNickname');
+    const generatePasswordBtn = document.getElementById('generatePassword');
 
     let nicknameAttempts = 0;
     const maxNicknameAttempts = 5;
@@ -25,16 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
         birthDateInput.max = maxDate.toISOString().split('T')[0];
         manualPasswordFields.style.display = 'none';
     }
-
-    passwordOptionAuto.addEventListener('change', function() {
-        manualPasswordFields.style.display = 'none';
-        validateForm();
-    });
-
-    passwordOptionManual.addEventListener('change', function() {
-        manualPasswordFields.style.display = 'block';
-        validateForm();
-    });
 
     generateNicknameBtn.addEventListener('click', function() {
         const firstName = document.getElementById('firstName').value.trim();
@@ -58,6 +47,70 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('nickname').value = nickname;
         checkFieldAvailability('nickname', nickname, 'nicknameError', 'This nickname is already taken');
     });
+
+    generatePasswordBtn.addEventListener('click', function() {
+        const password = generatePassword();
+        document.getElementById('password').value = password;
+        document.getElementById('confirmPassword').value = password;
+        validatePassword();
+    });
+
+    document.querySelectorAll('.toggle-password').forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('input');
+            const icon = this.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
+
+    function generatePassword() {
+        const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+        const numbers = '0123456789';
+        const symbols = '!@#$%^&*()';
+
+        let password = '';
+        password += getRandomChar(uppercase);
+        password += getRandomChar(lowercase);
+        password += getRandomChar(numbers);
+        password += getRandomChar(symbols);
+
+        const allChars = uppercase + lowercase + numbers + symbols;
+        for (let i = 4; i < 12; i++) {
+            password += getRandomChar(allChars);
+        }
+
+        return password.split('').sort(() => 0.5 - Math.random()).join('');
+    }
+
+    function getRandomChar(charSet) {
+        return charSet.charAt(Math.floor(Math.random() * charSet.length));
+    }
+
+    function generateNickname(firstName, lastName) {
+        const firstPart = firstName.substring(0, Math.min(3, firstName.length));
+        const secondPart = lastName.substring(0, Math.min(3, lastName.length));
+        const randomNum = Math.floor(Math.random() * 990) + 10;
+        const randomSuffix = nicknameSuffixes[Math.floor(Math.random() * nicknameSuffixes.length)];
+
+        const combinations = [
+            firstPart + secondPart + randomNum,
+            firstPart.charAt(0) + '_' + secondPart + randomNum,
+            firstPart + randomNum + randomSuffix,
+            firstPart + secondPart.charAt(0) + randomNum,
+            firstPart.charAt(0) + secondPart + randomSuffix
+        ];
+
+        return combinations[Math.floor(Math.random() * combinations.length)];
+    }
 
     async function checkFieldAvailability(fieldName, value, errorElementId, errorMessage) {
         try {
@@ -90,24 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return isEmailUnique && isNicknameUnique && isPhoneUnique;
     }
 
-    function generateNickname(firstName, lastName) {
-        const firstPart = firstName.substring(0, Math.min(3, firstName.length));
-        const secondPart = lastName.substring(0, Math.min(3, lastName.length));
-        const randomNum = Math.floor(Math.random() * 990) + 10;
-        const randomSuffix = nicknameSuffixes[Math.floor(Math.random() * nicknameSuffixes.length)];
-
-        const combinations = [
-            firstPart + secondPart + randomNum,
-            firstPart.charAt(0) + '_' + secondPart + randomNum,
-            firstPart + randomNum + randomSuffix,
-            firstPart + secondPart.charAt(0) + randomNum,
-            firstPart.charAt(0) + secondPart + randomSuffix
-        ];
-
-        return combinations[Math.floor(Math.random() * combinations.length)];
-    }
-
-    async function validateForm() {
+    function validateForm() {
         let isValid = true;
 
         if (!validateRequiredField('lastName', 'lastNameError', 'Enter your last name')) {
@@ -134,10 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
             isValid = false;
         }
 
-        if (passwordOptionManual.checked && !validatePassword()) {
-            isValid = false;
-        }
-
+        
         if (!document.getElementById('agreement').checked) {
             showError('agreementError', 'You must accept the agreement terms');
             isValid = false;
@@ -145,13 +178,17 @@ document.addEventListener('DOMContentLoaded', function() {
             hideError('agreementError');
         }
 
-        if (isValid) {
-            const areFieldsUnique = await validateUniqueFields();
-            isValid = isValid && areFieldsUnique;
-        }
-
         submitBtn.disabled = !isValid;
         return isValid;
+    }
+
+    async function validateFormWithUniqueness() {
+        const isFormValid = validateForm();
+        if (!isFormValid) return false;
+
+        const areFieldsUnique = await validateUniqueFields();
+        submitBtn.disabled = !areFieldsUnique;
+        return areFieldsUnique;
     }
 
     function validateRequiredField(fieldId, errorId, errorMessage) {
@@ -267,34 +304,10 @@ document.addEventListener('DOMContentLoaded', function() {
         errorElement.style.display = 'none';
     }
 
-    function generatePassword() {
-        const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-        const numbers = '0123456789';
-        const symbols = '!@#$%^&*()';
-
-        let password = '';
-        password += getRandomChar(uppercase);
-        password += getRandomChar(lowercase);
-        password += getRandomChar(numbers);
-        password += getRandomChar(symbols);
-
-        const allChars = uppercase + lowercase + numbers + symbols;
-        for (let i = 4; i < 12; i++) {
-            password += getRandomChar(allChars);
-        }
-
-        return password.split('').sort(() => 0.5 - Math.random()).join('');
-    }
-
-    function getRandomChar(charSet) {
-        return charSet.charAt(Math.floor(Math.random() * charSet.length));
-    }
-
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        if (!await validateForm()) {
+        if (!await validateFormWithUniqueness()) {
             return;
         }
 
@@ -313,18 +326,10 @@ document.addEventListener('DOMContentLoaded', function() {
             phone: document.getElementById('phone').value.trim(),
             email: document.getElementById('email').value.trim(),
             nickname: nickname,
+            password: document.getElementById('password').value,
             registrationDate: new Date().toISOString(),
             agreement: document.getElementById('agreement').checked
         };
-
-        let password;
-        if (passwordOptionAuto.checked) {
-            password = generatePassword();
-            userData.password = password;
-        } else {
-            password = document.getElementById('password').value;
-            userData.password = password;
-        }
 
         try {
             const response = await fetch(`${apiUrl}/users`, {
@@ -338,25 +343,23 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!response.ok) {
                 throw new Error('Server error: ' + response.status);
             }
+            
             successMessage.style.display = 'block';
-            form.reset();
-            submitBtn.disabled = true;
-
-            if (passwordOptionAuto.checked) {
-                alert(`Your password: ${password}\nPlease save it securely!`);
-            }
-
+            
             setTimeout(() => {
                 window.location.href = '../login/index.html?fromRegistration=true&email=' + encodeURIComponent(userData.email);
             }, 3000);
-
+            form.reset();
+            submitBtn.disabled = true;
         } catch (error) {
             console.error('Registration error:', error);
             alert('Registration error. Please try again.');
         }
     });
+
     form.addEventListener('input', function() {
         validateForm();
     });
+
     initForm();
 });

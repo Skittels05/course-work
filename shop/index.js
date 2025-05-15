@@ -67,20 +67,20 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-
-// Добавьте эту функцию для проверки избранного
 async function checkFavorite(productId) {
+  const authUser = JSON.parse(sessionStorage.getItem('authUser'));
+  if (!authUser) return false;
+
   try {
-    const response = await fetch(`http://localhost:3000/favorites?productId=${productId}`);
+    const response = await fetch(`http://localhost:3000/favorites?productId=${productId}&userId=${authUser.id}`);
     const favorites = await response.json();
-    return favorites.some(item => item.productId == productId);
+    return favorites.length > 0;
   } catch (error) {
     console.error('Error checking favorites:', error);
     return false;
   }
 }
 
-// Обновленная функция displayProducts
 async function displayProducts(products) {
   const productsHTML = await Promise.all(products.map(async (product) => {
     const isFavorite = await checkFavorite(product.id);
@@ -108,7 +108,6 @@ async function displayProducts(products) {
 
   productsContainer.innerHTML = productsHTML.join('') || '<p class="no-results">No products found</p>';
 
-  // Обработчики событий
   document.querySelectorAll('.add-to-cart').forEach(btn => {
     btn.addEventListener('click', addToCart);
   });
@@ -118,9 +117,14 @@ async function displayProducts(products) {
   });
 }
 
-// Добавьте новую функцию для работы с избранным
 async function toggleFavorite(event) {
   event.stopPropagation();
+  const authUser = JSON.parse(sessionStorage.getItem('authUser'));
+  if (!authUser) {
+    window.location.href = '../login/index.html';
+    return;
+  }
+
   const btn = event.currentTarget;
   const productId = btn.dataset.id;
   const heartIcon = btn.querySelector('i');
@@ -128,33 +132,32 @@ async function toggleFavorite(event) {
 
   try {
     if (isCurrentlyFavorite) {
-      // Находим ID элемента в избранном для удаления
-      const favoritesResponse = await fetch(`http://localhost:3000/favorites?productId=${productId}`);
+      const favoritesResponse = await fetch(`http://localhost:3000/favorites?productId=${productId}&userId=${authUser.id}`);
       const favorites = await favoritesResponse.json();
       
       if (favorites.length > 0) {
-        const favoriteId = favorites[0].id;
-        await fetch(`http://localhost:3000/favorites/${favoriteId}`, {
+        await fetch(`http://localhost:3000/favorites/${favorites[0].id}`, {
           method: 'DELETE'
         });
       }
     } else {
-      // Добавляем в избранное
+
       await fetch('http://localhost:3000/favorites', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: +productId })
+        body: JSON.stringify({ 
+          productId: +productId,
+          userId: authUser.id
+        })
       });
     }
 
-    // Переключаем визуальное состояние
     btn.classList.toggle('active');
     heartIcon.classList.toggle('far');
     heartIcon.classList.toggle('fas');
 
   } catch (error) {
     console.error('Error updating favorites:', error);
-    // Можно добавить уведомление для пользователя
   }
 }
 
@@ -308,7 +311,7 @@ async function toggleFavorite(event) {
     minPriceInput.addEventListener('change', resetToFirstPage);
     maxPriceInput.addEventListener('change', resetToFirstPage);
   }
-
+  
   function setupSearch() {
     let searchTimeout;
     searchInput.addEventListener('input', () => {
@@ -334,16 +337,27 @@ async function toggleFavorite(event) {
   }
 
   function addToCart(event) {
+    const authUser = JSON.parse(sessionStorage.getItem('authUser'));
+    if (!authUser) {
+        sessionStorage.setItem('returnUrl', window.location.href);
+        window.location.href = '../login/index.html';
+        return;
+    }
+
     const productId = event.target.closest('.product-card').dataset.id;
     fetch('http://localhost:3000/cart', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId: +productId, quantity: 1 })
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            productId: +productId, 
+            quantity: 1,
+            userId: authUser.id
+        })
     })
     .then(response => response.json())
     .then(() => alert('Added to cart!'))
     .catch(error => console.error('Error:', error));
-  }
+}
 
   setupSearch();
   setupSorting();

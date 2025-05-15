@@ -66,10 +66,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 id: user.id,
                 nickname: user.nickname
             }));
+
             successMessage.style.display = 'block';
             submitBtn.textContent = 'Log in succesful';
+
+            const returnUrl = sessionStorage.getItem('returnUrl');
             setTimeout(() => {
-                window.location.href = '../home/index.html';
+                window.location.href = returnUrl || '../home/index.html';
+                if (returnUrl) {
+                    sessionStorage.removeItem('returnUrl'); 
+                }
             }, 1000);
 
         } catch (error) {

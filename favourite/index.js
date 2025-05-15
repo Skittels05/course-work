@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const authUser = JSON.parse(sessionStorage.getItem('authUser'));
+    if (!authUser) {
+        sessionStorage.setItem('returnUrl', window.location.href);
+        window.location.href = '../login/index.html';
+        return;
+    }
+
     const favoritesContainer = document.getElementById('favorites-items');
     const apiUrl = 'http://localhost:3000';
     let favorites = [];
@@ -7,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadFavoritesData() {
         try {
             const [favoritesResponse, productsResponse] = await Promise.all([
-                fetch(`${apiUrl}/favorites`),
+                fetch(`${apiUrl}/favorites?userId=${authUser.id}`),
                 fetch(`${apiUrl}/products`)
             ]);
             favorites = await favoritesResponse.json();
@@ -17,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error loading favorites data:', error);
         }
     }
+
     function displayFavoritesItems() {
         if (favorites.length === 0) {
             favoritesContainer.innerHTML = `
@@ -48,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         }).join('');
+
         document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
             btn.addEventListener('click', addToCart);
         });
@@ -60,15 +69,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemElement = e.target.closest('.favorite-item');
         const favId = itemElement.dataset.id;
         const favorite = favorites.find(f => f.id == favId);
+        
         try {
-            const cartResponse = await fetch(`${apiUrl}/cart?productId=${favorite.productId}`);
+            const cartResponse = await fetch(`${apiUrl}/cart?productId=${favorite.productId}&userId=${authUser.id}`);
             const existingItems = await cartResponse.json();
+            
             if (existingItems.length > 0) {
                 await fetch(`${apiUrl}/cart/${existingItems[0].id}`, {
                     method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         quantity: existingItems[0].quantity + 1
                     })
@@ -76,12 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 await fetch(`${apiUrl}/cart`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         productId: favorite.productId,
-                        quantity: 1
+                        quantity: 1,
+                        userId: authUser.id
                     })
                 });
             }
@@ -92,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('There was an error adding the product to cart.');
         }
     }
+
     async function removeFavorite(e) {
         const itemElement = e.target.closest('.favorite-item');
         const favId = itemElement.dataset.id;
@@ -108,5 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('There was an error removing the item from favorites.');
         }
     }
+
     loadFavoritesData();
 });
