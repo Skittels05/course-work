@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '../login/index.html';
         return;
     }
+    if (authUser.role === 'admin') {
+        const checkoutBtn = document.getElementById('checkout-btn');
+        checkoutBtn.disabled = true;
+        checkoutBtn.textContent = 'Not available for admin role';
+        checkoutBtn.style.backgroundColor = '#cccccc';
+        checkoutBtn.style.cursor = 'not-allowed';
+    }
 
     const cartItemsContainer = document.getElementById('cart-items');
     const subtotalElement = document.getElementById('subtotal');
@@ -93,8 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
         shippingElement.textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
         totalElement.textContent = `$${total.toFixed(2)}`;
-        
-        checkoutBtn.disabled = cartItems.length === 0;
+        checkoutBtn.disabled = cartItems.length === 0 || authUser.role === 'admin';
     }
 
     async function updateQuantity(itemId, newQuantity) {
@@ -159,6 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     checkoutBtn.addEventListener('click', async () => {
+        if (authUser.role === 'admin') {
+            alert('Checkout functionality is not available for admin role');
+            return;
+        }
+
         try {
             const orderResponse = await fetch(`${apiUrl}/orders`, {
                 method: 'POST',

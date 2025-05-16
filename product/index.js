@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let selectedRating = 0;
 
-    // Загрузка данных товара
     async function loadProduct() {
         try {
             const response = await fetch(`${apiUrl}/products/${productId}`);
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.add-to-cart').addEventListener('click', addToCart);
     }
 
-    // Загрузка отзывов
     async function loadReviews() {
         try {
             const response = await fetch(`${apiUrl}/feedbacks?productId=${productId}`);
@@ -80,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
         `).join('');
     }
 
-    // Проверка покупки товара
     async function checkPurchaseStatus() {
         const authUser = JSON.parse(sessionStorage.getItem('authUser'));
         
@@ -89,11 +86,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        if (authUser.role === 'admin') {
+            notPurchasedMessage.style.display = 'block';
+            notPurchasedMessage.innerHTML = '<p>Review functionality is not available for your role.</p>';
+            return;
+        }
+
         try {
             const response = await fetch(`${apiUrl}/orders?userId=${authUser.id}`);
             const orders = await response.json();
-            
-            // Проверяем, есть ли товар в заказах пользователя
+
             let hasPurchased = false;
             orders.forEach(order => {
                 order.items.forEach(item => {
@@ -119,13 +121,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Обработка формы отзыва
     reviewForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const authUser = JSON.parse(sessionStorage.getItem('authUser'));
         if (!authUser) {
             window.location.href = '../login/index.html';
+            return;
+        }
+
+        if (authUser.role === 'admin') {
+            alert('Review functionality is not available for your role.');
             return;
         }
 
@@ -170,7 +176,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Добавление в корзину
     function addToCart(event) {
         const authUser = JSON.parse(sessionStorage.getItem('authUser'));
         if (!authUser) {
@@ -198,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error:', error));
     }
 
-    // Рейтинг звездами
     ratingStars.forEach(star => {
         star.addEventListener('click', () => {
             selectedRating = parseInt(star.dataset.rating);
@@ -214,12 +218,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Счетчик символов
     reviewText.addEventListener('input', () => {
         charCount.textContent = reviewText.value.length;
     });
 
-    // Вспомогательные функции
     function renderRatingStars(rating) {
         const fullStars = Math.floor(rating);
         const hasHalfStar = rating % 1 >= 0.5;
@@ -238,7 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return stars;
     }
 
-    // Инициализация
     if (productId) {
         loadProduct();
     } else {

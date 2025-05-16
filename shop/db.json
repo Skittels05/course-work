@@ -3,7 +3,7 @@
     {
       "id": "1",
       "name": "Premium Bypass Pruners",
-      "price": 29.99,
+      "price": 18.99,
       "category": "Tools",
       "description": "Professional-grade pruning shears with ergonomic handles.",
       "rating": 4.8,
@@ -365,15 +365,6 @@
       "text": "ампирлтодльампиртольдимполшпаекошргнпеагкпношщогнпегршоьштмнргшотодл опнг",
       "date": "2025-05-15T17:35:26.801Z",
       "id": 2
-    },
-    {
-      "productId": 26,
-      "userId": 1,
-      "userName": "undefined undefined",
-      "rating": 3,
-      "text": "ычвсампоирлтодльотрлосрсмипртоьлджтодирпмасвкаепнргошлщьжирпмоасрвкаегнргщ",
-      "date": "2025-05-15T17:36:54.276Z",
-      "id": 3
     }
   ],
   "orders": [

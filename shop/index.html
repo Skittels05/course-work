@@ -1,99 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
-    <link rel="stylesheet" href="../base_css/header.css">
-    <link rel="stylesheet" href="../base_css/footer.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop</title>
+  <link rel="stylesheet" href="../base_css/header.css">
+  <link rel="stylesheet" href="../base_css/footer.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <main>
-        <div class="shop-header">
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Search products...">
-                <img src="../assets/shop/search.png" alt="Search" class="search-icon">
-            </div>
-            <div class="right_container">
-                <div class="sort-button">
-                    <button id="sort-toggle">
-                        <span class="arrow-up">↑</span>
-                        <span class="arrow-down">↓</span>
-                    </button>
-                </div>
-                <button id="filter-toggle" class="filter-button">
-                      <i class="fas fa-filter"></i> Filters
-                    </button>
-                  
-                  <div class="filters-sidebar" id="filters-sidebar">
-                    <div class="sidebar-header">
-                      <h3>Filters</h3>
-                      <button id="close-filters" class="close-btn">&times;</button>
-                    </div>
-                    
-                    <div class="filter-group">
-                      <h4>Categories</h4>
-                      <div class="category-filters">
-                        <label><input type="checkbox" name="category" value="Tools" checked> Tools</label>
-                        <label><input type="checkbox" name="category" value="Soil & Fertilizers" checked> Soil & Fertilizers</label>
-                        <label><input type="checkbox" name="category" value="Accessories" checked> Accessories</label>
-                        <label><input type="checkbox" name="category" value="Watering" checked> Watering</label>
-                        <label><input type="checkbox" name="category" value="Decor" checked> Decor</label>
-                        <label><input type="checkbox" name="category" value="Composting" checked> Composting</label>
-                        <label><input type="checkbox" name="category" value="Storage" checked> Storage</label>
-                      </div>
-                    </div>
-                  
-                    <div class="filter-group">
-                      <h4>Price Range ($)</h4>
-                      <div class="price-range">
-                        <div class="price-inputs">
-                          <input type="number" id="min-price" placeholder="Min" min="0" max="150" value="0">
-                          <span>—</span>
-                          <input type="number" id="max-price" placeholder="Max" min="0" max="150" value="150">
-                        </div>
-                        <div class="range-slider">
-                          <input type="range" id="price-slider-min" min="0" max="150" step="5" value="0">
-                          <input type="range" id="price-slider-max" min="0" max="150" step="5" value="150">
-                          <div class="active-range"></div> 
-                        </div>
-                      </div>
-                    </div>
-                    <button id="reset-filters" class="reset-btn">Reset Filters</button>
-                    <button id="apply-filters" class="apply-btn">Apply Filters</button>
-                  </div>
-                  
-                  <div class="overlay" id="overlay"></div>
-            </div>
-            
-            
+  <main>
+    <div class="shop-header">
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search products...">
+        <img src="../assets/shop/search.png" alt="Search" class="search-icon">
+      </div>
+      <div class="right_container">
+        <div class="sort-button">
+          <button id="sort-toggle">
+            <span class="arrow-up">↑</span>
+            <span class="arrow-down">↓</span>
+          </button>
         </div>
-        <hr>
-        <div class="products-grid" id="products-container">
-          <!-- Товары будут здесь -->
-        </div>
-        <hr class="above_pag">
-        <div class="pagination">
-          <button id="first-page" title="First page">«</button>
-          <button id="prev-page" title="Previous">‹</button>
-          
-          <div class="page-numbers" id="page-numbers">
-            <!-- Страницы будут вставлены сюда через JS -->
+        <button id="filter-toggle" class="filter-button">
+          <i class="fas fa-filter"></i> Filters
+        </button>
+
+        <div class="filters-sidebar" id="filters-sidebar">
+          <div class="sidebar-header">
+            <h3>Filters</h3>
+            <button id="close-filters" class="close-btn">&times;</button>
           </div>
-          
-          <button id="next-page" title="Next">›</button>
-          <button id="last-page" title="Last page">»</button>
+
+          <div class="filter-group">
+            <h4>Categories</h4>
+            <div class="category-filters">
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h4>Price Range ($)</h4>
+            <div class="price-range">
+              <div class="price-inputs">
+                <input type="number" id="min-price" placeholder="Min" min="0" max="150" value="0">
+                <span>—</span>
+                <input type="number" id="max-price" placeholder="Max" min="0" max="150" value="150">
+              </div>
+              <div class="range-slider">
+                <input type="range" id="price-slider-min" min="0" max="150" step="5" value="0">
+                <input type="range" id="price-slider-max" min="0" max="150" step="5" value="150">
+                <div class="active-range"></div>
+              </div>
+            </div>
+          </div>
+          <button id="reset-filters" class="reset-btn">Reset Filters</button>
+          <button id="apply-filters" class="apply-btn">Apply Filters</button>
         </div>
-      </main>
-    <script src="index.js"></script>
-    <script src="../base_js/admin.js"></script>
-    <script src="../header/header.js"></script>
-<script src="../footer/footer.js"></script>
+
+        <div class="overlay" id="overlay"></div>
+      </div>
+
+
+    </div>
+    <hr>
+    <div class="products-grid" id="products-container">
+
+    </div>
+    <hr class="above_pag">
+    <div class="pagination">
+      <button id="first-page" title="First page">«</button>
+      <button id="prev-page" title="Previous">‹</button>
+
+      <div class="page-numbers" id="page-numbers">
+
+      </div>
+
+      <button id="next-page" title="Next">›</button>
+      <button id="last-page" title="Last page">»</button>
+    </div>
+  </main>
+  <script src="index.js"></script>
+  <script src="../base_js/admin.js"></script>
+  <script src="../header/header.js"></script>
+  <script src="../footer/footer.js"></script>
 </body>
 </html>

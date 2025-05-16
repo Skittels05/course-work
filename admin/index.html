@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <div class="admin-container">
-        <h1>Admin Panel</h1>
-        
+     <div class="admin-container">
         <div class="admin-tabs">
             <button class="tab-btn active" data-tab="products">Products</button>
             <button class="tab-btn" data-tab="reviews">Reviews</button>
@@ -42,14 +42,9 @@
                         <textarea id="product-description" required></textarea>
                         <div class="error-message" id="description-error"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="product-stock">Stock</label>
-                        <input type="number" id="product-stock" min="0" required>
-                        <div class="error-message" id="stock-error"></div>
-                    </div>
                     <div class="form-actions">
-                        <button type="submit" id="save-product" class="submit-btn" disabled>Save Product</button>
-                        <button type="button" id="reset-form" class="reset-btn">Reset</button>
+                        <button type="submit" id="save-product" class="button" disabled>Save Product</button>
+                        <button type="button" id="reset-form" class="button reset-btn">Reset</button>
                     </div>
                 </form>
             </div>
@@ -63,7 +58,6 @@
                             <th>Name</th>
                             <th>Price</th>
                             <th>Category</th>
-                            <th>Stock</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -74,6 +68,7 @@
         
         <div id="reviews-tab" class="tab-content">
             <div class="review-filters">
+                <h2>Customer Reviews</h2>
                 <div class="filter-group">
                     <label for="filter-product">Filter by Product:</label>
                     <select id="filter-product">
@@ -96,6 +91,7 @@
                             <th>Product</th>
                             <th>User</th>
                             <th>Rating</th>
+                            <th>Review Text</th>
                             <th>Date</th>
                             <th>Actions</th>
                         </tr>
@@ -110,4 +106,5 @@
     <script src="../header/header.js"></script>
     <script src="../footer/footer.js"></script>
 </body>
+
 </html>
