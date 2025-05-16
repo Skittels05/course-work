@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPage = 1;
   let totalPages = 1;
   const itemsPerPage = 6;
-  const maxVisiblePages = 5;
+  const maxVisiblePages = 4;
   let currentSortField = "";
   let currentSortOrder = "";
   const firstPageBtn = document.getElementById("first-page");
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "<p>Error loading products. Please try again later.</p>";
     }
   }
+
   function updateRange() {
     const minSlider = document.getElementById("price-slider-min");
     const maxSlider = document.getElementById("price-slider-max");
@@ -59,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     right: ${100 - maxPercent}%;
   `;
   }
+
   function fetchProducts() {
     let filteredProducts = [...allProducts];
     const searchTerm = searchInput.value.trim().toLowerCase();
@@ -103,14 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    console.log("Filtered products count:", filteredProducts.length);
-    console.log("Current page:", currentPage);
-    console.log(
-      "Total pages:",
-      Math.ceil(filteredProducts.length / itemsPerPage)
-    );
-    console.log("All products:", allProducts.length);
-    console.log("Filtered products:", filteredProducts);
     totalPages = Math.max(1, Math.ceil(filteredProducts.length / itemsPerPage));
     updatePagination(filteredProducts.length);
 
@@ -166,13 +160,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="product-meta">
               <span class="product-category">${product.category}</span>
               <div class="product-price">$${product.price.toFixed(2)}</div>
-              ${
-                product.rating
-                  ? `<div class="product-rating">★ ${product.rating.toFixed(
-                      1
-                    )}</div>`
+              <div class="product-rating">${
+                product.rating || product.rating === 0
+                  ? `★ ${product.rating.toFixed(1)}`
                   : ""
-              }
+              }</div>
             </div>
             <button class="add-to-cart">Add to Cart</button>
           </div>
@@ -193,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Остальной код остается без изменений...
   async function toggleFavorite(event) {
     event.stopPropagation();
     const authUser = JSON.parse(sessionStorage.getItem("authUser"));
@@ -343,6 +336,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nextPageBtn.disabled = currentPage === totalPages;
     lastPageBtn.disabled = currentPage === totalPages;
   }
+
   function generateCategoryFilters() {
     const categoryFiltersContainer =
       document.querySelector(".category-filters");
@@ -409,6 +403,7 @@ document.addEventListener("DOMContentLoaded", () => {
     minPriceInput.addEventListener("change", resetToFirstPage);
     maxPriceInput.addEventListener("change", resetToFirstPage);
   }
+
   function setupSearch() {
     let searchTimeout;
     searchInput.addEventListener("input", () => {

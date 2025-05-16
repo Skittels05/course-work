@@ -1,3 +1,4 @@
+//index.js
 document.addEventListener('DOMContentLoaded', function() {
     const apiUrl = 'http://localhost:3000';
     const productId = new URLSearchParams(window.location.search).get('id');
@@ -10,19 +11,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const ratingStars = document.querySelectorAll('.rating-stars i');
     const reviewText = document.getElementById('review-text');
     const charCount = document.getElementById('char-count');
+    const reviewFormTitle = document.querySelector('#review-form-container h3');
 
     let selectedRating = 0;
+    let isLoading = false;
+    let existingReviewId = null;
+    let isEditMode = false;
 
     async function loadProduct() {
+        if (isLoading) return;
+        isLoading = true;
+        
         try {
             const response = await fetch(`${apiUrl}/products/${productId}`);
             const product = await response.json();
             displayProduct(product);
-            loadReviews();
-            checkPurchaseStatus();
+            await loadReviews();
         } catch (error) {
             console.error('Error loading product:', error);
             productContainer.innerHTML = '<p>Error loading product details.</p>';
+        } finally {
+            isLoading = false;
         }
     }
 
@@ -52,9 +61,137 @@ document.addEventListener('DOMContentLoaded', function() {
             const response = await fetch(`${apiUrl}/feedbacks?productId=${productId}`);
             const reviews = await response.json();
             displayReviews(reviews);
+            
+            // Обновляем рейтинг продукта на основе отзывов
+            await updateProductRating(reviews);
+            
+            // Проверяем статус покупки после загрузки отзывов
+            checkPurchaseStatus();
+            
+            // Проверяем, есть ли отзыв от текущего пользователя
+            checkExistingReview(reviews);
         } catch (error) {
             console.error('Error loading reviews:', error);
             reviewsList.innerHTML = '<p>Error loading reviews.</p>';
+        }
+    }
+
+    function checkExistingReview(reviews) {
+        const authUser = JSON.parse(sessionStorage.getItem('authUser'));
+        if (!authUser) return;
+
+        const userReview = reviews.find(review => review.userId === authUser.id);
+        if (userReview) {
+            existingReviewId = userReview.id;
+            isEditMode = true;
+            reviewFormTitle.textContent = 'Edit Your Review';
+            selectedRating = userReview.rating;
+            reviewText.value = userReview.text;
+            charCount.textContent = userReview.text.length;
+            updateRatingStars();
+            
+            // Показываем кнопки управления отзывом
+            const reviewCard = document.querySelector(`.review-card[data-review-id="${existingReviewId}"]`);
+            if (reviewCard) {
+                const controls = document.createElement('div');
+                controls.className = 'review-controls';
+                controls.innerHTML = `
+                    <button class="edit-review-btn">Edit</button>
+                    <button class="delete-review-btn">Delete</button>
+                `;
+                reviewCard.appendChild(controls);
+                
+                reviewCard.querySelector('.edit-review-btn').addEventListener('click', () => {
+                    reviewFormContainer.style.display = 'block';
+                    window.scrollTo({
+                        top: reviewFormContainer.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                reviewCard.querySelector('.delete-review-btn').addEventListener('click', deleteReview);
+            }
+        }
+    }
+
+    async function deleteReview() {
+        if (!confirm('Are you sure you want to delete your review?')) return;
+        
+        try {
+            const response = await fetch(`${apiUrl}/feedbacks/${existingReviewId}`, {
+                method: 'DELETE'
+            });
+            
+            if (response.ok) {
+                existingReviewId = null;
+                isEditMode = false;
+                reviewForm.reset();
+                selectedRating = 0;
+                updateRatingStars();
+                await loadReviews();
+                alert('Your review has been deleted.');
+                reviewFormContainer.style.display = 'none';
+            } else {
+                throw new Error('Failed to delete review');
+            }
+        } catch (error) {
+            console.error('Error deleting review:', error);
+            alert('Error deleting review. Please try again.');
+        }
+    }
+
+    async function updateProductRating(reviews) {
+        if (isLoading) return;
+        isLoading = true;
+        
+        try {
+            if (reviews.length === 0) {
+                await updateRatingInProduct(0);
+                return;
+            }
+
+            const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+            const averageRating = totalRating / reviews.length;
+            await updateRatingInProduct(averageRating);
+        } finally {
+            isLoading = false;
+        }
+    }
+
+    async function updateRatingInProduct(newRating) {
+        try {
+            // Получаем текущие данные продукта
+            const productResponse = await fetch(`${apiUrl}/products/${productId}`);
+            const product = await productResponse.json();
+            
+            // Обновляем только рейтинг
+            const updatedProduct = {
+                ...product,
+                rating: parseFloat(newRating.toFixed(1)) // Округляем до 1 знака после запятой
+            };
+            
+            // Отправляем обновленные данные
+            await fetch(`${apiUrl}/products/${productId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(updatedProduct)
+            });
+            
+            // Обновляем отображение рейтинга на странице
+            const productRatingElement = document.querySelector('.product-rating span');
+            if (productRatingElement) {
+                productRatingElement.textContent = updatedProduct.rating.toFixed(1);
+            }
+            
+            const ratingStarsElement = document.querySelector('.product-rating');
+            if (ratingStarsElement) {
+                ratingStarsElement.innerHTML = renderRatingStars(updatedProduct.rating) + 
+                    `<span>${updatedProduct.rating.toFixed(1)}</span>`;
+            }
+        } catch (error) {
+            console.error('Error updating product rating:', error);
         }
     }
 
@@ -65,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         reviewsList.innerHTML = reviews.map(review => `
-            <div class="review-card">
+            <div class="review-card" data-review-id="${review.id}">
                 <div class="review-header">
                     <span class="review-author">${review.userName || 'Anonymous'}</span>
                     <span class="review-date">${new Date(review.date).toLocaleDateString()}</span>
@@ -146,8 +283,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch(`${apiUrl}/feedbacks`, {
-                method: 'POST',
+            const method = isEditMode ? 'PUT' : 'POST';
+            const url = isEditMode ? `${apiUrl}/feedbacks/${existingReviewId}` : `${apiUrl}/feedbacks`;
+            
+            const response = await fetch(url, {
+                method: method,
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -165,8 +305,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 reviewForm.reset();
                 selectedRating = 0;
                 updateRatingStars();
-                loadReviews();
-                alert('Thank you for your review!');
+                const reviewsResponse = await fetch(`${apiUrl}/feedbacks?productId=${productId}`);
+                const reviews = await reviewsResponse.json();
+                await updateProductRating(reviews);
+                displayReviews(reviews);
+                alert(isEditMode ? 'Your review has been updated!' : 'Thank you for your review!');
+                
+                if (isEditMode) {
+                    isEditMode = false;
+                    existingReviewId = null;
+                    reviewFormTitle.textContent = 'Write a Review';
+                    reviewFormContainer.style.display = 'none';
+                }
             } else {
                 throw new Error('Failed to submit review');
             }
