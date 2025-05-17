@@ -1,0 +1,179 @@
+:root {
+  --main-padding: 15rem;
+  --primary-color: #177165;
+  --primary-dark: #23786D;
+  --primary-light: #A4D6CF;
+  --primary-extra-light: #D2ECE9;
+  --bg-color: #ffffff;
+  --text: #777;
+  --text-light: #FFFFFF;
+  --accent-color: #FFD700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background-color: var(--bg-color);
+}
+
+p,
+ul {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Playfair Display', serif;
+}
+
+h1 {
+  font-size: 6rem;
+  color: var(--text-light);
+  font-weight: bold;
+  margin-top: 19.5rem;
+}
+
+h2 {
+  font-weight: normal;
+  color: var(--primary-color);
+}
+
+h3 {
+  font-size: 3.2rem;
+  font-weight: bold;
+}
+
+h4 {
+  font-size: 2.2rem;
+  font-weight: normal;
+}
+
+.paralax {
+  padding-left: var(--main-padding);
+  padding-right: var(--main-padding);
+  background-image: url(../assets/paralax.jpg);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15rem;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  position: relative;
+}
+
+.who h4 {
+  width: 31vw;
+  color: var(--text-light);
+  margin-top: 2.3rem;
+}
+
+.awwards h3 {
+  color: var(--text-light);
+  margin-top: 34.1rem;
+}
+
+.awwards ul {
+  color: var(--text-light);
+  font-size: 2rem;
+  margin-top: 3rem;
+  width: 30vw;
+  line-height: 3.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.excellence {
+  margin-top: 25.6rem;
+  margin-bottom: 27rem;
+  padding-left: var(--main-padding);
+  padding-right: var(--main-padding);
+}
+
+.excellence .first p {
+  margin-top: 3rem;
+  width: 66rem;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 9rem;
+}
+
+.content h3 {
+  color: var(--primary-color);
+  margin-top: 5.4rem;
+  font-weight: normal;
+  margin-bottom: 5rem;
+}
+
+.content h4 {
+  color: var(--primary-color);
+  font-weight: normal;
+}
+
+.content p,
+.content ul {
+  font-family: Roboto;
+  line-height: 3.5rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+}
+
+.content ul {
+  padding-left: 2rem;
+  margin-top: 1rem;
+}
+
+.check-list {
+  list-style: none;
+  padding-left: -1rem;
+}
+
+.check-list li::before {
+  content: "✓";
+  color: var(--primary-color);
+  padding-right: 1rem;
+  margin-left: -2rem;
+}
+
+.quote-container {
+  margin-top: 2.2rem;
+  border-left: 3px solid var(--primary-color);
+  width: 35.8rem;
+  padding-left: 1rem;
+}
+
+.quote-text {
+  font-style: italic;
+}
+
+@media (max-width:1024px) {
+  .paralax {
+    flex-direction: column;
+  }
+  .who h4, .awwards ul {
+    width: 100%;
+  }
+  .content {
+    flex-direction: column;
+  }
+  .content * {
+    width: 100%;
+  }
+  .excellence .first p {
+    width: 100%;
+  }
+}

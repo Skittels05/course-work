@@ -284,7 +284,7 @@ select:focus {
 h1 i {
     margin-right: 10px;
 }
-/* Модальное окно */
+
 .modal {
     display: none;
     position: fixed;
