@@ -26,7 +26,10 @@ body {
   color: var(--text-dark);
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: 'Playfair Display', serif;
   font-weight: normal;
 }
@@ -212,7 +215,8 @@ h4 {
 .services_section .button {
   border: 2px solid var(--primary-color);
   margin-top: 8rem;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .action {
@@ -247,6 +251,52 @@ h4 {
   height: fit-content;
   margin-top: 0.5rem;
   margin-left: 3rem;
+}
+
+.button {
+  display: inline-flex;
+  height: 4.4rem;
+  background: var(--text-light);
+  border-radius: 0px;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  line-height: 2.6rem;
+  padding: 0 5.8rem;
+  align-items: center;
+  margin-top: 7rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--primary-light);
+  color: var(--text-light);
+}
+
+.experience .button,
+.services_section .button {
+  border: 2px solid var(--primary-color);
+  background: transparent;
+  color: var(--primary-color);
+}
+
+.experience .button:hover,
+.services_section .button:hover {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.garden .button {
+  background: var(--text-light);
+  color: var(--primary-color);
+}
+
+.garden .button:hover {
+  background: var(--primary-light);
+  color: var(--text-light);
 }
 
 .p_button {
@@ -499,7 +549,7 @@ h4 {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 10; 
+  -webkit-line-clamp: 10;
 }
 
 .swiper-pagination {
@@ -589,6 +639,7 @@ h4 {
     flex-direction: column;
     text-align: center;
   }
+
   .member {
     max-width: 45vw;
     margin: 0 auto;
@@ -601,29 +652,36 @@ h4 {
     margin-left: auto;
     margin-right: auto;
   }
+
   .garden .button {
     margin-left: auto;
     margin-right: auto;
   }
+
   .garden img {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
   }
+
   .exp_info * {
     margin-left: auto;
     margin-right: auto;
   }
+
   .service {
     margin-left: auto;
     margin-right: auto;
   }
+
   .video {
     flex-wrap: wrap;
   }
+
   .video img {
     max-width: 100%;
   }
+
   .video-container {
     width: 100%;
     max-width: 100%;
@@ -636,57 +694,76 @@ h4 {
     display: flex;
     flex-wrap: wrap;
   }
+
   .service {
     width: 40vw;
   }
+
   .service img {
     width: 100%;
   }
+
   .action {
     gap: 5rem;
     flex-wrap: wrap;
   }
+
   .action h2 {
     width: 100%;
   }
+
   .member {
     max-width: 100%;
     width: 100%;
   }
+
   .member p {
     width: 100%;
   }
+
   .member img {
     width: 100%;
   }
+
   .news_post {
     width: 100%;
   }
+
   .news_post img {
     width: 100%;
   }
+
   .news_post .button {
     margin-left: auto;
     margin-right: auto;
   }
+
   .feedback-slider {
     width: 100%;
     max-width: 54rem;
   }
 }
+
 @media (max-width:520px) {
   :root {
     --main-padding: 1.6rem;
   }
+
   .experience h2 {
     width: 100%;
   }
-  .experience p, .experience img, .experience h3, .experience h4 {
+
+  .experience p,
+  .experience img,
+  .experience h3,
+  .experience h4 {
     width: 100%;
   }
+
   .service {
     width: 80%;
   }
+
   .members_section h2 {
     width: 100%;
   }
