@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = '   ../base_css/header.css';
+    link.rel = 'icon';
+    link.href = '   ../assets/logo.png';
     document.head.appendChild(link);
     if (!document.getElementById('main-header')) {
         fetch('../header/header.html')
