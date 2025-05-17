@@ -242,10 +242,10 @@
     },
     {
       "name": "George",
-      "price": 1,
+      "price": 1000,
       "category": "basketball",
       "description": "fent reactor destroyed",
-      "rating": 0,
+      "rating": 5,
       "id": "31"
     }
   ],
@@ -287,12 +287,18 @@
       "quantity": 1,
       "userId": 2,
       "id": 2
+    },
+    {
+      "productId": 31,
+      "quantity": 1,
+      "userId": 2,
+      "id": 3
     }
   ],
   "users": [
     {
-      "firstName": "v bjhnk",
-      "lastName": "v hjbnk",
+      "firstName": "Vlad",
+      "lastName": "Petushkovv",
       "middleName": "",
       "birthDate": "2009-05-08",
       "phone": "+375257777777",
@@ -324,18 +330,18 @@
       "id": 1,
       "productId": 1,
       "userId": 1,
-      "userName": "v bjhnk v hjbnk",
+      "userName": "Степан Сикорин",
       "rating": 5,
       "text": "Отличные секаторы! Очень удобные и острые.",
       "date": "2025-05-16T10:00:00Z"
     },
     {
-      "productId": 1,
+      "productId": 31,
       "userId": 1,
-      "userName": "undefined undefined",
+      "userName": "v_v h941",
       "rating": 5,
-      "text": "ампирлтодльампиртольдимполшпаекошргнпеагкпношщогнпегршоьштмнргшотодл опнг",
-      "date": "2025-05-15T17:35:26.801Z",
+      "text": "FENT REACTOR DESTROYED I CANT BREATH",
+      "date": "2025-05-17T10:13:26.025Z",
       "id": 2
     }
   ],
@@ -391,6 +397,20 @@
       "total": 50.89,
       "userId": 1,
       "id": 4
+    },
+    {
+      "date": "2025-05-17T09:58:53.533Z",
+      "items": [
+        {
+          "productId": 31,
+          "quantity": 1,
+          "userId": 1,
+          "id": 4
+        }
+      ],
+      "total": 1000,
+      "userId": 1,
+      "id": 5
     }
   ]
 }

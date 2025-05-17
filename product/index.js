@@ -1,4 +1,3 @@
-//index.js
 document.addEventListener('DOMContentLoaded', function() {
     const apiUrl = 'http://localhost:3000';
     const productId = new URLSearchParams(window.location.search).get('id');
@@ -61,14 +60,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const response = await fetch(`${apiUrl}/feedbacks?productId=${productId}`);
             const reviews = await response.json();
             displayReviews(reviews);
-            
-            // Обновляем рейтинг продукта на основе отзывов
+
             await updateProductRating(reviews);
-            
-            // Проверяем статус покупки после загрузки отзывов
+
             checkPurchaseStatus();
-            
-            // Проверяем, есть ли отзыв от текущего пользователя
+
             checkExistingReview(reviews);
         } catch (error) {
             console.error('Error loading reviews:', error);
@@ -89,8 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             reviewText.value = userReview.text;
             charCount.textContent = userReview.text.length;
             updateRatingStars();
-            
-            // Показываем кнопки управления отзывом
+
             const reviewCard = document.querySelector(`.review-card[data-review-id="${existingReviewId}"]`);
             if (reviewCard) {
                 const controls = document.createElement('div');
@@ -294,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify({
                     productId: parseInt(productId),
                     userId: authUser.id,
-                    userName: `${authUser.firstName} ${authUser.lastName}`,
+                    userName: `${authUser.nickname}`,
                     rating: selectedRating,
                     text: reviewText.value,
                     date: new Date().toISOString()

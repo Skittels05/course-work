@@ -185,7 +185,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Остальной код остается без изменений...
   async function toggleFavorite(event) {
     event.stopPropagation();
     const authUser = JSON.parse(sessionStorage.getItem("authUser"));

@@ -124,6 +124,7 @@ main {
 
 .review-text {
     line-height: 1.6;
+    word-wrap: break-word;
 }
 
 .review-form-container {
