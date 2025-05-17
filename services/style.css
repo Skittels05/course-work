@@ -1,0 +1,324 @@
+:root {
+    --main-padding: 15rem;
+    --primary-color: #177165;
+    --primary-dark: #23786D;
+    --primary-light: #A4D6CF;
+    --primary-extra-light: #D2ECE9;
+    --bg-color: #ffffff;
+    --text: #777;
+    --text-light: #FFFFFF;
+    --accent-color: #FFD700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text);
+    font-size: 1.6rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Playfair Display', serif;
+}
+
+h1 {
+    font-size: 6rem;
+    color: var(--primary-color);
+    font-weight: normal;
+    margin-top: 10rem;
+}
+
+h2 {
+    font-size: 4.8rem;
+    color: var(--primary-color);
+    font-weight: normal;
+    margin-bottom: 2.3rem;
+}
+
+h4 {
+    font-size: 2.2rem;
+    color: var(--text);
+    line-height: 35.2px;
+    font-weight: normal;
+    margin-top: 5rem;
+}
+
+.services {
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
+}
+
+.services h4 {
+    color: var(--primary-color);
+    font-weight: normal;
+    margin-top: 2.5rem;
+    width: 81rem;
+    max-width: 100%;
+}
+
+hr {
+    border: 2px solid var(--primary-color);
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    margin-left: var(--main-padding);
+    margin-right: var(--main-padding);
+}
+
+.flower,
+.tree,
+.rush,
+.water {
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5rem;
+}
+
+.tree,
+.water {
+    flex-direction: row-reverse;
+}
+
+.content {
+    width: 39rem;
+    max-width: 100%;
+}
+
+.custom-line-text {
+    display: flex;
+    align-items: center;
+    color: var(--primary-light);
+    font-size: 1.7rem;
+}
+
+.custom-line-text .line {
+    width: 4rem;
+    height: 1px;
+    background-color: var(--primary-extra-light);
+    margin-right: 1rem;
+}
+
+.custom-line-text2 {
+    display: flex;
+    align-items: center;
+    color: var(--text);
+    font-size: 1.7rem;
+}
+
+.custom-line-text2 .line {
+    width: 4rem;
+    height: 1px;
+    background-color: var(--text);
+    margin-right: 1rem;
+}
+
+.green {
+    color: var(--primary-color);
+}
+
+ul {
+    margin-top: 5rem;
+    list-style-type: disc;
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 35.2px;
+    padding-left: 2rem;
+}
+
+li {
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+.action {
+    background-color: var(--primary-color);
+    padding: 0 var(--main-padding);
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    display: flex;
+    margin-bottom: 10rem;
+}
+
+.action h2 {
+    margin-top: 2rem;
+    width: 44.4vw;
+    color: var(--primary-light);
+}
+
+.call_us {
+    display: flex;
+    gap: 3rem;
+    background-color: var(--primary-dark);
+    height: fit-content;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.call_us img {
+    width: 4.4rem;
+    height: fit-content;
+    margin-top: 0.5rem;
+    margin-left: 3rem;
+}
+
+.p_button {
+    display: flex;
+    flex-direction: column;
+}
+
+.p_button .text {
+    font-size: 1.7rem;
+    line-height: 2.9rem;
+    color: var(--primary-light);
+}
+
+.p_button .number {
+    font-size: 1.7rem;
+    line-height: 2.9rem;
+    color: var(--text-light);
+}
+
+@media (max-width: 1200px) {
+    :root {
+        --main-padding: 10rem;
+    }
+    
+    .action h2 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --main-padding: 8rem;
+    }
+    
+    .services h4 {
+        width: 100%;
+    }
+
+    .flower,
+    .tree,
+    .rush,
+    .water {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .content {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    section img {
+        margin-top: 5rem;
+        max-width: 100%;
+        height: auto;
+    }
+
+    ul {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --main-padding: 5rem;
+    }
+    .action
+    {
+        flex-wrap: wrap;
+    }
+    h1 {
+        font-size: 4.8rem;
+        margin-top: 5rem;
+    }
+    
+    h2 {
+        font-size: 3.6rem;
+    }
+    
+    h4 {
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+        margin-top: 3rem;
+    }
+    
+    hr {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
+    
+    ul {
+        font-size: 1.6rem;
+        line-height: 2.8rem;
+    }
+    
+    .call_us {
+        padding: 1.5rem;
+    }
+    
+    .call_us img {
+        margin-left: 1.5rem;
+        width: 3.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --main-padding: 3rem;
+    }
+    
+    h1 {
+        font-size: 3.6rem;
+    }
+    
+    h2 {
+        font-size: 2.8rem;
+    }
+    
+    .custom-line-text,
+    .custom-line-text2 {
+        font-size: 1.5rem;
+    }
+    
+    .p_button .text,
+    .p_button .number {
+        font-size: 1.5rem;
+    }
+    
+    .call_us {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .call_us img {
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+}
