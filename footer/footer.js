@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '   ../base_css/footer.css';
+    document.head.appendChild(link);
     if (!document.getElementById('main-footer')) {
         fetch('../footer/footer.html')
             .then(response => {
