@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 headerDiv.id = 'main-header';
                 headerDiv.innerHTML = html;
                 document.body.insertBefore(headerDiv, document.body.firstChild);
-                
-                // Инициализация темы ПОСЛЕ загрузки header'а
                 initThemeSwitcher();
                 
                 console.log('Header loaded successfully');
@@ -32,10 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 fallbackHeader.id = 'main-header';
                 fallbackHeader.innerHTML = '<h1>Site Header</h1>';
                 document.body.insertBefore(fallbackHeader, document.body.firstChild);
-                initThemeSwitcher(); // Инициализация даже для fallback
+                initThemeSwitcher(); 
             });
     } else {
-        initThemeSwitcher(); // Если header уже есть
+        initThemeSwitcher(); 
     }
 });
 
@@ -46,14 +44,12 @@ function initThemeSwitcher() {
         return;
     }
     
-    // Проверяем сохраненную тему
     const currentTheme = localStorage.getItem('theme') || 'light';
     if (currentTheme === 'dark') {
         document.body.classList.add('dark-theme');
         themeSwitcher.checked = true;
     }
     
-    // Обработчик переключения темы
     themeSwitcher.addEventListener('change', function() {
         if (this.checked) {
             document.body.classList.add('dark-theme');

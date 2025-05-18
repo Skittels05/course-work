@@ -1,19 +1,24 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '   ../preloader/preloader.css';
-    document.head.appendChild(link);
-    link.onerror = () => console.error('Failed to load preloader.css');
-    const preloader = document.createElement('div');
-    preloader.className = 'preloader';
-    preloader.innerHTML = '<div class="spinner"></div>';
-    document.body.prepend(preloader);
-    const mainContent = document.querySelector('main');
-    window.onload = () => {
-        preloader.classList.add('hidden');
-        if (mainContent) {
-            mainContent.classList.add('loaded');
-        }
-        document.body.classList.add('loaded');
-    };
+const preloader = document.querySelector('.preloader');
+const mainContent = document.querySelector('main');
+if (!preloader) {
+    const fallbackPreloader = document.createElement('div');
+    fallbackPreloader.className = 'preloader';
+    fallbackPreloader.innerHTML = '<div class="spinner"></div>';
+    document.body.prepend(fallbackPreloader);
+}
+if (mainContent) {
+    mainContent.style.visibility = 'hidden';
+    mainContent.style.opacity = '0';
+}
+window.addEventListener('load', () => {
+    const actualPreloader = preloader || document.querySelector('.preloader');
+    if (actualPreloader) {
+        actualPreloader.classList.add('hidden');
+    }
+    if (mainContent) {
+        mainContent.style.visibility = '';
+        mainContent.style.opacity = '';
+        mainContent.classList.add('loaded');
+    }
+    document.body.classList.add('loaded');
 });

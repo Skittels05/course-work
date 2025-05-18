@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details</title>
+    <link rel="stylesheet" href="../preloader/preloader.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
     <main>
         <div class="product-container" id="product-container">
 
@@ -37,14 +43,14 @@
                             <input type="hidden" id="review-rating" name="rating" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="review-text">Your Review</label>
-                        <textarea id="review-text" name="text" minlength="30" 
-                                placeholder="Write your review (minimum 30 characters)" required></textarea>
+                        <textarea id="review-text" name="text" minlength="30"
+                            placeholder="Write your review (minimum 30 characters)" required></textarea>
                         <div class="char-counter"><span id="char-count">0</span>/30 characters</div>
                     </div>
-                    
+
                     <button type="submit" class="submit-btn">Submit Review</button>
                 </form>
             </div>
@@ -64,4 +70,5 @@
     <script src="../footer/footer.js"></script>
     <script src="../preloader/index.js"></script>
 </body>
+
 </html>

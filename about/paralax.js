@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Анимация параллакса
   const paralaxSection = document.querySelector('.paralax');
   
   function handleParalax() {
@@ -13,14 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
       paralaxSection.classList.remove('active');
     }
   }
-  
-  // Проверяем при загрузке
+
   handleParalax();
-  
-  // И при скролле
+
   window.addEventListener('scroll', handleParalax);
-  
-  // Оптимизация производительности
+
   let ticking = false;
   window.addEventListener('scroll', function() {
     if (!ticking) {

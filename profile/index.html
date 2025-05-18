@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <link rel="stylesheet" href="../preloader/preloader.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
+    <main>
+        <div class="container">
         <div id="authOnlyContent" style="display: none;">
             <h1>User Profile</h1>
-            
+
             <div class="profile-info">
                 <div class="user-details">
                     <p><span class="detail-label">Name:</span> <span id="userFullName"></span></p>
@@ -21,7 +27,7 @@
                     <p><span class="detail-label">Registered:</span> <span id="userRegDate"></span></p>
                 </div>
             </div>
-            
+
             <form id="profileForm">
                 <div class="form-group">
                     <label for="nickname">Nickname</label>
@@ -33,7 +39,7 @@
                     </div>
                     <div class="error-message" id="nicknameError"></div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="currentPassword">Current Password</label>
                     <div class="password-input">
@@ -43,7 +49,7 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="newPassword">New Password</label>
                     <div class="password-input">
@@ -57,7 +63,7 @@
                     </div>
                     <div class="error-message" id="passwordError"></div>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="confirmPassword">Confirm New Password</label>
                     <div class="password-input">
@@ -67,25 +73,27 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <button type="submit" class="submit-btn">Save Changes</button>
                 <div class="success-message" id="successMessage"></div>
             </form>
-            
+
             <button id="logoutBtn" class="logout-btn">
                 Logout
             </button>
         </div>
-        
+
         <div id="notAuthContent" class="not-auth-message">
             <h2>Please sign in to view your profile</h2>
             <a href="../login/index.html" class="login-link">Go to Login Page</a>
         </div>
     </div>
+    </main>
     <script src="index.js"></script>
     <script src="../base_js/admin.js"></script>
     <script src="../header/header.js"></script>
     <script src="../footer/footer.js"></script>
     <script src="../preloader/index.js"></script>
 </body>
+
 </html>
