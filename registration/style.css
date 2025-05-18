@@ -7,7 +7,10 @@
     --light-text: #777;
     --bg-color: #f9f9f9;
 }
-
+body
+{
+    background-color:var(--bg-color);
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -32,7 +35,7 @@ body {
     max-width: 80rem;
     margin: 2rem auto;
     padding: 2rem;
-    background: white;
+    background: var(--primary-bg-light);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -151,7 +154,7 @@ select:focus {
 .submit-btn {
     width: 100%;
     padding: 1rem;
-    background: var(--primary-color);
+    background: var(--primary-text);
     color: white;
     border: none;
     border-radius: 4px;
@@ -162,7 +165,7 @@ select:focus {
 }
 
 .submit-btn:hover {
-    background: #0A312C;
+    background:var(--primary-dark);
 }
 
 .submit-btn:disabled {
@@ -178,7 +181,7 @@ select:focus {
 }
 
 .login-link {
-    color: var(--primary-color);
+    color: var(--primary-text);
     text-decoration: none;
     font-weight: 500;
 }
@@ -298,7 +301,7 @@ h1 i {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: var(--primary-bg-light);
     margin: 5% auto;
     padding: 2rem;
     border: 1px solid #888;
@@ -329,7 +332,7 @@ h1 i {
 }
 
 #termsLink {
-    color: var(--primary-color);
+    color: var(--primary-text);
     text-decoration: none;
 }
 

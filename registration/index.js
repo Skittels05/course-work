@@ -438,12 +438,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       successMessage.style.display = "block";
-
-      setTimeout(() => {
-        window.location.href =
-          "../login/index.html?fromRegistration=true&email=" +
-          encodeURIComponent(userData.email);
-      }, 3000);
+      window.location.href =
+        "../login/index.html?fromRegistration=true&email=" +
+        encodeURIComponent(userData.email);
       form.reset();
       submitBtn.disabled = true;
     } catch (error) {

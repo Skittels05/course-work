@@ -46,7 +46,8 @@ h1 {
 
 h2 {
   font-weight: normal;
-  color: var(--primary-color);
+  color: var(--primary-text);
+  font-size: 4.8rem;
 }
 
 h3 {
@@ -58,7 +59,11 @@ h4 {
   font-size: 2.2rem;
   font-weight: normal;
 }
-
+p
+{
+  font-size: 1.6rem;
+  line-height: 26px;
+}
 .paralax {
   padding-left: var(--main-padding);
   padding-right: var(--main-padding);
@@ -113,14 +118,14 @@ h4 {
 }
 
 .content h3 {
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-top: 5.4rem;
   font-weight: normal;
   margin-bottom: 5rem;
 }
 
 .content h4 {
-  color: var(--primary-color);
+  color: var(--primary-text);
   font-weight: normal;
 }
 
@@ -144,14 +149,14 @@ h4 {
 
 .check-list li::before {
   content: "✓";
-  color: var(--primary-color);
+  color: var(--primary-text);
   padding-right: 1rem;
   margin-left: -2rem;
 }
 
 .quote-container {
   margin-top: 2.2rem;
-  border-left: 3px solid var(--primary-color);
+  border-left: 3px solid var(--primary-text);
   width: 35.8rem;
   padding-left: 1rem;
 }

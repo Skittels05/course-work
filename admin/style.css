@@ -12,7 +12,10 @@
     --text-dark: #333;
     --text-light: #777;
 }
+body
+{
 
+}
 html {
     font-size: 10px;
 }
@@ -20,7 +23,7 @@ html {
 body {
     font-family: 'Roboto', sans-serif;
     color: var(--text-dark);
-    background-color: #fff;
+    background-color:var(--bg-color);
 }
 
 h1,
@@ -29,7 +32,7 @@ h3,
 h4 {
     font-family: 'Playfair Display', serif;
     font-weight: normal;
-    color: var(--primary-color);
+    color: var(--primary-text);
 }
 
 .admin-header {
@@ -98,7 +101,7 @@ h4 {
     font-size: 1.6rem;
     cursor: pointer;
     transition: all 0.3s;
-    color: var(--text-light);
+    color: var(--text);
     font-family: 'Roboto', sans-serif;
 }
 
@@ -120,7 +123,7 @@ h4 {
 .product-list,
 .review-filters,
 .review-list {
-    background-color: var(--light-bg);
+    background-color: var(--primary-bg-light);
     padding: 3rem;
     margin-bottom: 3rem;
     border-radius: 5px;
@@ -161,7 +164,7 @@ textarea {
 
 .button {
     height: 4.4rem;
-    background: var(--primary-color);
+    background: var(--primary-text);
     border: none;
     border-radius: 0;
     width: fit-content;
@@ -182,7 +185,7 @@ textarea {
 
 .reset-btn {
     background: #ddd;
-    color: var(--text-dark);
+    color: var(--text);
 }
 
 .reset-btn:hover {
@@ -210,7 +213,7 @@ th {
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: var(--bg-color);
 }
 
 .action-btn {

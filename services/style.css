@@ -39,14 +39,14 @@ h4 {
 
 h1 {
     font-size: 6rem;
-    color: var(--primary-color);
+    color: var(--primary-text);
     font-weight: normal;
     margin-top: 10rem;
 }
 
 h2 {
     font-size: 4.8rem;
-    color: var(--primary-color);
+    color: var(--primary-text);
     font-weight: normal;
     margin-bottom: 2.3rem;
 }
@@ -65,7 +65,7 @@ h4 {
 }
 
 .services h4 {
-    color: var(--primary-color);
+    color: var(--primary-text);
     font-weight: normal;
     margin-top: 2.5rem;
     width: 81rem;
@@ -73,7 +73,7 @@ h4 {
 }
 
 hr {
-    border: 2px solid var(--primary-color);
+    border: 2px solid var(--primary-text);
     margin-top: 10rem;
     margin-bottom: 10rem;
     margin-left: var(--main-padding);
@@ -131,13 +131,13 @@ hr {
 }
 
 .green {
-    color: var(--primary-color);
+    color: var(--primary-text);
 }
 
 ul {
     margin-top: 5rem;
     list-style-type: disc;
-    color: var(--primary-color);
+    color: var(--primary-text);
     font-size: 2rem;
     font-family: 'Playfair Display', serif;
     line-height: 35.2px;

@@ -8,18 +8,21 @@
     --light-text: #777;
     --bg-color: #f9f9f9;
 }
-
+body
+{
+    background-color:var(--bg-color);
+}
 .container {
     max-width: 800px;
     margin: 2rem auto;
     padding: 2rem;
-    background: white;
+    background: var(--primary-bg-light);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    color: var(--primary-color);
+    color: var(--primary-text);
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2rem;
@@ -40,7 +43,7 @@ h1 {
 
 .detail-label {
     font-weight: bold;
-    color: var(--secondary-color);
+    color: var(--primary-text);
     display: inline-block;
     width: 120px;
 }
@@ -53,7 +56,7 @@ h1 {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: var(--secondary-color);
+    color: var(--primary-text);
 }
 
 .input-with-button,
@@ -115,7 +118,7 @@ h1 {
 .submit-btn {
     width: 100%;
     padding: 1rem;
-    background: var(--primary-color);
+    background: var(--primary-text);
     color: white;
     border: none;
     border-radius: 4px;
@@ -126,7 +129,7 @@ h1 {
 }
 
 .submit-btn:hover {
-    background: var(--secondary-color);
+    background: var(--primary-dark);
 }
 
 .logout-btn {
@@ -153,14 +156,14 @@ h1 {
 }
 
 .not-auth-message h2 {
-    color: var(--primary-color);
+    color: var(--primary-text);
     margin-bottom: 1.5rem;
 }
 
 .login-link {
     display: inline-block;
     padding: 0.8rem 1.5rem;
-    background: var(--primary-color);
+    background: var(--primary-text);
     color: white;
     text-decoration: none;
     border-radius: 4px;

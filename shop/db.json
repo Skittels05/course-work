@@ -293,6 +293,12 @@
       "quantity": 1,
       "userId": 2,
       "id": 3
+    },
+    {
+      "productId": 2,
+      "quantity": 1,
+      "userId": 1,
+      "id": 4
     }
   ],
   "users": [
@@ -323,6 +329,32 @@
       "agreement": true,
       "id": 2,
       "role": "admin"
+    },
+    {
+      "firstName": "vygbhunjimko,",
+      "lastName": "ctvygbo",
+      "middleName": "",
+      "birthDate": "2009-05-03",
+      "phone": "+375257777770",
+      "email": "skittels661105@gmail.com",
+      "nickname": "v_ctv459",
+      "password": "wQ(7QRT@dDjz",
+      "registrationDate": "2025-05-18T08:13:27.924Z",
+      "agreement": true,
+      "id": 3
+    },
+    {
+      "firstName": "Arthur",
+      "lastName": "Morgan",
+      "middleName": "",
+      "birthDate": "2009-05-02",
+      "phone": "+375295315741",
+      "email": "voldemar661105@gmail.com",
+      "nickname": "ArtM506",
+      "password": "Qr%)OZoZh$1h",
+      "registrationDate": "2025-05-18T08:16:07.633Z",
+      "agreement": true,
+      "id": 4
     }
   ],
   "feedbacks": [

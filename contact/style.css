@@ -6,7 +6,7 @@
   --primary-extra-light: #D2ECE9;
   --primary-bg-light: #E1F4F2;
   --text-dark: #333;
-  --text-medium: #777;
+  --text: #777;
   --text-light: #FFFFFF;
   --accent-color: #FFD700;
 }
@@ -38,7 +38,7 @@ h1, h2, h3, h4 {
   width: fit-content;
   font-weight: 400;
   font-size: 1.6rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
   line-height: 2.6rem;
   padding: 0 5.8rem;
   display: flex;
@@ -65,7 +65,7 @@ h1, h2, h3, h4 {
 }
 
 .custom-line-text2 {
-  color: var(--text-medium);
+  color: var(--text);
 }
 
 .custom-line-text .line, 
@@ -80,10 +80,9 @@ h1, h2, h3, h4 {
 }
 
 .custom-line-text2 .line {
-  background-color: var(--text-medium);
+  background-color: var(--text);
 }
 
-/* Заголовки */
 h1 {
   font-size: 6rem;
   line-height: 7.8rem;
@@ -157,7 +156,7 @@ p {
 .contact-card {
   flex: 1;
   min-width: 300px;
-  background-color: var(--text-light);
+  background-color: var(--bg-color);
   padding: 4rem 3rem;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -170,17 +169,17 @@ p {
 
 .contact-icon {
   font-size: 3rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-bottom: 2rem;
 }
 
 .contact-card h3 {
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-bottom: 1.5rem;
 }
 
 .contact-card p {
-  color: var(--text-medium);
+  color: var(--text);
   line-height: 2.6rem;
 }
 
@@ -189,7 +188,7 @@ p {
 }
 
 .form-container {
-  max-width: 900px;
+  max-width: 90rem;
   margin: 0 auto;
 }
 
@@ -210,7 +209,7 @@ p {
 .form-group label {
   display: block;
   margin-bottom: 1rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
   font-size: 1.6rem;
 }
 
@@ -227,12 +226,12 @@ p {
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: var(--primary-text);
 }
 
 .form-group textarea {
   resize: vertical;
-  min-height: 150px;
+  min-height: 15rem;
 }
 
 .submit-btn {
@@ -258,7 +257,7 @@ p {
 }
 
 .map-container h2 {
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .map-placeholder {
@@ -268,7 +267,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary-color);
+  color: var(--primary-text);
   font-size: 2rem;
 }
 
@@ -280,19 +279,19 @@ p {
 }
 
 .contact-cta h2 {
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-bottom: 2rem;
 }
 
 .contact-cta p {
-  color: var(--text-medium);
+  color: var(--text);
   max-width: 600px;
   margin: 0 auto 4rem;
 }
 
 .contact-cta .button {
   background-color: var(--text-light);
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin: 0 auto;
 }
 

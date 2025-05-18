@@ -6,9 +6,11 @@
   --primary-extra-light: #D2ECE9;
   --primary-bg-light: #E1F4F2;
   --text-dark: #333;
-  --text-medium: #777;
+  --text: #777;
   --text-light: #FFFFFF;
   --accent-color: #FFD700;
+  --primary-text: var(--primary-color); 
+  --bg-color: #FFFFFF; 
 }
 
 * {
@@ -24,6 +26,8 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   color: var(--text-dark);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg-color);
 }
 
 h1,
@@ -87,7 +91,7 @@ h1 {
   width: fit-content;
   font-weight: 400;
   font-size: 1.6rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
   line-height: 2.6rem;
   padding: 0 5.8rem;
   display: flex;
@@ -104,14 +108,14 @@ h1 {
 .custom-line-text2 {
   display: flex;
   align-items: center;
-  color: var(--text-medium);
+  color: var(--text);
   font-size: 1.7rem;
 }
 
 .custom-line-text2 .line {
   width: 4rem;
   height: 1px;
-  background-color: var(--text-medium);
+  background-color: var(--text);
   margin-right: 1rem;
 }
 
@@ -121,7 +125,7 @@ h2 {
 }
 
 .experience h2 {
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-top: 2rem;
   width: 69vw;
 }
@@ -151,11 +155,11 @@ h4 {
 }
 
 .experience h3 {
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .experience h4 {
-  color: var(--primary-color);
+  color: var(--primary-text);
   width: 32.15vw;
   margin-bottom: 3.8rem;
 }
@@ -167,7 +171,7 @@ h4 {
 }
 
 .experience .button {
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--primary-text);
   margin-top: 8rem;
 }
 
@@ -186,7 +190,7 @@ h4 {
 
 .services_section h2 {
   margin-top: 2rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .services-grid {
@@ -208,12 +212,12 @@ h4 {
 }
 
 .service h4 {
-  color: var(--primary-color);
+  color: var(--primary-text);
   font-size: 2.2rem;
 }
 
 .services_section .button {
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--primary-text);
   margin-top: 8rem;
   margin-left: auto;
   margin-right: auto;
@@ -260,7 +264,7 @@ h4 {
   border-radius: 0px;
   font-weight: 400;
   font-size: 1.6rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
   line-height: 2.6rem;
   padding: 0 5.8rem;
   align-items: center;
@@ -278,9 +282,9 @@ h4 {
 
 .experience .button,
 .services_section .button {
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--primary-text);
   background: transparent;
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .experience .button:hover,
@@ -291,7 +295,7 @@ h4 {
 
 .garden .button {
   background: var(--text-light);
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .garden .button:hover {
@@ -324,7 +328,7 @@ h4 {
 
 .members_section h2 {
   margin-top: 2rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .members {
@@ -339,7 +343,7 @@ h4 {
 
 .member h4 {
   font-size: 2.6rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .member img {
@@ -410,7 +414,7 @@ h4 {
 
 .snumber {
   font-size: 4.5rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .statistic .custom-line-text2 {
@@ -457,7 +461,7 @@ h4 {
   height: 7rem;
   padding: 0 0rem;
   text-align: center;
-  border: 2px solid var(--primary-color);
+  border: 2px solid var(--primary-text);
   display: flex;
   justify-content: center;
 }
@@ -468,7 +472,7 @@ h4 {
 
 .clients_section {
   padding: 0 var(--main-padding);
-  background-color: var(--primary-extra-light);
+  background-color: var(--primary-bg-light);
   margin-top: 10rem;
 }
 
@@ -477,7 +481,7 @@ h4 {
 }
 
 .clients_section h2 {
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-top: 1.7rem;
 }
 
@@ -491,7 +495,7 @@ h4 {
 .feedback-slider {
   width: 54rem;
   height: 45rem;
-  background-color: var(--text-light);
+  background-color: var(--bg-color);
 }
 
 .feedback-slide {
@@ -504,24 +508,24 @@ h4 {
 
 .feedback-slide .user-name {
   font-size: 2.2rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
   font-family: 'Playfair Display', serif;
 }
 
 .feedback-slide .date {
   font-size: 1.4rem;
-  color: var(--text-medium);
+  color: var(--text);
   margin-top: 0.5rem;
 }
 
 .feedback-slide .product-name {
   font-size: 1.6rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-top: 1rem;
 }
 
 .feedback-slide .product-name a {
-  color: var(--primary-color);
+  color: var(--primary-text);
   text-decoration: none;
 }
 
@@ -531,7 +535,7 @@ h4 {
 
 .feedback-slide .rating {
   font-size: 1.6rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-top: 0.5rem;
 }
 
@@ -574,7 +578,7 @@ h4 {
 }
 
 .news_section h2 {
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-top: 1.5rem;
 }
 
@@ -593,7 +597,7 @@ h4 {
 }
 
 .news p {
-  color: var(--text-medium);
+  color: var(--text);
   max-width: 100%;
 }
 
@@ -605,12 +609,12 @@ h4 {
 }
 
 .green {
-  color: var(--primary-color);
+  color: var(--primary-text);
 }
 
 .news h3 {
   font-size: 2.5rem;
-  color: var(--primary-color);
+  color: var(--primary-text);
   margin-top: 2.6rem;
   margin-left: 3rem;
   line-height: 4rem;
