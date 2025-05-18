@@ -1,0 +1,36 @@
+{
+  "page_title": "Профиль пользователя",
+  "header": {
+    "title": "Профиль пользователя"
+  },
+  "form": {
+    "name_label": "Имя:",
+    "email_label": "Эл. почта:",
+    "phone_label": "Телефон:",
+    "registered_label": "Дата регистрации:",
+    "nickname_label": "Никнейм",
+    "nickname_placeholder": "Введите никнейм",
+    "generate_nickname_title": "Сгенерировать никнейм",
+    "current_password_label": "Текущий пароль",
+    "current_password_placeholder": "Введите текущий пароль",
+    "new_password_label": "Новый пароль",
+    "new_password_placeholder": "Введите новый пароль",
+    "generate_password_title": "Сгенерировать пароль",
+    "confirm_password_label": "Подтвердите новый пароль",
+    "confirm_password_placeholder": "Подтвердите новый пароль",
+    "submit": "Сохранить изменения",
+    "errors": {
+      "nickname_too_short": "Никнейм должен содержать не менее 3 символов",
+      "password_too_short": "Пароль должен содержать не менее 8 символов",
+      "passwords_mismatch": "Пароли не совпадают",
+      "current_password_required": "Пожалуйста, введите текущий пароль",
+      "update_failed": "Не удалось обновить профиль. Проверьте текущий пароль."
+    },
+    "success": {
+      "profile_updated": "Профиль успешно обновлен!"
+    }
+  },
+  "logout": "Выйти",
+  "not_auth_message": "Пожалуйста, войдите, чтобы просмотреть ваш профиль",
+  "login_link": "Перейти на страницу входа"
+}

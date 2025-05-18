@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration</title>
+    <title data-i18n="registration.page_title">Registration</title>
     <link rel="stylesheet" href="../preloader/preloader.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -13,134 +12,119 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <div class="preloader">
+        <div class="spinner"></div>
+    </div>
     <main>
         <div class="container">
-            <h1><i class="fas fa-user-plus"></i> Registration</h1>
-
+            <h1><i class="fas fa-user-plus"></i> <span data-i18n="registration.header.title">Registration</span></h1>
             <form id="registrationForm">
                 <div class="row">
                     <div class="form-group">
-                        <label for="lastName" class="required">Last Name</label>
-                        <input type="text" id="lastName" required placeholder="Smith">
-                        <div class="error-message" id="lastNameError">Please enter your last name</div>
+                        <label for="lastName" class="required" data-i18n="registration.form.last_name_label">Last Name</label>
+                        <input type="text" id="lastName" required placeholder="Smith" data-i18n="[placeholder]registration.form.last_name_placeholder">
+                        <div class="error-message" id="lastNameError" data-i18n="registration.form.last_name_error">Please enter your last name</div>
                     </div>
                     <div class="form-group">
-                        <label for="firstName" class="required">First Name</label>
-                        <input type="text" id="firstName" required placeholder="John">
-                        <div class="error-message" id="firstNameError">Please enter your first name</div>
+                        <label for="firstName" class="required" data-i18n="registration.form.first_name_label">First Name</label>
+                        <input type="text" id="firstName" required placeholder="John" data-i18n="[placeholder]registration.form.first_name_placeholder">
+                        <div class="error-message" id="firstNameError" data-i18n="registration.form.first_name_error">Please enter your first name</div>
                     </div>
                     <div class="form-group">
-                        <label for="middleName">Middle Name</label>
-                        <input type="text" id="middleName" placeholder="(optional)">
+                        <label for="middleName" data-i18n="registration.form.middle_name_label">Middle Name</label>
+                        <input type="text" id="middleName" placeholder="(optional)" data-i18n="[placeholder]registration.form.middle_name_placeholder">
                     </div>
                 </div>
-
                 <div class="form-group">
-                    <label for="birthDate" class="required">Date of Birth</label>
+                    <label for="birthDate" class="required" data-i18n="registration.form.birth_date_label">Date of Birth</label>
                     <input type="date" id="birthDate" required>
-                    <div class="error-message" id="birthDateError">You must be over 16 years old</div>
+                    <div class="error-message" id="birthDateError" data-i18n="registration.form.birth_date_error">You must be over 16 years old</div>
                 </div>
-
                 <div class="form-group">
-                    <label for="phone" class="required">Phone Number</label>
+                    <label for="phone" class="required" data-i18n="registration.form.phone_label">Phone Number</label>
                     <div class="input-with-icon">
                         <i class="fas fa-phone"></i>
-                        <input type="tel" id="phone" placeholder="+375291234567" required>
+                        <input type="tel" id="phone" placeholder="+375291234567" required data-i18n="[placeholder]registration.form.phone_placeholder">
                     </div>
-                    <div class="error-message" id="phoneError">Enter a valid Belarusian phone number (+375XXXXXXXXX)
-                    </div>
+                    <div class="error-message" id="phoneError" data-i18n="registration.form.phone_error">Enter a valid Belarusian phone number (+375XXXXXXXXX)</div>
                 </div>
-
                 <div class="form-group">
-                    <label for="email" class="required">Email</label>
+                    <label for="email" class="required" data-i18n="registration.form.email_label">Email</label>
                     <div class="input-with-icon">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" id="email" placeholder="example@domain.com" required>
+                        <input type="email" id="email" placeholder="example@domain.com" required data-i18n="[placeholder]registration.form.email_placeholder">
                     </div>
-                    <div class="error-message" id="emailError">Enter a valid email</div>
+                    <div class="error-message" id="emailError" data-i18n="registration.form.email_error">Enter a valid email</div>
                 </div>
-
                 <div class="form-group">
-                    <label for="nickname" class="required">Nickname</label>
+                    <label for="nickname" class="required" data-i18n="registration.form.nickname_label">Nickname</label>
                     <div class="nickname-generator">
-                        <input type="text" id="nickname" required placeholder="cool_user123">
-                        <button type="button" id="generateNickname" title="Generate nickname"><i
-                                class="fas fa-dice"></i></button>
+                        <input type="text" id="nickname" required placeholder="cool_user123" data-i18n="[placeholder]registration.form.nickname_placeholder">
+                        <button type="button" id="generateNickname" title="Generate nickname" data-i18n="[title]registration.form.nickname_generate_title"><i class="fas fa-dice"></i></button>
                     </div>
-                    <div class="error-message" id="nicknameError">Nickname is already taken</div>
+                    <div class="error-message" id="nicknameError" data-i18n="registration.form.nickname_error">Nickname is already taken</div>
                 </div>
-
                 <div class="form-group">
-                    <label for="password" class="required">Password</label>
+                    <label for="password" class="required" data-i18n="registration.form.password_label">Password</label>
                     <div class="password-input-container">
-                        <input type="password" id="password" placeholder="Create strong password"
-                            class="password-input">
-                        <button type="button" class="toggle-password" title="Show password">
+                        <input type="password" id="password" placeholder="Create strong password" class="password-input" data-i18n="[placeholder]registration.form.password_placeholder">
+                        <button type="button" class="toggle-password" title="Show password" data-i18n="[title]registration.form.password_toggle_title">
                             <i class="fas fa-eye"></i>
                         </button>
-                        <button type="button" id="generatePassword" class="generate-password-btn"
-                            title="Generate password">
+                        <button type="button" id="generatePassword" class="generate-password-btn" title="Generate password" data-i18n="[title]registration.form.password_generate_title">
                             <i class="fas fa-key"></i>
                         </button>
                     </div>
-                    <div class="error-message" id="passwordError">
-                        Password must be 8-20 characters long, including uppercase and lowercase letters, digits, and
-                        special characters
-                    </div>
+                    <div class="error-message" id="passwordError" data-i18n="registration.form.password_error">Password must be 8-20 characters long, including uppercase and lowercase letters, digits, and special characters</div>
                 </div>
-
                 <div class="form-group">
-                    <label for="confirmPassword" class="required">Confirm Password</label>
+                    <label for="confirmPassword" class="required" data-i18n="registration.form.confirm_password_label">Confirm Password</label>
                     <div class="password-input-container">
-                        <input type="password" id="confirmPassword" placeholder="Repeat your password"
-                            class="password-input">
-                        <button type="button" class="toggle-password" title="Show password">
+                        <input type="password" id="confirmPassword" placeholder="Repeat your password" class="password-input" data-i18n="[placeholder]registration.form.confirm_password_placeholder">
+                        <button type="button" class="toggle-password" title="Show password" data-i18n="[title]registration.form.confirm_password_toggle_title">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
-                    <div class="error-message" id="confirmPasswordError">Passwords do not match</div>
+                    <div class="error-message" id="confirmPasswordError" data-i18n="registration.form.confirm_password_error">Passwords do not match</div>
                 </div>
-
                 <div class="checkbox-group">
                     <input type="checkbox" id="agreement" required>
-                    <label for="agreement" class="required">I have read and agree to the <a href="#"
-                            id="termsLink">terms of the user agreement</a></label>
+                    <label for="agreement" class="required">
+                        <span data-i18n="registration.form.agreement_label">I have read and agree to the </span>
+                        <a href="#" id="termsLink" data-i18n="registration.form.terms_link">terms of the user agreement</a>
+                    </label>
                 </div>
-                <div class="error-message" id="agreementError">You must accept the terms</div>
-
-                <button type="submit" class="submit-btn" id="submitBtn" disabled>Sign up</button>
-                <p>Already have an account? <a href="../login/index.html" class="login-link">Sign in</a></p>
-                <div class="success-message" id="successMessage">Registration was successful!</div>
+                <div class="error-message" id="agreementError" data-i18n="registration.form.agreement_error">You must accept the terms</div>
+                <button type="submit" class="submit-btn" id="submitBtn" disabled data-i18n="registration.form.submit">Sign up</button>
+                <p>
+                    <span data-i18n="registration.form.login_text">Already have an account? </span>
+                    <a href="../login/index.html" class="login-link" data-i18n="registration.form.login_link">Sign in</a>
+                </p>
+                <div class="success-message" id="successMessage" data-i18n="registration.form.success">Registration was successful!</div>
             </form>
         </div>
     </main>
     <div id="termsModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>User Agreement</h2>
+            <span class="close">×</span>
+            <h2 data-i18n="registration.modal.title">User Agreement</h2>
             <div class="terms-content">
-                <p>Here goes the full text of your user agreement...</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies
-                    tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget
-                    ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.</p>
-                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                    anim id est laborum.</p>
+                <p data-i18n="registration.modal.paragraph1">By registering with Farmzi, you agree to use our services responsibly and respect our commitment to sustainable gardening practices.</p>
+                <p data-i18n="registration.modal.paragraph2">You agree to provide accurate personal information and maintain the security of your account. Farmzi is not liable for unauthorized access due to user negligence.</p>
+                <p data-i18n="registration.modal.paragraph3">Our services are subject to local laws, and you agree to comply with all applicable regulations. Any misuse of our platform may result in account termination.</p>
+                <p data-i18n="registration.modal.paragraph4">Farmzi reserves the right to update these terms at any time. Continued use of our services constitutes acceptance of the updated terms.</p>
             </div>
             <div class="modal-actions">
-                <button id="acceptTerms" class="submit-btn">Accept Terms</button>
+                <button id="acceptTerms" class="submit-btn" data-i18n="registration.modal.accept">Accept Terms</button>
             </div>
         </div>
     </div>
+    <script src="index.js"></script>
+    <script src="../base_js/admin.js"></script>
+    <script src="../header/header.js"></script>
+    <script src="../footer/footer.js"></script>
+    <script src="../preloader/index.js"></script>
+    <script src="../base_js/langSwitcher.js"></script>
 </body>
-<script src="index.js"></script>
-<script src="../base_js/admin.js"></script>
-<script src="../header/header.js"></script>
-<script src="../footer/footer.js"></script>
-<script src="../preloader/index.js"></script>
-
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
+    <title data-i18n="page_title">Shopping Cart</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../preloader/preloader.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,38 +17,39 @@
         <div class="spinner"></div>
     </div>
     <main class="cart-container">
-        <h1>Your Shopping Cart</h1>
+        <h1 data-i18n="header.title">Your Shopping Cart</h1>
         
         <div class="cart-content">
             <div class="cart-items" id="cart-items">
                 <!-- Товары будут загружаться здесь -->
                 <div class="empty-cart">
                     <i class="fas fa-shopping-cart"></i>
-                    <p>Your cart is empty</p>
-                    <a href="../shop/index.html" class="continue-shopping">Continue Shopping</a>
+                    <p data-i18n="empty_cart.message">Your cart is empty</p>
+                    <a href="../shop/index.html" class="continue-shopping" data-i18n="empty_cart.continue_shopping">Continue Shopping</a>
                 </div>
             </div>
             
             <div class="cart-summary">
-                <h2>Order Summary</h2>
+                <h2 data-i18n="summary.title">Order Summary</h2>
                 <div class="summary-details">
                     <div class="summary-row">
-                        <span>Subtotal</span>
+                        <span data-i18n="summary.subtotal">Subtotal</span>
                         <span id="subtotal">$0.00</span>
                     </div>
                     <div class="summary-row">
-                        <span>Shipping</span>
+                        <span data-i18n="summary.shipping">Shipping</span>
                         <span id="shipping">$5.99</span>
                     </div>
                     <div class="summary-row total">
-                        <span>Total</span>
+                        <span data-i18n="summary.total">Total</span>
                         <span id="total">$5.99</span>
                     </div>
                 </div>
-                <button id="checkout-btn" disabled>Proceed to Checkout</button>
+                <button id="checkout-btn" disabled data-i18n="summary.checkout_button">Proceed to Checkout</button>
             </div>
         </div>
     </main>
+    <script src="../base_js/langSwitcher.js"></script>
     <script src="index.js"></script>
     <script src="../base_js/admin.js"></script>
     <script src="../header/header.js"></script>

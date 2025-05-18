@@ -1,0 +1,28 @@
+{
+  "login": {
+    "page_title": "Log in",
+    "header": {
+      "title": "Log in",
+      "description": "Enter your data"
+    },
+    "form": {
+      "email_label": "Email or phone number",
+      "email_error": "Please, enter email or phone number",
+      "password_label": "Password",
+      "password_error": "Please, enter your password",
+      "submit": "Sign in",
+      "success": "Log in successful",
+      "errors": {
+        "login_required": "Please, enter your phone or email",
+        "login_not_found": "User with this data not found",
+        "password_required": "Please, enter your password",
+        "password_wrong": "Wrong password",
+        "server_error": "Error occurred. Please, try again"
+      }
+    },
+    "footer": {
+      "text": "Don't have account yet?",
+      "link": "Create one"
+    }
+  }
+}

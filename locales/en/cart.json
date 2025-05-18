@@ -1,0 +1,23 @@
+{
+  "page_title": "Shopping Cart",
+  "header": {
+    "title": "Your Shopping Cart"
+  },
+  "empty_cart": {
+    "message": "Your cart is empty",
+    "continue_shopping": "Continue Shopping"
+  },
+  "summary": {
+    "title": "Order Summary",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "total": "Total",
+    "checkout_button": "Proceed to Checkout",
+    "free_shipping": "FREE"
+  },
+  "messages": {
+    "admin_checkout_disabled": "Checkout functionality is not available for admin role",
+    "order_success": "Order placed successfully! Your cart has been cleared.",
+    "order_error": "There was an error processing your order. Please try again."
+  }
+}

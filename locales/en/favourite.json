@@ -1,0 +1,20 @@
+{
+  "page_title": "Favorites",
+  "header": {
+    "title": "Your Favorites"
+  },
+  "empty_favorites": {
+    "message": "Your favorites list is empty",
+    "browse_products": "Browse Products"
+  },
+  "buttons": {
+    "add_to_cart": "Add to Cart",
+    "remove": "Remove"
+  },
+  "messages": {
+    "added_to_cart": "Product added to cart!",
+    "add_to_cart_error": "There was an error adding the product to cart.",
+    "removed_from_favorites": "Item removed from favorites",
+    "remove_favorite_error": "There was an error removing the item from favorites."
+  }
+}

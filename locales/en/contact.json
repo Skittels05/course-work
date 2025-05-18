@@ -1,0 +1,30 @@
+{
+  "contact": {
+    "page_title": "Contact Farmzi",
+    "header": {
+      "slogan": "Get in touch",
+      "title": "We'd love to hear from you about your gardening needs.",
+      "subtitle": "Contact Farmzi today",
+      "image_alt": "Gardening tools"
+    },
+    "info": {
+      "call_title": "Call Us",
+      "phone1": "+00 89 458 648",
+      "phone2": "+00 89 458 649",
+      "email_title": "Email Us",
+      "email1": "info@farmzi.com",
+      "email2": "support@farmzi.com",
+      "visit_title": "Visit Us",
+      "address1": "123 Garden Street",
+      "address2": "Greentown, GT 12345"
+    },
+    "map": {
+      "title": "Our Location",
+      "description": "Find us on the map"
+    },
+    "cta": {
+      "title": "Ready to start your garden project?",
+      "description": "Contact us today for a free consultation with our gardening experts."
+    }
+  }
+}

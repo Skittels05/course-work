@@ -1,0 +1,71 @@
+{
+  "page_title": "Admin Panel",
+  "tabs": {
+    "products": "Products",
+    "reviews": "Reviews"
+  },
+  "products": {
+    "form_title": "Add/Edit Product",
+    "name_label": "Name",
+    "name_placeholder": "Enter product name",
+    "price_label": "Price",
+    "price_placeholder": "Enter price",
+    "category_label": "Category",
+    "category_placeholder": "Enter category",
+    "description_label": "Description",
+    "description_placeholder": "Enter description",
+    "save_button": "Save Product",
+    "update_button": "Update Product",
+    "reset_button": "Reset",
+    "list_title": "Product List",
+    "table": {
+      "id": "ID",
+      "name": "Name",
+      "price": "Price",
+      "category": "Category",
+      "actions": "Actions"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "errors": {
+      "name_length": "Name must be at least 3 characters",
+      "price_positive": "Price must be greater than 0",
+      "category_length": "Category must be at least 2 characters",
+      "description_length": "Description must be at least 10 characters"
+    },
+    "messages": {
+      "save_success": "Product saved successfully!",
+      "save_error": "Error saving product. Please try again.",
+      "delete_confirm": "Are you sure you want to delete this product?",
+      "delete_error": "Error deleting product"
+    }
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "filter_product": "Filter by Product:",
+    "all_products": "All Products",
+    "filter_user": "Filter by User:",
+    "all_users": "All Users",
+    "table": {
+      "id": "ID",
+      "product": "Product",
+      "user": "User",
+      "rating": "Rating",
+      "text": "Review Text",
+      "date": "Date",
+      "actions": "Actions"
+    },
+    "actions": {
+      "delete": "Delete"
+    },
+    "messages": {
+      "delete_confirm": "Are you sure you want to delete this review?",
+      "delete_error": "Error deleting review",
+      "unknown_product": "Unknown",
+      "unknown_user": "Unknown",
+      "no_text": "No text"
+    }
+  }
+}

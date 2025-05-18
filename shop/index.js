@@ -14,12 +14,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const lastPageBtn = document.getElementById("last-page");
   const pageNumbersContainer = document.getElementById("page-numbers");
   const filterToggle = document.getElementById("filter-toggle");
+ 655
   const filtersSidebar = document.getElementById("filters-sidebar");
   const closeFilters = document.getElementById("close-filters");
   const overlay = document.getElementById("overlay");
   const applyFiltersBtn = document.getElementById("apply-filters");
 
   let allProducts = [];
+
+  // Helper function to get translations with fallback
+  function getTranslation(key, fallback) {
+    return window.i18n && window.i18n.getTranslation(window.i18n.translations.shop, key) || fallback;
+  }
+
+  // Helper function to get product translation
+  function getProductTranslation(productId, field, fallback) {
+    const productTranslations = window.i18n.translations.shop?.products?.items || [];
+    const product = productTranslations.find(item => item.id === productId);
+    return product ? product[field] : fallback;
+  }
 
   async function loadAllProducts() {
     console.log("Loading products from:", apiUrl);
@@ -44,8 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchProducts();
     } catch (error) {
       console.error("Error loading products:", error);
-      productsContainer.innerHTML =
-        "<p>Error loading products. Please try again later.</p>";
+      productsContainer.innerHTML = `<p>${getTranslation("shop.products.errors.load_products", "Error loading products. Please try again later.")}</p>`;
     }
   }
 
@@ -56,9 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const maxPercent = (maxSlider.value / maxSlider.max) * 100;
 
     document.querySelector(".active-range").style.cssText = `
-    left: ${minPercent}%;
-    right: ${100 - maxPercent}%;
-  `;
+      left: ${minPercent}%;
+      right: ${100 - maxPercent}%;
+    `;
   }
 
   function fetchProducts() {
@@ -66,9 +78,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchTerm = searchInput.value.trim().toLowerCase();
     if (searchTerm) {
       filteredProducts = filteredProducts.filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchTerm) ||
-          product.description.toLowerCase().includes(searchTerm)
+        (product) => {
+          const name = getProductTranslation(product.id, "name", product.name).toLowerCase();
+          const description = getProductTranslation(product.id, "description", product.description).toLowerCase();
+          return name.includes(searchTerm) || description.includes(searchTerm);
+        }
       );
     }
 
@@ -95,10 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
             ? a[currentSortField] - b[currentSortField]
             : b[currentSortField] - a[currentSortField];
         }
-        if (a[currentSortField] < b[currentSortField]) {
+        const aValue = getProductTranslation(a.id, currentSortField, a[currentSortField]);
+        const bValue = getProductTranslation(b.id, currentSortField, b[currentSortField]);
+        if (aValue < bValue) {
           return currentSortOrder === "asc" ? -1 : 1;
         }
-        if (a[currentSortField] > b[currentSortField]) {
+        if (aValue > bValue) {
           return currentSortOrder === "asc" ? 1 : -1;
         }
         return 0;
@@ -140,41 +156,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const productsHTML = await Promise.all(
       products.map(async (product) => {
         const isFavorite = await checkFavorite(product.id);
+        const translatedName = getProductTranslation(product.id, "name", product.name);
+        const translatedDescription = getProductTranslation(product.id, "description", product.description);
 
         return `
-        <div class="product-card" data-id="${product.id}">
-          <button class="favorite-btn ${isFavorite ? "active" : ""}" data-id="${
-          product.id
-        }">
-            <i class="${isFavorite ? "fas" : "far"} fa-heart"></i>
-          </button>
-          <a href="../product/index.html?id=${
-            product.id
-          }" class="product-image-link">
-            <img src="../assets/shop/${product.id}.jpg" alt="${product.name}" 
-                 class="product-image" onerror="this.src='../assets/shop/placeholder.jpg'">
-          </a>
-          <div class="product-info">
-            <h3 class="product-title">${product.name}</h3>
-            <p>${product.description}</p>
-            <div class="product-meta">
-              <span class="product-category">${product.category}</span>
-              <div class="product-price">$${product.price.toFixed(2)}</div>
-              <div class="product-rating">${
-                product.rating || product.rating === 0
-                  ? `★ ${product.rating.toFixed(1)}`
-                  : ""
-              }</div>
+          <div class="product-card" data-id="${product.id}">
+            <button class="favorite-btn ${isFavorite ? "active" : ""}" data-id="${product.id}">
+              <i class="${isFavorite ? "fas" : "far"} fa-heart"></i>
+            </button>
+            <a href="../product/index.html?id=${product.id}" class="product-image-link">
+              <img src="../assets/shop/${product.id}.jpg" alt="${translatedName}" 
+                   class="product-image" onerror="this.src='../assets/shop/placeholder.jpg'">
+            </a>
+            <div class="product-info">
+              <h3 class="product-title">${translatedName}</h3>
+              <p>${translatedDescription}</p>
+              <div class="product-meta">
+                <span class="product-category">${product.category}</span>
+                <div class="product-price">$${product.price.toFixed(2)}</div>
+                <div class="product-rating">${
+                  product.rating || product.rating === 0
+                    ? `★ ${product.rating.toFixed(1)}`
+                    : ""
+                }</div>
+              </div>
+              <button class="add-to-cart" data-i18n="shop.products.add_to_cart">Add to Cart</button>
             </div>
-            <button class="add-to-cart">Add to Cart</button>
           </div>
-        </div>
-      `;
+        `;
       })
     );
 
     productsContainer.innerHTML =
-      productsHTML.join("") || '<p class="no-results">No products found</p>';
+      productsHTML.join("") || `<p class="no-results">${getTranslation("shop.products.no_results", "No products found")}</p>`;
 
     document.querySelectorAll(".add-to-cart").forEach((btn) => {
       btn.addEventListener("click", addToCart);
@@ -234,19 +248,19 @@ document.addEventListener("DOMContentLoaded", () => {
     sortDropdown.className = "sort-dropdown";
 
     const sortButton = document.getElementById("sort-toggle");
-    sortButton.innerHTML = '<i class="fas fa-sort"></i> Sort';
+    sortButton.innerHTML = `<i class="fas fa-sort"></i> ${getTranslation("shop.sort.button", "Sort")}`;
 
     const sortOptions = document.createElement("div");
     sortOptions.className = "sort-options";
 
-    const sortCriteria = [
+    const sortCriteria = getTranslation("shop.sort.options", [
       { name: "Name (A-Z)", value: "name", order: "asc" },
       { name: "Name (Z-A)", value: "name", order: "desc" },
       { name: "Price (Low to High)", value: "price", order: "asc" },
       { name: "Price (High to Low)", value: "price", order: "desc" },
       { name: "Rating (Best first)", value: "rating", order: "desc" },
       { name: "Rating (Worst first)", value: "rating", order: "asc" },
-    ];
+    ]);
 
     sortCriteria.forEach((criterion) => {
       const option = document.createElement("div");
@@ -337,8 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function generateCategoryFilters() {
-    const categoryFiltersContainer =
-      document.querySelector(".category-filters");
+    const categoryFiltersContainer = document.querySelector(".category-filters");
     const allCategories = [...new Set(allProducts.map((p) => p.category))];
 
     categoryFiltersContainer.innerHTML = "";
@@ -346,9 +359,9 @@ document.addEventListener("DOMContentLoaded", () => {
     allCategories.forEach((category) => {
       const label = document.createElement("label");
       label.innerHTML = `
-      <input type="checkbox" name="category" value="${category}" checked>
-      ${category}
-    `;
+        <input type="checkbox" name="category" value="${category}" checked>
+        ${category}
+      `;
       categoryFiltersContainer.appendChild(label);
     });
   }
@@ -456,8 +469,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }),
     })
       .then((response) => response.json())
-      .then(() => alert("Added to cart!"))
-      .catch((error) => console.error("Error:", error));
+      .then(() => alert(getTranslation("shop.products.errors.cart_success", "Added to cart!")))
+      .catch((error) => {
+        console.error("Error:", error);
+        alert(getTranslation("shop.products.errors.add_to_cart", "Error adding to cart. Please try again."));
+      });
   }
 
   setupSearch();

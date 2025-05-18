@@ -1,0 +1,82 @@
+{
+  "home": {
+    "page_title": "Farmzi",
+    "garden": {
+      "slogan": "Make a garden with musion",
+      "quote": "If you have a garden and a library, you have everything you need.",
+      "author": "Marcus Tullius Cicero",
+      "button": "All Services +",
+      "image_alt": "Garden illustration"
+    },
+    "experience": {
+      "title": "About Company",
+      "description": "Farmzi have 35 years of experience and know smart way to grow and design your beautiful garden.",
+      "who_title": "Who we are?",
+      "who_description": "Farmzi is a team passionate about creating sustainable gardens. Since 1989, our agronomists and designers have blended tradition with innovation to craft thriving ecosystems.",
+      "quote_text": "“Farmzi combines decades of wisdom with modern techniques to design gardens that flourish for generations.”",
+      "mission_title": "Mission and vision",
+      "mission_description1": "Our mission is to create sustainable landscapes that inspire and endure. We innovate responsibly, ensuring every garden reflects beauty and purpose.",
+      "mission_description2": "Our vision is a world where every garden supports biodiversity and sustainability, built on 35 years of expertise.",
+      "button": "Learn More +",
+      "image_alt": "Farmer hat"
+    },
+    "services": {
+      "title": "Our Services",
+      "description": "Farmzi always provide amazing gardening and landscaping services.",
+      "flower_label": "Flower",
+      "flower_title": "Planting Flower",
+      "flower_alt": "Flower planting",
+      "tree_label": "Planting",
+      "tree_title": "Tree Planting",
+      "tree_alt": "Tree planting",
+      "rush_label": "Rush",
+      "rush_title": "Rush Removal",
+      "rush_alt": "Rush removal",
+      "water_label": "Watering",
+      "water_title": "Gardening Watering",
+      "water_alt": "Garden watering",
+      "button": "More Services +"
+    },
+    "action": {
+      "title": "Call To Action",
+      "description": "If you need any gardening service, you can contact with Farmzi.",
+      "services_label": "Our Services",
+      "phone_number": "+00 89 458 648",
+      "phone_alt": "Phone icon"
+    },
+    "members": {
+      "title": "Team Members",
+      "description": "Farmzi feel proud for skilled team members.",
+      "horsley_role": "Founder of Farmzi",
+      "horsley_name": "Shoshana Horsley",
+      "horsley_description": "Shoshana founded Farmzi with a vision for sustainable gardening, leading with 35 years of expertise.",
+      "horsley_alt": "Shoshana Horsley",
+      "pennel_role": "Senior Gardener",
+      "pennel_name": "Kristofer Pennell",
+      "pennel_description": "Kristofer brings precision and passion to every garden, with decades of hands-on experience.",
+      "pennel_alt": "Kristofer Pennell",
+      "jackson_role": "Garden Designer",
+      "jackson_name": "Matthew Jackson",
+      "jackson_description": "Matthew crafts stunning landscapes, blending creativity with ecological insight.",
+      "jackson_alt": "Matthew Jackson"
+    },
+    "video": {
+      "title": "Company intro video",
+      "description": "See our intro video and lets start your dream project."
+    },
+    "statistic": {
+      "projects_number": "847 +",
+      "projects_label": "Project Done",
+      "clients_number": "753 +",
+      "clients_label": "Happy Client",
+      "members_number": "284 +",
+      "members_label": "Team Member",
+      "awards_number": "98 +",
+      "awards_label": "Winning Awward"
+    },
+    "clients": {
+      "title": "Happy Clients",
+      "description": "Farmzi got best feedback from happy clients"
+    }
+  }
+}

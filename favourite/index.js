@@ -30,10 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
             favoritesContainer.innerHTML = `
                 <div class="empty-favorites">
                     <i class="fas fa-heart"></i>
-                    <p>Your favorites list is empty</p>
-                    <a href="../shop/index.html" class="continue-shopping">Browse Products</a>
+                    <p data-i18n="empty_favorites.message">Your favorites list is empty</p>
+                    <a href="../shop/index.html" class="continue-shopping" data-i18n="empty_favorites.browse_products">Browse Products</a>
                 </div>
             `;
+            applyTranslations(favoritesContainer);
             return;
         }
         
@@ -49,8 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p>${product.category}</p>
                         <div class="favorite-item-price">$${product.price.toFixed(2)}</div>
                         <div class="favorite-item-actions">
-                            <button class="add-to-cart-btn">Add to Cart</button>
-                            <button class="remove-favorite-btn"><i class="fas fa-trash"></i></button>
+                            <button class="add-to-cart-btn" data-i18n="buttons.add_to_cart">Add to Cart</button>
+                            <button class="remove-favorite-btn" title="Remove">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -59,9 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
             btn.addEventListener('click', addToCart);
+            applyTranslation(btn, 'buttons.add_to_cart');
         });
+        
         document.querySelectorAll('.remove-favorite-btn').forEach(btn => {
             btn.addEventListener('click', removeFavorite);
+            const title = getTranslation('buttons.remove');
+            if (title) btn.setAttribute('title', title);
         });
     }
     
@@ -94,10 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             
-            alert('Product added to cart!');
+            const message = getTranslation('messages.added_to_cart') || 'Product added to cart!';
+            alert(message);
         } catch (error) {
             console.error('Error adding to cart:', error);
-            alert('There was an error adding the product to cart.');
+            const message = getTranslation('messages.add_to_cart_error') || 'There was an error adding the product to cart.';
+            alert(message);
         }
     }
 
@@ -112,11 +121,47 @@ document.addEventListener('DOMContentLoaded', () => {
             
             favorites = favorites.filter(f => f.id !== favId);
             displayFavoritesItems();
+            
+            const message = getTranslation('messages.removed_from_favorites') || 'Item removed from favorites';
+            alert(message);
         } catch (error) {
             console.error('Error removing favorite:', error);
-            alert('There was an error removing the item from favorites.');
+            const message = getTranslation('messages.remove_favorite_error') || 'There was an error removing the item from favorites.';
+            alert(message);
         }
     }
+
+    function getTranslation(key) {
+        if (!window.i18n || !window.i18n.translations.favourite) return null;
+        return key.split('.').reduce((o, k) => o?.[k], window.i18n.translations.favourite);
+    }
+
+    function applyTranslation(element, key) {
+        const translation = getTranslation(key);
+        if (translation) {
+            element.textContent = translation;
+        }
+    }
+
+    function applyTranslations(container) {
+        if (!window.i18n) return;
+        
+        container.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const translation = getTranslation(key);
+            if (translation) {
+                el.textContent = translation;
+            }
+        });
+    }
+
+    // Handle language changes
+    window.addEventListener('languageChanged', () => {
+        if (window.i18n) {
+            window.i18n.applyTranslations('favourite');
+            displayFavoritesItems();
+        }
+    });
 
     loadFavoritesData();
 });

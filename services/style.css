@@ -134,7 +134,7 @@ hr {
     color: var(--primary-text);
 }
 
-ul {
+section ul {
     margin-top: 5rem;
     list-style-type: disc;
     color: var(--primary-text);

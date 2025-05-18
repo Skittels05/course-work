@@ -1,0 +1,41 @@
+{
+  "about": {
+    "page_title": "About us",
+    "who": {
+      "title": "Who we ARE?",
+      "description": "At Farmzi, we are passionate cultivators of beauty and sustainability. Founded in 1989, our team of agronomists, landscape architects, and eco-technologists brings together generations of farming wisdom with cutting-edge agricultural innovations. We don't just design gardens - we create thriving ecosystems where every plant has purpose."
+    },
+    "awards": {
+      "title": "Our awwards",
+      "list": {
+        "item_1": "GreenTech Innovation Award(2023)",
+        "item_2": "Eco-Farming Excellence Meda(2021)",
+        "item_3": "Customer Choice Award",
+        "item_4": "Fastest-Growing Agri Company",
+        "item_5": "Forbes \"Top 10 Agri-Tech Startups to Watch\" (2023)"
+      }
+    },
+    "excellence": {
+      "main_title": "35 Years of Growing Excellence",
+      "main_description": "At Farmzi, our 35-year legacy represents more than just experience—it's a living history of innovation, resilience, and deep-rooted expertise in every seed we plant and every landscape we design.",
+      "section_title": "Why 35 Years Matters for You",
+      "wisdom_title": "Time-Tested Wisdom",
+      "wisdom_item1": "Solutions refined through multiple climate cycles",
+      "wisdom_item2": "Rare knowledge of long-term plant behavior",
+      "innovation_title": "Innovation Without Experimentation",
+      "innovation_item1": "Every technique has been field-proven for ≥5 years",
+      "innovation_item2": "Your project benefits from decades of trial/error",
+      "stewardship_title": "Multi-Generational Stewardship",
+      "stewardship_item1": "Land we designed in 1990 still thrives today",
+      "stewardship_item2": "Legacy-focused approach ensures lasting results",
+      "numbers_title": "By the Numbers",
+      "numbers_item1": "35 years = 12,775 days of growing expertise",
+      "numbers_item2": "1,200+ complex projects completed",
+      "numbers_item3": "94% client retention rate",
+      "numbers_item4": "3 generations of family knowledge",
+      "quote_text": "\"We've weathered droughts, market changes, and technological revolutions—all while keeping our commitment to sustainable growth.\"",
+      "quote_author": "— Olga Farmzi, 2nd-Generation Head Agronomist"
+    },
+    "image_alt": "35 years of experience infographic"
+  }
+}

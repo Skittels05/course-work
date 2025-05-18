@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorites</title>
+    <title data-i18n="page_title">Favorites</title>
     <link rel="stylesheet" href="../preloader/preloader.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,26 +12,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
     <div class="preloader">
         <div class="spinner"></div>
     </div>
     <main class="favorites-container">
-        <h1>Your Favorites</h1>
+        <h1 data-i18n="header.title">Your Favorites</h1>
 
         <div class="favorites-content">
             <div class="favorites-items" id="favorites-items">
                 <!-- Товары будут загружаться здесь -->
                 <div class="empty-favorites">
                     <i class="fas fa-heart"></i>
-                    <p>Your favorites list is empty</p>
-                    <a href="../shop/index.html" class="continue-shopping">Browse Products</a>
+                    <p data-i18n="empty_favorites.message">Your favorites list is empty</p>
+                    <a href="../shop/index.html" class="continue-shopping" data-i18n="empty_favorites.browse_products">Browse Products</a>
                 </div>
             </div>
         </div>
     </main>
 
+    <script src="../base_js/langSwitcher.js"></script>
     <script src="index.js"></script>
     <script src="../base_js/admin.js"></script>
     <script src="../header/header.js"></script>

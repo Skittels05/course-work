@@ -1,0 +1,16 @@
+{
+  "page_title": "Document",
+  "logo_alt": "Farmzi logo",
+  "view_alt": "Language view icon",
+  "login_alt": "Login icon",
+  "cart_alt": "Shopping cart",
+  "wish_alt": "Wishlist icon",
+  "lang": "ENG",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact",
+    "shop": "Shop"
+  }
+}

@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title data-i18n="page_title">Document</title>
 </head>
+
 <body>
     <header>
-    <div class="first_group">
-        <img src="../assets/logo.png" alt="logo" class="logo">
-        <label class="theme-switch">
-            <input type="checkbox" id="theme-switcher">
-            <span class="slider round"></span>
-        </label>
-    </div>
-    <div class="burger-wrapper">
-        <input type="checkbox" id="burger-toggle" class="burger-toggle">
-        <label for="burger-toggle" class="burger-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        <nav class="nav-container">
-            <ul class="nav">
-                <li><a href="../home/index.html">Home</a></li>
-                <li><a href="../about/index.html">About</a></li>
-                <li><a href="../services/index.html">Services</a></li>
-                <li><a href="../contact/index.html">Contact</a></li>
-                <li><a href="../shop/index.html">Shop</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="header_icons">
-        <div class="lang_view">
-            <img src="../assets/view.svg" alt="view">
-            <p>ENG</p>
+        <div class="first_group">
+            <img src="../assets/logo.png" alt="logo" class="logo" data-i18n="[alt]logo_alt">
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-switcher">
+                <span class="slider round"></span>
+            </label>
         </div>
-        <a href="../profile/index.html"><img src="../assets/login.svg" alt="login"></a>
-        <a href="../cart/index.html"><img src="../assets/korzina.svg" alt="korzina"></a>
-        <a href="../favourite/index.html"><img src="../assets/wish.svg" alt="wish"></a>
-        <a href="../admin/index.html" class="admin-link"><i class="fas fa-cog"></i></a>
-    </div>
-</header>
-<script src="../base_js/theme.js"></script>
+        <div class="burger-wrapper">
+            <input type="checkbox" id="burger-toggle" class="burger-toggle">
+            <label for="burger-toggle" class="burger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <nav class="nav-container">
+                <ul class="nav">
+                    <li><a href="../home/index.html" data-i18n="nav.home">Home</a></li>
+                    <li><a href="../about/index.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="../services/index.html" data-i18n="nav.services">Services</a></li>
+                    <li><a href="../contact/index.html" data-i18n="nav.contact">Contact</a></li>
+                    <li><a href="../shop/index.html" data-i18n="nav.shop">Shop</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="header_icons">
+            <div class="lang_view" id="lang-switcher">
+                <img src="../assets/view.svg" alt="view" data-i18n="[alt]view_alt">
+                <p data-i18n="lang">ENG</p>
+            </div>
+            <a href="../profile/index.html"><img src="../assets/login.svg" alt="login" data-i18n="[alt]login_alt"></a>
+            <a href="../cart/index.html"><img src="../assets/korzina.svg" alt="korzina" data-i18n="[alt]cart_alt"></a>
+            <a href="../favourite/index.html"><img src="../assets/wish.svg" alt="wish" data-i18n="[alt]wish_alt"></a>
+            <a href="../admin/index.html" class="admin-link"><i class="fas fa-cog"></i></a>
+        </div>
+    </header>
+    <!-- Например, в about/index.html -->
+    <script src="../base_js/langSwitcher.js"></script>
 </body>
+
 </html>

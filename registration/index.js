@@ -39,6 +39,11 @@ document.addEventListener("DOMContentLoaded", function () {
     "2024",
   ];
 
+  // Helper function to get translations with fallback
+  function getTranslation(key, fallback) {
+    return window.i18n && window.i18n.getTranslation(window.i18n.translations.registration, key) || fallback;
+  }
+
   function initForm() {
     const birthDateInput = document.getElementById("birthDate");
     const today = new Date();
@@ -56,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const lastName = document.getElementById("lastName").value.trim();
 
     if (!firstName || !lastName) {
-      showError("nicknameError", "Please enter your first and last name first");
+      showError("nicknameError", getTranslation("registration.form.errors.nickname_missing_names", "Please enter your first and last name first"));
       return;
     }
 
@@ -75,7 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "nickname",
       nickname,
       "nicknameError",
-      "This nickname is already taken"
+      getTranslation("registration.form.errors.nickname_already_taken", "This nickname is already taken")
     );
   });
 
@@ -168,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     } catch (error) {
       console.error(`Error checking ${fieldName}:`, error);
-      showError(errorElementId, `Error checking ${fieldName}`);
+      showError(errorElementId, getTranslation(`registration.form.errors.${fieldName}_error_checking`, `Error checking ${fieldName}`));
       return false;
     }
   }
@@ -182,19 +187,19 @@ document.addEventListener("DOMContentLoaded", function () {
       "email",
       email,
       "emailError",
-      "This email is already registered"
+      getTranslation("registration.form.errors.email_already_registered", "This email is already registered")
     );
     const isNicknameUnique = await checkFieldAvailability(
       "nickname",
       nickname,
       "nicknameError",
-      "This nickname is already taken"
+      getTranslation("registration.form.errors.nickname_already_taken", "This nickname is already taken")
     );
     const isPhoneUnique = await checkFieldAvailability(
       "phone",
       phone,
       "phoneError",
-      "This phone number is already registered"
+      getTranslation("registration.form.errors.phone_already_registered", "This phone number is already registered")
     );
 
     return isEmailUnique && isNicknameUnique && isPhoneUnique;
@@ -207,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
       !validateRequiredField(
         "lastName",
         "lastNameError",
-        "Enter your last name"
+        getTranslation("registration.form.errors.last_name_required", "Enter your last name")
       )
     ) {
       isValid = false;
@@ -217,7 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
       !validateRequiredField(
         "firstName",
         "firstNameError",
-        "Enter your first name"
+        getTranslation("registration.form.errors.first_name_required", "Enter your first name")
       )
     ) {
       isValid = false;
@@ -239,14 +244,14 @@ document.addEventListener("DOMContentLoaded", function () {
       !validateRequiredField(
         "nickname",
         "nicknameError",
-        "Enter or generate a nickname"
+        getTranslation("registration.form.errors.nickname_required", "Enter or generate a nickname")
       )
     ) {
       isValid = false;
     }
 
     if (!document.getElementById("agreement").checked) {
-      showError("agreementError", "You must accept the agreement terms");
+      showError("agreementError", getTranslation("registration.form.errors.agreement_error", "You must accept the agreement terms"));
       isValid = false;
     } else {
       hideError("agreementError");
@@ -279,7 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function validateBirthDate() {
     const birthDate = new Date(document.getElementById("birthDate").value);
     if (!birthDate || isNaN(birthDate.getTime())) {
-      showError("birthDateError", "Enter your birth date");
+      showError("birthDateError", getTranslation("registration.form.errors.birth_date_required", "Enter your birth date"));
       return false;
     }
 
@@ -291,7 +296,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     if (birthDate > minAgeDate) {
-      showError("birthDateError", "You must be at least 16 years old");
+      showError("birthDateError", getTranslation("registration.form.errors.birth_date_age", "You must be at least 16 years old"));
       return false;
     }
 
@@ -302,14 +307,14 @@ document.addEventListener("DOMContentLoaded", function () {
   function validatePhoneFormat() {
     const phone = document.getElementById("phone").value.trim();
     if (!phone) {
-      showError("phoneError", "Enter your phone number");
+      showError("phoneError", getTranslation("registration.form.errors.phone_required", "Enter your phone number"));
       return false;
     }
 
     if (!/^\+375(24|25|29|33|44)\d{7}$/.test(phone)) {
       showError(
         "phoneError",
-        "Enter a valid Belarusian phone number (+375XXXXXXXXX)"
+        getTranslation("registration.form.errors.phone_error", "Enter a valid Belarusian phone number (+375XXXXXXXXX)")
       );
       return false;
     }
@@ -321,12 +326,12 @@ document.addEventListener("DOMContentLoaded", function () {
   function validateEmailFormat() {
     const email = document.getElementById("email").value.trim();
     if (!email) {
-      showError("emailError", "Enter your email");
+      showError("emailError", getTranslation("registration.form.errors.email_required", "Enter your email"));
       return false;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showError("emailError", "Enter a valid email");
+      showError("emailError", getTranslation("registration.form.errors.email_error", "Enter a valid email"));
       return false;
     }
 
@@ -339,12 +344,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const confirmPassword = document.getElementById("confirmPassword").value;
 
     if (!password) {
-      showError("passwordError", "Enter password");
+      showError("passwordError", getTranslation("registration.form.errors.password_required", "Enter password"));
       return false;
     }
 
     if (password.length < 8 || password.length > 20) {
-      showError("passwordError", "Password must be 8-20 characters");
+      showError("passwordError", getTranslation("registration.form.errors.password_length", "Password must be 8-20 characters"));
       return false;
     }
 
@@ -356,23 +361,23 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       showError(
         "passwordError",
-        "Password must contain uppercase, lowercase, numbers and symbols"
+        getTranslation("registration.form.errors.password_format", "Password must contain uppercase, lowercase, numbers and symbols")
       );
       return false;
     }
 
     if (commonPasswords.includes(password.toLowerCase())) {
-      showError("passwordError", "This password is too common");
+      showError("passwordError", getTranslation("registration.form.errors.password_common", "This password is too common"));
       return false;
     }
 
     if (!confirmPassword) {
-      showError("confirmPasswordError", "Confirm your password");
+      showError("confirmPasswordError", getTranslation("registration.form.errors.confirm_password_required", "Confirm your password"));
       return false;
     }
 
     if (password !== confirmPassword) {
-      showError("confirmPasswordError", "Passwords do not match");
+      showError("confirmPasswordError", getTranslation("registration.form.errors.confirm_password_error", "Passwords do not match"));
       return false;
     }
 
@@ -404,7 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "nickname",
       nickname,
       "nicknameError",
-      "This nickname is already taken"
+      getTranslation("registration.form.errors.nickname_already_taken", "This nickname is already taken")
     );
 
     if (!isNicknameAvailable) {
@@ -445,9 +450,10 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.disabled = true;
     } catch (error) {
       console.error("Registration error:", error);
-      alert("Registration error. Please try again.");
+      alert(getTranslation("registration.form.errors.server_error", "Registration error. Please try again."));
     }
   });
+
   termsLink.addEventListener("click", function (e) {
     e.preventDefault();
     termsModal.style.display = "block";
@@ -462,11 +468,13 @@ document.addEventListener("DOMContentLoaded", function () {
       termsModal.style.display = "none";
     }
   });
+
   document.getElementById("acceptTerms").addEventListener("click", function () {
     document.getElementById("agreement").checked = true;
     termsModal.style.display = "none";
     hideError("agreementError");
   });
+
   form.addEventListener("input", function () {
     validateForm();
   });

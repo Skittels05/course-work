@@ -1,0 +1,80 @@
+{
+  "services": {
+    "page_title": "Services",
+    "header": {
+      "title": "Our Services",
+      "description": "At Farmzi, we don’t just provide gardening and landscaping—we create thriving, sustainable outdoor spaces tailored to your vision. With 35 years of expertise, our services combine beauty, functionality, and eco-friendly practices."
+    },
+    "flower": {
+      "label": "Flower",
+      "title": "Planting Flower",
+      "description": "Bring color and life to your garden",
+      "list": {
+        "item1_label": "Custom floral designs:",
+        "item1": "Annuals, perennials, and seasonal arrangements",
+        "item2_label": "Pollinator-friendly gardens:",
+        "item2": "Attract bees and butterflies with native blooms",
+        "item3_label": "Low-maintenance options:",
+        "item3": "Drought-resistant varieties for busy homeowners"
+      },
+      "popular_label": "Popular Choices:",
+      "popular": "Roses, lavender, tulips, wildflower meadows",
+      "image_alt": "Flower planting"
+    },
+    "tree": {
+      "label": "Planting",
+      "title": "Tree Planting",
+      "description": "Invest in your landscape’s future",
+      "list": {
+        "item1_label": "Ornamental fruit trees:",
+        "item1": "Cherry, apple, maple, and more",
+        "item2_label": "Climate-adapted species:",
+        "item2": "Selected for your region’s conditions",
+        "item3_label": "Guaranteed survival:",
+        "item3": "2-year warranty on all planted trees"
+      },
+      "addons_label": "Add-Ons:",
+      "addons": "Staking and support systems, Soil amendment for optimal growth",
+      "image_alt": "Tree planting"
+    },
+    "rush": {
+      "label": "Rush",
+      "title": "Rush Removal",
+      "description": "Reclaim your outdoor space",
+      "list": {
+        "item1_label": "Invasive species control:",
+        "item1": "Targeted removal without harmful chemicals",
+        "item2_label": "Preventive solutions:",
+        "item2": "Mulching and ground covers to suppress regrowth",
+        "item3_label": "Eco-friendly disposal:",
+        "item3": "Composting or safe off-site removal"
+      },
+      "targets_label": "Common Targets:",
+      "targets": "Weeds (dandelions, thistles), Rushes (in wetlands or ponds)",
+      "image_alt": "Rush removal"
+    },
+    "water": {
+      "label": "Watering",
+      "title": "Garden Watering",
+      "description": "Smart hydration for healthy plants",
+      "list": {
+        "item1_label": "Drip irrigation:",
+        "item1": "Water-efficient setups for beds and shrubs",
+        "item2_label": "Smart controllers:",
+        "item2": "Weather-based scheduling via app",
+        "item3_label": "Rainwater harvesting:",
+        "item3": "Sustainable water source integration"
+      },
+      "ideal_label": "Ideal For:",
+      "ideal": "Vacation homes, Eco-conscious gardeners",
+      "image_alt": "Garden watering"
+    },
+    "action": {
+      "title": "Call To Action",
+      "description": "If you need any gardening service, you can contact with Farmzi.",
+      "services_label": "Our Services",
+      "phone_number": "+00 89 458 648",
+      "phone_alt": "Phone icon"
+    }
+  }
+}

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Авторизация</title>
+    <title data-i18n="login.page_title">Авторизация</title>
     <link rel="stylesheet" href="../preloader/preloader.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -21,34 +21,38 @@
     <main>
         <div class="auth-container">
             <div class="auth-header">
-                <h1>Log in</h1>
-                <p>Enter your data</p>
+                <h1 data-i18n="login.header.title">Log in</h1>
+                <p data-i18n="login.header.description">Enter your data</p>
             </div>
-
             <div class="auth-body">
                 <form id="loginForm">
                     <div class="form-group">
-                        <label for="login">Email or pjone number</label>
+                        <label for="login" data-i18n="login.form.email_label">Email or phone number</label>
                         <input type="text" id="login" required>
-                        <div class="error-message" id="loginError">Please, enter email or phone number</div>
+                        <div class="error-message" id="loginError" data-i18n="login.form.email_error">Please, enter
+                            email or phone number</div>
                     </div>
-
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password" data-i18n="login.form.password_label">Password</label>
                         <div class="password-wrapper">
                             <input type="password" id="password" required>
                             <i class="fas fa-eye password-toggle" id="togglePassword"></i>
                         </div>
-                        <div class="error-message" id="passwordError">Please, enter your password</div>
+                        <div class="error-message" id="passwordError" data-i18n="login.form.password_error">Please,
+                            enter your password</div>
                     </div>
-
-                    <button type="submit" class="submit-btn" id="submitBtn">Sign in</button>
-                    <div class="success-message" id="successMessage">Log in succesful</div>
+                    <button type="submit" class="submit-btn" id="submitBtn" data-i18n="login.form.submit">Sign
+                        in</button>
+                    <div class="success-message" id="successMessage" data-i18n="login.form.success">Log in successful
+                    </div>
                 </form>
             </div>
-
             <div class="auth-footer">
-                <p>Don't have account yet? <a href="../registration/index.html" class="register-link">Create one</a></p>
+                <p>
+                    <span data-i18n="login.footer.text">Don't have account yet? </span>
+                    <a href="../registration/index.html" class="register-link" data-i18n="login.footer.link">Create
+                        one</a>
+                </p>
             </div>
         </div>
     </main>
@@ -57,6 +61,7 @@
     <script src="../header/header.js"></script>
     <script src="../footer/footer.js"></script>
     <script src="../preloader/index.js"></script>
+    <script src="../base_js/langSwitcher.js"></script>
 </body>
 
 </html>

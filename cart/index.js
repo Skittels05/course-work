@@ -5,13 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '../login/index.html';
         return;
     }
-    if (authUser.role === 'admin') {
-        const checkoutBtn = document.getElementById('checkout-btn');
-        checkoutBtn.disabled = true;
-        checkoutBtn.textContent = 'Not available for admin role';
-        checkoutBtn.style.backgroundColor = '#cccccc';
-        checkoutBtn.style.cursor = 'not-allowed';
-    }
 
     const cartItemsContainer = document.getElementById('cart-items');
     const subtotalElement = document.getElementById('subtotal');
@@ -22,6 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let cartItems = [];
     let products = [];
+
+    if (authUser.role === 'admin') {
+        checkoutBtn.disabled = true;
+        applyTranslation(checkoutBtn, 'messages.admin_checkout_disabled');
+        checkoutBtn.style.backgroundColor = '#cccccc';
+        checkoutBtn.style.cursor = 'not-allowed';
+    }
 
     async function loadCartData() {
         try {
@@ -45,10 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
             cartItemsContainer.innerHTML = `
                 <div class="empty-cart">
                     <i class="fas fa-shopping-cart"></i>
-                    <p>Your cart is empty</p>
-                    <a href="../shop/index.html" class="continue-shopping">Continue Shopping</a>
+                    <p data-i18n="empty_cart.message">Your cart is empty</p>
+                    <a href="../shop/index.html" class="continue-shopping" data-i18n="empty_cart.continue_shopping">Continue Shopping</a>
                 </div>
             `;
+            applyTranslations(cartItemsContainer);
             checkoutBtn.disabled = true;
             return;
         }
@@ -98,7 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = subtotal + shipping;
         
         subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
-        shippingElement.textContent = shipping === 0 ? 'FREE' : `$${shipping.toFixed(2)}`;
+        
+        const translations = window.i18n?.translations?.cart?.summary;
+        shippingElement.textContent = shipping === 0 ? 
+            (translations?.free_shipping || 'FREE') : 
+            `$${shipping.toFixed(2)}`;
+            
         totalElement.textContent = `$${total.toFixed(2)}`;
         checkoutBtn.disabled = cartItems.length === 0 || authUser.role === 'admin';
     }
@@ -166,7 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkoutBtn.addEventListener('click', async () => {
         if (authUser.role === 'admin') {
-            alert('Checkout functionality is not available for admin role');
+            const translations = window.i18n?.translations?.cart?.messages;
+            alert(translations?.admin_checkout_disabled || 'Checkout functionality is not available for admin role');
             return;
         }
 
@@ -190,14 +197,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 )
             );
 
-            alert('Order placed successfully! Your cart has been cleared.');
+            const translations = window.i18n?.translations?.cart?.messages;
+            alert(translations?.order_success || 'Order placed successfully! Your cart has been cleared.');
+            
             cartItems = [];
             displayCartItems();
             updateSummary();
 
         } catch (error) {
             console.error('Checkout error:', error);
-            alert('There was an error processing your order. Please try again.');
+            const translations = window.i18n?.translations?.cart?.messages;
+            alert(translations?.order_error || 'There was an error processing your order. Please try again.');
+        }
+    });
+
+    function applyTranslation(element, key) {
+        if (!window.i18n) return;
+        const translation = window.i18n.getTranslation(window.i18n.translations.cart, key);
+        if (translation) {
+            element.textContent = translation;
+        }
+    }
+
+    function applyTranslations(container) {
+        if (!window.i18n) return;
+        
+        container.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const translation = window.i18n.getTranslation(window.i18n.translations.cart, key);
+            if (translation) {
+                el.textContent = translation;
+            }
+        });
+    }
+
+    window.addEventListener('languageChanged', () => {
+        if (window.i18n) {
+            window.i18n.applyTranslations('cart');
+            updateSummary();
+            
+            if (authUser.role === 'admin') {
+                applyTranslation(checkoutBtn, 'messages.admin_checkout_disabled');
+            }
+            
+            if (cartItems.length === 0) {
+                applyTranslations(cartItemsContainer);
+            }
         }
     });
 

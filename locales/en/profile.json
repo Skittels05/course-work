@@ -1,0 +1,36 @@
+{
+  "page_title": "User Profile",
+  "header": {
+    "title": "User Profile"
+  },
+  "form": {
+    "name_label": "Name:",
+    "email_label": "Email:",
+    "phone_label": "Phone:",
+    "registered_label": "Registered:",
+    "nickname_label": "Nickname",
+    "nickname_placeholder": "Enter nickname",
+    "generate_nickname_title": "Generate nickname",
+    "current_password_label": "Current Password",
+    "current_password_placeholder": "Enter current password",
+    "new_password_label": "New Password",
+    "new_password_placeholder": "Enter new password",
+    "generate_password_title": "Generate password",
+    "confirm_password_label": "Confirm New Password",
+    "confirm_password_placeholder": "Confirm new password",
+    "submit": "Save Changes",
+    "errors": {
+      "nickname_too_short": "Nickname must be at least 3 characters",
+      "password_too_short": "Password must be at least 8 characters",
+      "passwords_mismatch": "Passwords do not match",
+      "current_password_required": "Please enter your current password",
+      "update_failed": "Update failed. Please check your current password."
+    },
+    "success": {
+      "profile_updated": "Profile updated successfully!"
+    }
+  },
+  "logout": "Logout",
+  "not_auth_message": "Please sign in to view your profile",
+  "login_link": "Go to Login Page"
+}
