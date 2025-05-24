@@ -1,200 +1,38 @@
 {
-  "shop": {
-    "page_title": "Shop",
-    "header": {
-      "search_placeholder": "Search products..."
-    },
-    "filters": {
-      "title": "Filters",
-      "categories_title": "Categories",
-      "price_range_title": "Price Range ($)",
-      "min_price_placeholder": "Min",
-      "max_price_placeholder": "Max",
-      "reset_button": "Reset Filters",
-      "apply_button": "Apply Filters"
-    },
-    "sort": {
-      "button": "Sort",
-      "options": [
-        { "name": "Name (A-Z)", "value": "name", "order": "asc" },
-        { "name": "Name (Z-A)", "value": "name", "order": "desc" },
-        { "name": "Price (Low to High)", "value": "price", "order": "asc" },
-        { "name": "Price (High to Low)", "value": "price", "order": "desc" },
-        { "name": "Rating (Best first)", "value": "rating", "order": "desc" },
-        { "name": "Rating (Worst first)", "value": "rating", "order": "asc" }
-      ]
-    },
-    "pagination": {
-      "first_page_title": "First page",
-      "prev_page_title": "Previous",
-      "next_page_title": "Next",
-      "last_page_title": "Last page"
-    },
-    "products": {
-      "add_to_cart": "Add to Cart",
-      "no_results": "No products found",
-      "errors": {
-        "load_products": "Error loading products. Please try again later.",
-        "add_to_cart": "Error adding to cart. Please try again.",
-        "cart_success": "Added to cart!"
-      },
-      "items": [
-        {
-          "id": "1",
-          "name": "Premium Bypass Pruners",
-          "description": "Professional-grade pruning shears with ergonomic handles."
-        },
-        {
-          "id": "2",
-          "name": "Heavy-Duty Garden Gloves",
-          "description": "Leather gloves with reinforced fingertips for protection."
-        },
-        {
-          "id": "3",
-          "name": "Telescopic Hedge Shears",
-          "description": "Extendable handles for trimming high hedges comfortably."
-        },
-        {
-          "id": "4",
-          "name": "Stainless Steel Garden Trowel",
-          "description": "Durable trowel for planting and transplanting."
-        },
-        {
-          "id": "5",
-          "name": "Organic Vegetable Fertilizer",
-          "description": "Slow-release fertilizer for vegetable gardens."
-        },
-        {
-          "id": "6",
-          "name": "Water-Resistant Garden Kneeler",
-          "description": "Foldable kneeler with tool pockets and handles."
-        },
-        {
-          "id": "7",
-          "name": "Automatic Drip Irrigation Kit",
-          "description": "Programmable system for efficient watering."
-        },
-        {
-          "id": "8",
-          "name": "Decorative Ceramic Planter (Large)",
-          "description": "20-inch diameter glazed ceramic planter."
-        },
-        {
-          "id": "9",
-          "name": "Solar-Powered Garden Lights (Set of 6)",
-          "description": "Weather-resistant LED pathway lights."
-        },
-        {
-          "id": "10",
-          "name": "Raised Garden Bed Kit (4'x8')",
-          "description": "Cedar wood construction with protective liner."
-        },
-        {
-          "id": "11",
-          "name": "Compost Aerator Tool",
-          "description": "Stainless steel compost turning tool."
-        },
-        {
-          "id": "12",
-          "name": "Garden Tool Organizer Rack",
-          "description": "Wall-mounted rack for tool organization."
-        },
-        {
-          "id": "13",
-          "name": "Organic Pest Control Spray",
-          "description": "Natural formula safe for edible plants."
-        },
-        {
-          "id": "14",
-          "name": "Hanging Herb Garden Kit",
-          "description": "Includes 5 herb plants and hanging planter."
-        },
-        {
-          "id": "15",
-          "name": "Garden Cart with Pneumatic Tires",
-          "description": "Heavy-duty cart with 300 lb capacity."
-        },
-        {
-          "id": "16",
-          "name": "Self-Watering Planter Box",
-          "description": "24-inch reservoir planter for patio gardening."
-        },
-        {
-          "id": "17",
-          "name": "Garden Pruning Saw",
-          "description": "Folding saw for thick branches up to 4 inches."
-        },
-        {
-          "id": "18",
-          "name": "Decorative Garden Stepping Stones",
-          "description": "Set of 6 concrete stones with leaf designs."
-        },
-        {
-          "id": "19",
-          "name": "Tomato Plant Support Cage",
-          "description": "54-inch tall galvanized steel cage."
-        },
-        {
-          "id": "20",
-          "name": "Waterproof Garden Storage Box",
-          "description": "50-gallon capacity with locking lid."
-        },
-        {
-          "id": "21",
-          "name": "Berry Picking Basket",
-          "description": "Ventilated plastic basket with handle."
-        },
-        {
-          "id": "22",
-          "name": "Garden Trellis Panel (4'x6')",
-          "description": "Powder-coated steel climbing panel."
-        },
-        {
-          "id": "23",
-          "name": "Soil pH Testing Kit",
-          "description": "Complete kit with 50 tests."
-        },
-        {
-          "id": "24",
-          "name": "Garden Sprinkler on Tripod",
-          "description": "Adjustable height up to 5 feet."
-        },
-        {
-          "id": "25",
-          "name": "Herb Drying Rack",
-          "description": "Three-tier wooden drying rack."
-        },
-        {
-          "id": "26",
-          "name": "Garden Tool Sharpener",
-          "description": "Dual-grit sharpening stone for blades."
-        },
-        {
-          "id": "27",
-          "name": "Decorative Garden Fountain",
-          "description": "Solar-powered cascading water feature."
-        },
-        {
-          "id": "28",
-          "name": "Garden Seed Starter Kit",
-          "description": "Includes tray, dome, and peat pellets."
-        },
-        {
-          "id": "29",
-          "name": "Garden Hose Repair Kit",
-          "description": "Fixes leaks in standard garden hoses."
-        },
-        {
-          "id": "30",
-          "name": "Weatherproof Garden Thermometer",
-          "description": "Analog thermometer with humidity gauge."
-        },
-        {
-          "id": "31",
-          "name": "George",
-          "description": "Fent reactor destroyed"
-        }
-      ]
+  "header": {
+    "search_placeholder": "Search products..."
+  },
+  "filters": {
+    "title": "Filters",
+    "categories_title": "Categories",
+    "price_range_title": "Price Range ($)",
+    "min": "Min",
+    "max": "Max",
+    "reset_button": "Reset filters",
+    "apply_button": "Apply"
+  },
+  "sort": {
+    "button": "Sort",
+    "name_asc": "Name (A-Z)",
+    "name_desc": "Name (Z-A)",
+    "price_asc": "Price (Low to High)",
+    "price_desc": "Price (High to Low)",
+    "rating_asc": "Rating (Low first)",
+    "rating_desc": "Rating (High first)"
+  },
+  "products": {
+    "add_to_cart": "Add to Cart",
+    "no_results": "No products found",
+    "errors": {
+      "load_products": "Error loading products",
+      "cart_success": "Product added to cart!",
+      "add_to_cart": "Error adding to cart"
     }
+  },
+  "pagination": {
+    "first_page": "First",
+    "prev_page": "Previous",
+    "next_page": "Next",
+    "last_page": "Last"
   }
 }

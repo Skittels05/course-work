@@ -14,33 +14,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const lastPageBtn = document.getElementById("last-page");
   const pageNumbersContainer = document.getElementById("page-numbers");
   const filterToggle = document.getElementById("filter-toggle");
- 655
   const filtersSidebar = document.getElementById("filters-sidebar");
   const closeFilters = document.getElementById("close-filters");
   const overlay = document.getElementById("overlay");
   const applyFiltersBtn = document.getElementById("apply-filters");
 
   let allProducts = [];
+  let filteredProducts = [];
 
+  // Функция для получения переведенного поля продукта
+  function getTranslatedProductField(product, field) {
+    const lang = window.i18n?.currentLang || 'en';
+    const translatedField = `ru_${field}`;
+    return (lang === 'ru' && product[translatedField]) 
+      ? product[translatedField] 
+      : product[field];
+  }
+
+  // Функция для получения перевода из i18n
   function getTranslation(key, fallback) {
-    return window.i18n && window.i18n.getTranslation(window.i18n.translations.shop, key) || fallback;
+    const value = window.i18n?.getTranslation(window.i18n.translations.shop, key) || fallback;
+    console.log(`Translation for ${key}: ${value}`);
+    return value;
   }
 
-  function getProductTranslation(productId, field, fallback) {
-    const productTranslations = window.i18n.translations.shop?.products?.items || [];
-    const product = productTranslations.find(item => item.id === productId);
-    return product ? product[field] : fallback;
-  }
-
+  // Загрузка всех продуктов
   async function loadAllProducts() {
-    console.log("Loading products from:", apiUrl);
     try {
       const response = await fetch(apiUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch products: ${response.status}`);
+      }
       allProducts = await response.json();
+      console.log("Loaded products:", allProducts.length);
       generateCategoryFilters();
+
       const prices = allProducts.map((product) => product.price);
-      const minPrice = Math.min(...prices);
-      const maxPrice = Math.max(...prices);
+      const minPrice = Math.min(...prices) || 0;
+      const maxPrice = Math.max(...prices) || 150;
 
       document.getElementById("min-price").value = minPrice;
       document.getElementById("max-price").value = maxPrice;
@@ -55,10 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchProducts();
     } catch (error) {
       console.error("Error loading products:", error);
-      productsContainer.innerHTML = `<p>${getTranslation("shop.products.errors.load_products", "Error loading products. Please try again later.")}</p>`;
+      productsContainer.innerHTML = `<p>${getTranslation("products.errors.load_products", "Error loading products. Please try again later.")}</p>`;
     }
   }
 
+  // Обновление диапазона цен
   function updateRange() {
     const minSlider = document.getElementById("price-slider-min");
     const maxSlider = document.getElementById("price-slider-max");
@@ -71,17 +83,18 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
+  // Фильтрация и сортировка продуктов
   function fetchProducts() {
-    let filteredProducts = [...allProducts];
+    console.log("Fetching products, currentPage:", currentPage, "totalPages:", totalPages, "filteredProducts:", filteredProducts.length);
+    filteredProducts = [...allProducts];
     const searchTerm = searchInput.value.trim().toLowerCase();
+
     if (searchTerm) {
-      filteredProducts = filteredProducts.filter(
-        (product) => {
-          const name = getProductTranslation(product.id, "name", product.name).toLowerCase();
-          const description = getProductTranslation(product.id, "description", product.description).toLowerCase();
-          return name.includes(searchTerm) || description.includes(searchTerm);
-        }
-      );
+      filteredProducts = filteredProducts.filter((product) => {
+        const name = getTranslatedProductField(product, 'name').toLowerCase();
+        const description = getTranslatedProductField(product, 'description').toLowerCase();
+        return name.includes(searchTerm) || description.includes(searchTerm);
+      });
     }
 
     const checkedCategories = Array.from(
@@ -89,9 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
     ).map((el) => el.value);
 
     if (checkedCategories.length > 0) {
-      filteredProducts = filteredProducts.filter((product) =>
-        checkedCategories.includes(product.category)
-      );
+      filteredProducts = filteredProducts.filter((product) => {
+        const category = getTranslatedProductField(product, 'category');
+        return checkedCategories.includes(category) || checkedCategories.includes(product.category);
+      });
     }
 
     const minPrice = parseFloat(document.getElementById("min-price").value);
@@ -107,8 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
             ? a[currentSortField] - b[currentSortField]
             : b[currentSortField] - a[currentSortField];
         }
-        const aValue = getProductTranslation(a.id, currentSortField, a[currentSortField]);
-        const bValue = getProductTranslation(b.id, currentSortField, b[currentSortField]);
+
+        const aValue = getTranslatedProductField(a, currentSortField).toLowerCase();
+        const bValue = getTranslatedProductField(b, currentSortField).toLowerCase();
+
         if (aValue < bValue) {
           return currentSortOrder === "asc" ? -1 : 1;
         }
@@ -120,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     totalPages = Math.max(1, Math.ceil(filteredProducts.length / itemsPerPage));
+    console.log("After filtering, totalPages:", totalPages, "filteredProducts:", filteredProducts.length);
     updatePagination(filteredProducts.length);
 
     if (currentPage > totalPages) {
@@ -134,6 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  // Проверка, есть ли продукт в избранном
   async function checkFavorite(productId) {
     const authUser = JSON.parse(sessionStorage.getItem("authUser"));
     if (!authUser) return false;
@@ -150,12 +168,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Отображение продуктов
   async function displayProducts(products) {
     const productsHTML = await Promise.all(
       products.map(async (product) => {
         const isFavorite = await checkFavorite(product.id);
-        const translatedName = getProductTranslation(product.id, "name", product.name);
-        const translatedDescription = getProductTranslation(product.id, "description", product.description);
+        const name = getTranslatedProductField(product, 'name');
+        const description = getTranslatedProductField(product, 'description');
+        const category = getTranslatedProductField(product, 'category');
 
         return `
           <div class="product-card" data-id="${product.id}">
@@ -163,14 +183,14 @@ document.addEventListener("DOMContentLoaded", () => {
               <i class="${isFavorite ? "fas" : "far"} fa-heart"></i>
             </button>
             <a href="../product/index.html?id=${product.id}" class="product-image-link">
-              <img src="../assets/shop/${product.id}.jpg" alt="${translatedName}" 
+              <img src="../assets/shop/${product.id}.jpg" alt="${name}" 
                    class="product-image" onerror="this.src='../assets/shop/placeholder.jpg'">
             </a>
             <div class="product-info">
-              <h3 class="product-title">${translatedName}</h3>
-              <p>${translatedDescription}</p>
+              <h3 class="product-title">${name}</h3>
+              <p>${description}</p>
               <div class="product-meta">
-                <span class="product-category">${product.category}</span>
+                <span class="product-category">${category}</span>
                 <div class="product-price">$${product.price.toFixed(2)}</div>
                 <div class="product-rating">${
                   product.rating || product.rating === 0
@@ -178,7 +198,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     : ""
                 }</div>
               </div>
-              <button class="add-to-cart" data-i18n="shop.products.add_to_cart">Add to Cart</button>
+              <button class="add-to-cart">
+                <span data-i18n="products.add_to_cart">Add to Cart</span>
+              </button>
             </div>
           </div>
         `;
@@ -186,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     productsContainer.innerHTML =
-      productsHTML.join("") || `<p class="no-results">${getTranslation("shop.products.no_results", "No products found")}</p>`;
+      productsHTML.join("") || `<p class="no-results"><span data-i18n="products.no_results">No products found</span></p>`;
 
     document.querySelectorAll(".add-to-cart").forEach((btn) => {
       btn.addEventListener("click", addToCart);
@@ -195,8 +217,15 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".favorite-btn").forEach((btn) => {
       btn.addEventListener("click", toggleFavorite);
     });
+
+    // Применяем переводы для динамически созданных элементов
+    if (window.i18n) {
+      window.i18n.applyTranslations('shop');
+      console.log("Applied translations to dynamically created elements");
+    }
   }
 
+  // Добавление/удаление из избранного
   async function toggleFavorite(event) {
     event.stopPropagation();
     const authUser = JSON.parse(sessionStorage.getItem("authUser"));
@@ -241,40 +270,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Настройка сортировки
   function setupSorting() {
+    const sortContainer = document.querySelector(".sort-button");
+    sortContainer.innerHTML = '';
+
     const sortDropdown = document.createElement("div");
     sortDropdown.className = "sort-dropdown";
 
-    const sortButton = document.getElementById("sort-toggle");
-    sortButton.innerHTML = `<i class="fas fa-sort"></i> ${getTranslation("shop.sort.button", "Sort")}`;
+    const sortButton = document.createElement("button");
+    sortButton.id = "sort-toggle";
+    sortButton.innerHTML = `<i class="fas fa-sort"></i> <span data-i18n="sort.button">${getTranslation("sort.button", "Sort")}</span>`;
 
     const sortOptions = document.createElement("div");
     sortOptions.className = "sort-options";
 
-    const sortCriteria = getTranslation("shop.sort.options", [
-      { name: "Name (A-Z)", value: "name", order: "asc" },
-      { name: "Name (Z-A)", value: "name", order: "desc" },
-      { name: "Price (Low to High)", value: "price", order: "asc" },
-      { name: "Price (High to Low)", value: "price", order: "desc" },
-      { name: "Rating (Best first)", value: "rating", order: "desc" },
-      { name: "Rating (Worst first)", value: "rating", order: "asc" },
-    ]);
+    const sortCriteria = [
+      { name: getTranslation("sort.options.0.name", "Name (A-Z)"), value: "name", order: "asc" },
+      { name: getTranslation("sort.options.1.name", "Name (Z-A)"), value: "name", order: "desc" },
+      { name: getTranslation("sort.options.2.name", "Price (Low to High)"), value: "price", order: "asc" },
+      { name: getTranslation("sort.options.3.name", "Price (High to Low)"), value: "price", order: "desc" },
+      { name: getTranslation("sort.options.4.name", "Rating (Best first)"), value: "rating", order: "desc" },
+      { name: getTranslation("sort.options.5.name", "Rating (Worst first)"), value: "rating", order: "asc" }
+    ];
 
     sortCriteria.forEach((criterion) => {
       const option = document.createElement("div");
       option.className = "sort-option";
-      option.textContent = criterion.name;
+      option.innerHTML = `<span data-i18n="sort.options.${sortCriteria.indexOf(criterion)}.name">${criterion.name}</span>`;
       option.addEventListener("click", () => {
         applySort(criterion.value, criterion.order);
-        sortButton.innerHTML = `<i class="fas fa-sort"></i> ${criterion.name}`;
-        sortOptions.classList.remove("active");
+        sortButton.innerHTML = `<i class="fas fa-sort"></i> <span data-i18n="sort.options.${sortCriteria.indexOf(criterion)}.name">${criterion.name}</span>`;
+        if (window.i18n) {
+          window.i18n.applyTranslations('shop');
+          console.log("Applied translations after sort option click");
+        }
       });
       sortOptions.appendChild(option);
     });
 
     sortDropdown.appendChild(sortButton);
     sortDropdown.appendChild(sortOptions);
-    document.querySelector(".right_container").prepend(sortDropdown);
+    sortContainer.appendChild(sortDropdown);
 
     sortButton.addEventListener("click", (e) => {
       e.stopPropagation();
@@ -284,14 +321,22 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", () => {
       sortOptions.classList.remove("active");
     });
+
+    // Применяем переводы после создания сортировки
+    if (window.i18n) {
+      window.i18n.applyTranslations('shop');
+      console.log("Applied translations after setupSorting");
+    }
   }
 
+  // Применение сортировки
   function applySort(field, order) {
     currentSortField = field;
     currentSortOrder = order;
     resetToFirstPage();
   }
 
+  // Настройка пагинации
   function setupPagination() {
     firstPageBtn.addEventListener("click", () => {
       if (currentPage > 1) {
@@ -319,8 +364,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Обновление пагинации
   function updatePagination(totalItems) {
-    totalPages = Math.ceil(totalItems / itemsPerPage);
+    totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
+    console.log("Updating pagination, totalItems:", totalItems, "totalPages:", totalPages, "currentPage:", currentPage);
     pageNumbersContainer.innerHTML = "";
 
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
@@ -333,37 +380,55 @@ document.addEventListener("DOMContentLoaded", () => {
     firstPageBtn.disabled = currentPage === 1;
     prevPageBtn.disabled = currentPage === 1;
 
-    for (let i = startPage; i <= endPage; i++) {
+    if (totalPages <= 1) {
       const pageBtn = document.createElement("button");
-      pageBtn.textContent = i;
-      pageBtn.className = i === currentPage ? "active" : "";
-      pageBtn.addEventListener("click", () => {
-        currentPage = i;
-        fetchProducts();
-      });
+      pageBtn.textContent = 1;
+      pageBtn.className = "active";
       pageNumbersContainer.appendChild(pageBtn);
+    } else {
+      for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement("button");
+        pageBtn.textContent = i;
+        pageBtn.className = i === currentPage ? "active" : "";
+        pageBtn.addEventListener("click", () => {
+          currentPage = i;
+          fetchProducts();
+        });
+        pageNumbersContainer.appendChild(pageBtn);
+      }
     }
 
     nextPageBtn.disabled = currentPage === totalPages;
     lastPageBtn.disabled = currentPage === totalPages;
+
+    // Убедимся, что контейнер пагинации виден
+    pageNumbersContainer.style.display = 'flex';
+    pageNumbersContainer.parentElement.style.display = 'flex';
   }
 
+  // Генерация фильтров по категориям
   function generateCategoryFilters() {
-    const categoryFiltersContainer = document.querySelector(".category-filters");
-    const allCategories = [...new Set(allProducts.map((p) => p.category))];
+  const categoryFiltersContainer = document.querySelector(".category-filters");
+  const allCategories = [...new Set(allProducts.map(p => p.category))];
+  const lang = window.i18n?.currentLang || 'en';
 
-    categoryFiltersContainer.innerHTML = "";
+  categoryFiltersContainer.innerHTML = "";
 
-    allCategories.forEach((category) => {
-      const label = document.createElement("label");
-      label.innerHTML = `
-        <input type="checkbox" name="category" value="${category}" checked>
-        ${category}
-      `;
-      categoryFiltersContainer.appendChild(label);
-    });
-  }
+  allCategories.forEach(category => {
+    const label = document.createElement("label");
+    const categoryName = lang === 'ru' 
+      ? allProducts.find(p => p.category === category)?.ru_category || category
+      : category;
+    
+    label.innerHTML = `
+      <input type="checkbox" name="category" value="${category}" checked>
+      ${categoryName}
+    `;
+    categoryFiltersContainer.appendChild(label);
+  });
+}
 
+  // Настройка фильтров
   function setupFilters() {
     filterToggle.addEventListener("click", () => {
       filtersSidebar.classList.add("active");
@@ -388,6 +453,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const maxPriceInput = document.getElementById("max-price");
     const minSlider = document.getElementById("price-slider-min");
     const maxSlider = document.getElementById("price-slider-max");
+
     minSlider.addEventListener("input", () => {
       let value = parseFloat(minSlider.value);
       if (value > parseFloat(maxSlider.value)) {
@@ -410,10 +476,30 @@ document.addEventListener("DOMContentLoaded", () => {
       resetToFirstPage();
     });
 
-    minPriceInput.addEventListener("change", resetToFirstPage);
-    maxPriceInput.addEventListener("change", resetToFirstPage);
+    minPriceInput.addEventListener("change", () => {
+      let value = parseFloat(minPriceInput.value);
+      if (value > parseFloat(maxPriceInput.value)) {
+        value = parseFloat(maxPriceInput.value);
+        minPriceInput.value = value;
+      }
+      minSlider.value = value;
+      updateRange();
+      resetToFirstPage();
+    });
+
+    maxPriceInput.addEventListener("change", () => {
+      let value = parseFloat(maxPriceInput.value);
+      if (value < parseFloat(minPriceInput.value)) {
+        value = parseFloat(minPriceInput.value);
+        maxPriceInput.value = value;
+      }
+      maxSlider.value = value;
+      updateRange();
+      resetToFirstPage();
+    });
   }
 
+  // Настройка поиска
   function setupSearch() {
     let searchTimeout;
     searchInput.addEventListener("input", () => {
@@ -422,14 +508,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Сброс фильтров
   document.getElementById("reset-filters").addEventListener("click", () => {
     document.querySelectorAll('input[name="category"]').forEach((checkbox) => {
       checkbox.checked = true;
     });
 
     const prices = allProducts.map((p) => p.price);
-    const minPrice = Math.min(...prices);
-    const maxPrice = Math.max(...prices);
+    const minPrice = Math.min(...prices) || 0;
+    const maxPrice = Math.max(...prices) || 150;
 
     document.getElementById("min-price").value = minPrice.toFixed(2);
     document.getElementById("max-price").value = maxPrice.toFixed(2);
@@ -443,12 +530,14 @@ document.addEventListener("DOMContentLoaded", () => {
     resetToFirstPage();
   });
 
+  // Сброс на первую страницу
   function resetToFirstPage() {
     currentPage = 1;
     fetchProducts();
   }
 
-  function addToCart(event) {
+  // Добавление в корзину
+  async function addToCart(event) {
     const authUser = JSON.parse(sessionStorage.getItem("authUser"));
     if (!authUser) {
       sessionStorage.setItem("returnUrl", window.location.href);
@@ -457,26 +546,54 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const productId = event.target.closest(".product-card").dataset.id;
-    fetch("http://localhost:3000/cart", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        productId: +productId,
-        quantity: 1,
-        userId: authUser.id,
-      }),
-    })
-      .then((response) => response.json())
-      .then(() => alert(getTranslation("shop.products.errors.cart_success", "Added to cart!")))
-      .catch((error) => {
-        console.error("Error:", error);
-        alert(getTranslation("shop.products.errors.add_to_cart", "Error adding to cart. Please try again."));
+    try {
+      const response = await fetch("http://localhost:3000/cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          productId: +productId,
+          quantity: 1,
+          userId: authUser.id,
+        }),
       });
+      if (!response.ok) {
+        throw new Error(`Failed to add to cart: ${response.status}`);
+      }
+      alert(getTranslation("products.errors.cart_success", "Added to cart!"));
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert(getTranslation("products.errors.add_to_cart", "Error adding to cart. Please try again."));
+    }
   }
 
-  setupSearch();
-  setupSorting();
-  setupFilters();
-  setupPagination();
-  loadAllProducts();
+  // Обработчик изменения языка
+  function handleLanguageChange() {
+    console.log("Language changed, applying translations...");
+    if (window.i18n) {
+      window.i18n.applyTranslations('shop');
+    }
+    fetchProducts();
+    setupSorting();
+    generateCategoryFilters();
+  }
+
+  // Инициализация
+  function init() {
+    setupSearch();
+    setupSorting();
+    setupFilters();
+    setupPagination();
+    loadAllProducts();
+
+    // Добавляем обработчик изменения языка
+    window.addEventListener('languageChanged', handleLanguageChange);
+
+    // Применяем переводы при первой загрузке
+    if (window.i18n) {
+      window.i18n.applyTranslations('shop');
+    }
+  }
+
+  // Запуск приложения
+  init();
 });
