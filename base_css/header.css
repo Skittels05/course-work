@@ -44,6 +44,7 @@ html {
 body {
     font-family: 'Roboto', sans-serif;
     color: var(--text-dark);
+
 }
 
 h1,
@@ -65,6 +66,11 @@ header {
     align-items: center;
 }
 
+.header-flex-wrap {
+  flex-wrap: wrap !important;
+  row-gap: 10px; 
+  text-align: center;
+}
 .burger-toggle {
     display: none;
 }
@@ -124,7 +130,6 @@ ul a {
 
 .first_group {
     display: flex;
-    gap: 3rem;
 }
 
 .admin-link {
@@ -137,54 +142,56 @@ ul a {
     transition: color 0.3s;
 }
 
-/* Обновленные стили с анимацией */
-/* Обновленные стили для переключателя темы */
 .theme-switch {
-    display: inline-flex;
-    align-items: center;
+    position: relative;
+    display: inline-block;
     width: 60px;
     height: 34px;
     margin-left: 20px;
-    position: relative; /* Добавляем для позиционирования внутренних элементов */
 }
 
 .theme-switch input {
     opacity: 0;
     width: 0;
     height: 0;
-    position: absolute; /* Скрытый input остается absolute */
 }
 
 .slider {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+    position: absolute;
     cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: var(--primary-light);
     transition: .4s;
-    border-radius: 34px;
-    padding: 4px;
-    box-sizing: border-box;
 }
 
 .slider:before {
+    position: absolute;
     content: "";
     height: 26px;
     width: 26px;
+    left: 4px;
+    bottom: 4px;
     background-color: var(--primary-color);
     transition: .4s;
-    border-radius: 50%;
-    transform: translateX(0);
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: var(--primary-dark);
-    justify-content: flex-end; 
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
+    transform: translateX(26px);
     background-color: var(--text-light);
+}
+.round {
+    border-radius: 34px;
+}
+
+.round:before {
+    border-radius: 50%;
 }
 
 .accessibility-modal {
@@ -527,7 +534,7 @@ body.hide-images img:not([alt=""]):after {
     header {
         flex-wrap: wrap;
     }
-
+    
     .header_icons {
         gap: 2rem;
     }

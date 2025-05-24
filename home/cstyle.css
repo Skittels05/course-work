@@ -19,11 +19,13 @@
   box-sizing: border-box;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  hyphens: auto;
+  max-width: 100%;
+  
 }
 
 html {
   font-size: 10px;
+  overflow-x: hidden;
 }
 
 body {
@@ -31,14 +33,6 @@ body {
   color: var(--text-dark);
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--bg-color);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-
-}
-h1, h2, h3, h4, h5, h6, p, a, span, li, div {
-  word-break: break-word;
-  overflow-wrap: anywhere;
-  max-width: 100%;
 }
 
 h1,
@@ -58,19 +52,7 @@ h4 {
   margin-top: -1rem;
   overflow-wrap:break-word;
 }
-.garden h1,
-.experience h2,
-.experience h4,
-.experience p,
-.service h4,
-.member h4,
-.member p,
-.news_post h3,
-.news_text {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  max-width: 100%;
-}
+
 .content {
   padding-top: 10rem;
   padding-bottom: 10rem;

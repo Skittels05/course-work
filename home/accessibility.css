@@ -1,3 +1,9 @@
+body.a11y-font-changed {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+}
 #accessibility-modal {
   display: none;
   position: fixed;
@@ -98,7 +104,8 @@
   --info-color: #3498DB;
   --disabled-bg: #F5F5F5;
   --disabled-text: #999999;
-    word-wrap: break-word;
+  word-wrap: break-word;
+  
 }
 
 body.scheme-black-white {
