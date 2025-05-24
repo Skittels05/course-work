@@ -1,0 +1,13 @@
+{
+  "page_title": "Product Details",
+  "reviews": {
+    "title": "Customer Reviews",
+    "write_review": "Write a Review",
+    "rating": "Rating",
+    "your_review": "Your Review",
+    "placeholder": "Write your review (minimum 30 characters)",
+    "submit": "Submit Review",
+    "not_purchased": "You need to purchase this product before leaving a review.",
+    "login_to_review": "Please <a href=\"../login/index.html\">sign in</a> to leave a review."
+  }
+}

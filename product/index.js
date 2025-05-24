@@ -155,17 +155,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function updateRatingInProduct(newRating) {
         try {
-            // Получаем текущие данные продукта
+
             const productResponse = await fetch(`${apiUrl}/products/${productId}`);
             const product = await productResponse.json();
-            
-            // Обновляем только рейтинг
+
             const updatedProduct = {
                 ...product,
-                rating: parseFloat(newRating.toFixed(1)) // Округляем до 1 знака после запятой
+                rating: parseFloat(newRating.toFixed(1)) 
             };
             
-            // Отправляем обновленные данные
+
             await fetch(`${apiUrl}/products/${productId}`, {
                 method: 'PUT',
                 headers: {
@@ -173,8 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 body: JSON.stringify(updatedProduct)
             });
-            
-            // Обновляем отображение рейтинга на странице
+
             const productRatingElement = document.querySelector('.product-rating span');
             if (productRatingElement) {
                 productRatingElement.textContent = updatedProduct.rating.toFixed(1);

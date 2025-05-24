@@ -1,17 +1,48 @@
 :root {
+    --main-padding: 15rem;
     --primary-color: #177165;
-    --secondary-color: #0A312C;
-    --error-color: #d32f2f;
-    --success-color: #2e7d32;
-    --border-color: #ddd;
-    --text-color: #333;
-    --light-text: #777;
-    --bg-color: #f9f9f9;
-    --star-color: #FFD700;
+    --primary-dark: #23786D;
+    --primary-light: #A4D6CF;
+    --primary-extra-light: #D2ECE9;
+    --primary-bg-light: #E1F4F2;
+    --text-dark: #333;
+    --text: #777;
+    --text-light: #FFFFFF;
+    --accent-color: #FFD700;
+    --primary-text: var(--primary-color);
+    --bg-color: #FFFFFF;
+    --copyright:#0A312C;
+    --shop-bg:var(--text-light);
+    --card:var(--text-light);
+    --g2w:var(--primary-text);
+    --heart:var(--text);
 }
 
+body.dark-theme {
+    --primary-color: #0A312C;
+    --primary-dark: #264f4a;
+    --primary-light: #23786D;
+    --primary-extra-light: #3A8C7D;
+    --primary-bg-light: #0A312C;
+    --text-dark: #E1F4F2;
+    --text: #A4D6CF;
+    --text-light: #FFFFFF;
+    --accent-color: #FFD700;
+    --primary-text: var(--primary-light);
+    --bg-color: #121212;
+    --copyright:var(--bg-color);
+    --shop-bg:var(--primary-dark);
+    --card:var(--primary-bg-light);
+    --g2w:white;
+    --heart:white;
+}
+body
+{
+    background-color:var(--bg-color);
+}
 main {
     padding: 0 15rem;
+    
 }
 
 .product-container {
@@ -40,7 +71,7 @@ main {
 
 .product-title {
     font-size: 2.4rem;
-    color: var(--primary-color);
+    color: var(--primary-text);
     margin-bottom: 1rem;
 }
 
@@ -67,7 +98,7 @@ main {
 
 .add-to-cart {
     padding: 1rem 2rem;
-    background: var(--primary-color);
+    background: var(--primary-text);
     color: white;
     border: none;
     border-radius: 1.5rem;
@@ -87,7 +118,7 @@ main {
 
 .reviews-section h2 {
     font-size: 2rem;
-    color: var(--primary-color);
+    color: var(--primary-text);
     margin-bottom: 2rem;
 }
 
@@ -168,7 +199,7 @@ textarea {
 
 .submit-btn {
     padding: 1rem 2rem;
-    background: var(--primary-color);
+    background: var(--primary-text);
     color: white;
     border: none;
     border-radius: 1.5rem;
@@ -191,7 +222,7 @@ textarea {
 }
 
 .message-box a {
-    color: var(--primary-color);
+    color: var(--primary-text);
     text-decoration: none;
     font-weight: bold;
 }
@@ -201,7 +232,7 @@ textarea {
 }
 .buy-now-btn {
     padding: 1rem 2rem;
-    background: var(--primary-color);
+    background: var(--primary-text);
     color: white;
     border: none;
     border-radius: 1.5rem;
@@ -224,7 +255,6 @@ textarea {
     border-radius: 1rem;
     margin: 2rem 0;
 }
-/* Добавьте это в style.css */
 .review-controls {
     margin-top: 1rem;
     display: flex;
@@ -242,7 +272,7 @@ textarea {
 }
 
 .edit-review-btn {
-    background-color: var(--primary-color);
+    background-color: var(--primary-text);
     color: white;
 }
 
