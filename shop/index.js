@@ -22,12 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let allProducts = [];
 
-  // Helper function to get translations with fallback
   function getTranslation(key, fallback) {
     return window.i18n && window.i18n.getTranslation(window.i18n.translations.shop, key) || fallback;
   }
 
-  // Helper function to get product translation
   function getProductTranslation(productId, field, fallback) {
     const productTranslations = window.i18n.translations.shop?.products?.items || [];
     const product = productTranslations.find(item => item.id === productId);

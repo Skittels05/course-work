@@ -19,6 +19,7 @@ class I18nManager {
     if (path.includes('product')) return 'product';
     if (path.includes('cart')) return 'cart';
     if (path.includes('favourite')) return 'favourite'; 
+    if (path.includes('footer')) return 'footer'; 
     return 'home';
   }
 

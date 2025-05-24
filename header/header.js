@@ -1,3 +1,4 @@
+// header.js - только загрузка хедера
 document.addEventListener('DOMContentLoaded', function() {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
@@ -7,9 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!document.getElementById('main-header')) {
         fetch('../header/header.html')
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to load header: ' + response.status);
-                }
+                if (!response.ok) throw new Error('Header load error: ' + response.status);
                 return response.text();
             })
             .then(html => {
@@ -17,32 +16,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 headerDiv.id = 'main-header';
                 headerDiv.innerHTML = html;
                 document.body.insertBefore(headerDiv, document.body.firstChild);
-                initThemeSwitcher();
                 
-                console.log('Header loaded successfully');
+                initThemeSwitcher();
+                dispatchEvent(new Event('headerLoaded')); // Генерируем событие
+                
+                console.log('Header loaded');
                 if (window.authAdmin?.updateAdminLink) {
                     window.authAdmin.updateAdminLink();
                 }
             })
             .catch(error => {
-                console.error('Error loading header:', error);
+                console.error('Header load failed:', error);
                 const fallbackHeader = document.createElement('div');
                 fallbackHeader.id = 'main-header';
                 fallbackHeader.innerHTML = '<h1>Site Header</h1>';
                 document.body.insertBefore(fallbackHeader, document.body.firstChild);
-                initThemeSwitcher(); 
+                initThemeSwitcher();
+                dispatchEvent(new Event('headerLoaded')); // Событие даже при ошибке
             });
     } else {
-        initThemeSwitcher(); 
+        initThemeSwitcher();
     }
 });
 
 function initThemeSwitcher() {
     const themeSwitcher = document.getElementById('theme-switcher');
-    if (!themeSwitcher) {
-        console.warn('Theme switcher not found!');
-        return;
-    }
+    if (!themeSwitcher) return;
     
     const currentTheme = localStorage.getItem('theme') || 'light';
     if (currentTheme === 'dark') {
@@ -51,16 +50,7 @@ function initThemeSwitcher() {
     }
     
     themeSwitcher.addEventListener('change', function() {
-        if (this.checked) {
-            document.body.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark');
-            console.log('Dark theme activated');
-        } else {
-            document.body.classList.remove('dark-theme');
-            localStorage.setItem('theme', 'light');
-            console.log('Light theme activated');
-        }
+        document.body.classList.toggle('dark-theme', this.checked);
+        localStorage.setItem('theme', this.checked ? 'dark' : 'light');
     });
-    
-    console.log('Theme switcher initialized');
 }

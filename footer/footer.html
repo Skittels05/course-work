@@ -1,23 +1,34 @@
-<footer>
-        <div class="one">
-            <div class="left_f">
-                <img src="../assets/logo.png" alt="logo">
-                <p>1 Ivana Mazalova Street</p>
-            </div>
-            <div class="right_f">
-                <img src="../assets/phone.png" alt="phone">
-                <p>
-                    <span class="text">Call us:</span>
-                    <span>+00 89 458 648</span>
-                </p>
-            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <footer>
+    <div class="one">
+        <div class="left_f">
+            <img src="../assets/logo.png" alt="Logo" data-i18n="[alt]footer.logo_alt">
+            <p data-i18n="footer.address">1 Ivana Mazalova Street</p>
         </div>
-        <div class="copyright">
+        <div class="right_f">
+            <img src="../assets/phone.png" alt="Phone" data-i18n="[alt]footer.phone_alt">
             <p>
-                <span>© 2024 design and developed by</span>
-                <span class="green2">Brandbes</span>
-                <span>. Powered by</span>
-                <span class="green2">Webflow.</span>
+                <span class="text" data-i18n="footer.call_us">Call us:</span>
+                <span>+00 89 458 648</span>
             </p>
         </div>
-    </footer>
+    </div>
+    <div class="copyright">
+        <p>
+            <span data-i18n="footer.copyright">© 2024 design and developed by</span>
+            <span class="green2">Brandbes</span>
+            <span data-i18n="footer.powered_by">. Powered by</span>
+            <span class="green2">Webflow.</span>
+        </p>
+    </div>
+</footer>
+    <script src="../base_js/langSwitcher.js"></script>
+</body>
+</html>

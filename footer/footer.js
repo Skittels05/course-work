@@ -1,34 +1,72 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '   ../base_css/footer.css';
-    document.head.appendChild(link);
-    if (!document.getElementById('main-footer')) {
-        fetch('../footer/footer.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to load footer: ' + response.status);
-                }
-                return response.text();
-            })
-            .then(html => {
-                const footerDiv = document.createElement('div');
-                footerDiv.id = 'main-footer';
-                footerDiv.innerHTML = html;
-                document.body.appendChild(footerDiv);
-                const link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = '../base_css/footer.css';
-                document.head.appendChild(link);
-                
-                console.log('Footer loaded successfully');
-            })
-            .catch(error => {
-                console.error('Error loading footer:', error);
-                const fallbackFooter = document.createElement('div');
-                fallbackFooter.id = 'main-footer';
-                fallbackFooter.innerHTML = '<p>&copy; 2023 My Site</p>';
-                document.body.appendChild(fallbackFooter);
-            });
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Загружаем CSS
+    const cssLink = document.createElement('link');
+    cssLink.rel = 'stylesheet';
+    cssLink.href = '../base_css/footer.css';
+    document.head.appendChild(cssLink);
+
+    // 2. Загружаем HTML футера
+    try {
+        const response = await fetch('../footer/footer.html');
+        if (!response.ok) throw new Error('Failed to load footer');
+        const html = await response.text();
+        document.body.insertAdjacentHTML('beforeend', html);
+        
+        // 3. Инициализируем переводы после загрузки HTML
+        initFooterTranslations();
+    } catch (error) {
+        console.error('Footer error:', error);
+        createFallbackFooter();
     }
 });
+
+function initFooterTranslations() {
+    // Проверяем наличие системы переводов
+    if (!window.i18n) {
+        console.warn('Translation system not loaded');
+        return;
+    }
+
+    // Применяем переводы
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    // Для каждого элемента с data-i18n
+    footer.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        
+        // Обработка атрибутов [attr]key
+        if (key.startsWith('[')) {
+            const [_, attr, transKey] = key.match(/\[(.*?)\](.*)/) || [];
+            if (attr && transKey) {
+                const value = window.i18n.getTranslation(window.i18n.translations.footer, transKey);
+                if (value) el.setAttribute(attr, value);
+            }
+        } 
+        // Обработка текстового содержимого
+        else {
+            const value = window.i18n.getTranslation(window.i18n.translations.footer, key);
+            if (value) el.textContent = value;
+        }
+    });
+}
+
+function createFallbackFooter() {
+    document.body.insertAdjacentHTML('beforeend', `
+        <footer>
+            <div class="one">
+                <div class="left_f">
+                    <img src="../assets/logo.png" alt="Logo">
+                    <p>1 Ivana Mazalova Street</p>
+                </div>
+                <div class="right_f">
+                    <img src="../assets/phone.png" alt="Phone">
+                    <p>Call us: +00 89 458 648</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2024 Brandbes. Powered by Webflow.</p>
+            </div>
+        </footer>
+    `);
+}

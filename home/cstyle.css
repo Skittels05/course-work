@@ -17,6 +17,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 html {
@@ -28,6 +31,14 @@ body {
   color: var(--text-dark);
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--bg-color);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+}
+h1, h2, h3, h4, h5, h6, p, a, span, li, div {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  max-width: 100%;
 }
 
 h1,
@@ -45,8 +56,21 @@ h4 {
   padding: 0 var(--main-padding);
   flex-wrap: wrap;
   margin-top: -1rem;
+  overflow-wrap:break-word;
 }
-
+.garden h1,
+.experience h2,
+.experience h4,
+.experience p,
+.service h4,
+.member h4,
+.member p,
+.news_post h3,
+.news_text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
 .content {
   padding-top: 10rem;
   padding-bottom: 10rem;
@@ -665,7 +689,7 @@ h4 {
   .garden img {
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    width: 80%;
   }
 
   .exp_info * {
@@ -677,11 +701,11 @@ h4 {
     margin-left: auto;
     margin-right: auto;
   }
-
+ 
   .video {
     flex-wrap: wrap;
   }
-
+  
   .video img {
     max-width: 100%;
   }
@@ -694,6 +718,16 @@ h4 {
 }
 
 @media (max-width:768px) {
+
+  h1
+  {
+    font-size: 4.8rem;
+    line-height: normal;
+  }
+  h2
+  {
+    font-size:4rem;
+  }
   .services-grid {
     display: flex;
     flex-wrap: wrap;
@@ -726,22 +760,12 @@ h4 {
   }
 
   .member img {
-    width: 100%;
+    width: 40rem;
   }
 
   .news_post {
     width: 100%;
   }
-
-  .news_post img {
-    width: 100%;
-  }
-
-  .news_post .button {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .feedback-slider {
     width: 100%;
     max-width: 54rem;
@@ -769,6 +793,10 @@ h4 {
   }
 
   .members_section h2 {
+    width: 100%;
+  }
+  .member img
+  {
     width: 100%;
   }
 }

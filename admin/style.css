@@ -86,7 +86,6 @@ h4 {
     background-color: var(--text-light);
     margin-right: 1rem;
 }
-
 .admin-tabs {
     display: flex;
     border-bottom: 1px solid #ddd;

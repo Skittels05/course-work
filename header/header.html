@@ -34,17 +34,70 @@
             </nav>
         </div>
         <div class="header_icons">
-            <div class="lang_view" id="lang-switcher">
-                <img src="../assets/view.svg" alt="view" data-i18n="[alt]view_alt">
-                <p data-i18n="lang">ENG</p>
+            <div class="lang_view" id="accessibility-toggle">
+                <img src="../assets/view.svg" alt="Версия для слабовидящих" class="accessibility-icon">
+                <div id="lang-switcher">
+                    <p data-i18n="lang">ENG</p>
+                </div>
             </div>
             <a href="../profile/index.html"><img src="../assets/login.svg" alt="login" data-i18n="[alt]login_alt"></a>
             <a href="../cart/index.html"><img src="../assets/korzina.svg" alt="korzina" data-i18n="[alt]cart_alt"></a>
             <a href="../favourite/index.html"><img src="../assets/wish.svg" alt="wish" data-i18n="[alt]wish_alt"></a>
             <a href="../admin/index.html" class="admin-link"><i class="fas fa-cog"></i></a>
         </div>
+        <div class="accessibility-modal" id="accessibility-modal">
+            <div class="modal-content">
+                <h3 data-i18n="accessibility.title">Версия для слабовидящих</h3>
+                <div class="settings-group">
+                    <h4 data-i18n="accessibility.font_size">Размер шрифта</h4>
+                    <div class="font-size-buttons">
+                        <button class="font-size-btn" data-size="small"
+                            data-i18n="accessibility.small">Маленький</button>
+                        <button class="font-size-btn active" data-size="medium"
+                            data-i18n="accessibility.medium">Средний</button>
+                        <button class="font-size-btn" data-size="large" data-i18n="accessibility.large">Большой</button>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h4 data-i18n="accessibility.color_scheme">Цветовая схема</h4>
+                    <div class="color-schemes">
+                        <button class="color-scheme-btn" data-scheme="black-white" title="Черный фон, белый текст">
+                            <span class="color-box" style="background: #000; border-color: #fff"></span>
+                        </button>
+                        <button class="color-scheme-btn" data-scheme="black-green" title="Черный фон, зеленый текст">
+                            <span class="color-box" style="background: #000; border-color: #0F0"></span>
+                        </button>
+                        <button class="color-scheme-btn" data-scheme="white-black" title="Белый фон, черный текст">
+                            <span class="color-box" style="background: #fff; border-color: #000"></span>
+                        </button>
+                        <button class="color-scheme-btn" data-scheme="beige-brown"
+                            title="Бежевый фон, коричневый текст">
+                            <span class="color-box" style="background: #F5F5DC; border-color: #654321"></span>
+                        </button>
+                        <button class="color-scheme-btn" data-scheme="blue-darkblue"
+                            title="Голубой фон, темно-синий текст">
+                            <span class="color-box" style="background: #ADD8E6; border-color: #00008B"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h4 data-i18n="accessibility.images">Изображения</h4>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="toggle-images">
+                        <span class="slider round"></span>
+                        <span data-i18n="accessibility.show_images">Показывать изображения</span>
+                    </label>
+                </div>
+
+                <div class="modal-buttons">
+                    <button class="apply-btn" data-i18n="accessibility.apply">Применить</button>
+                    <button class="reset-btn" data-i18n="accessibility.reset">Сбросить</button>
+                </div>
+            </div>
+        </div>
     </header>
-    <!-- Например, в about/index.html -->
     <script src="../base_js/langSwitcher.js"></script>
 </body>
 
