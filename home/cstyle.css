@@ -19,7 +19,7 @@
   box-sizing: border-box;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  max-width: 100%;
+
   
 }
 
@@ -34,7 +34,10 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--bg-color);
 }
-
+main *
+{
+  max-width: 100%;
+}
 h1,
 h2,
 h3,

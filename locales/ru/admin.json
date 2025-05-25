@@ -1,71 +1,77 @@
 {
-  "page_title": "Админ-панель",
-  "tabs": {
-    "products": "Товары",
-    "reviews": "Отзывы"
-  },
-  "products": {
-    "form_title": "Добавить/Редактировать товар",
-    "name_label": "Название",
-    "name_placeholder": "Введите название товара",
-    "price_label": "Цена",
-    "price_placeholder": "Введите цену",
-    "category_label": "Категория",
-    "category_placeholder": "Введите категорию",
-    "description_label": "Описание",
-    "description_placeholder": "Введите описание",
-    "save_button": "Сохранить товар",
-    "update_button": "Обновить товар",
-    "reset_button": "Сбросить",
-    "list_title": "Список товаров",
-    "table": {
-      "id": "ID",
-      "name": "Название",
-      "price": "Цена",
-      "category": "Категория",
-      "actions": "Действия"
+    "page_title": "Админ панель",
+    "tabs": {
+        "products": "Товары",
+        "reviews": "Отзывы"
     },
-    "actions": {
-      "edit": "Редактировать",
-      "delete": "Удалить"
+    "products": {
+        "form_title": "Добавить/Редактировать товар",
+        "name_label": "Название (Английский)",
+        "name_placeholder": "Введите название товара на английском",
+        "ru_name_label": "Название (Русский)",
+        "ru_name_placeholder": "Введите название товара на русском",
+        "price_label": "Цена",
+        "price_placeholder": "Введите цену",
+        "category_label": "Категория (Английский)",
+        "category_placeholder": "Введите категорию на английском",
+        "ru_category_label": "Категория (Русский)",
+        "ru_category_placeholder": "Введите категорию на русском",
+        "description_label": "Описание (Английский)",
+        "description_placeholder": "Введите описание на английском",
+        "ru_description_label": "Описание (Русский)",
+        "ru_description_placeholder": "Введите описание на русском",
+        "save_button": "Сохранить товар",
+        "update_button": "Обновить товар",
+        "reset_button": "Сбросить",
+        "list_title": "Список товаров",
+        "table": {
+            "id": "ID",
+            "name": "Название",
+            "price": "Цена",
+            "category": "Категория",
+            "actions": "Действия"
+        },
+        "actions": {
+            "edit": "Редактировать",
+            "delete": "Удалить"
+        },
+        "errors": {
+            "name_length": "Название должно быть не менее 3 символов",
+            "price_positive": "Цена должна быть положительной",
+            "category_length": "Категория должна быть не менее 2 символов",
+            "description_length": "Описание должно быть не менее 10 символов"
+        },
+        "messages": {
+            "save_success": "Товар успешно сохранен",
+            "save_error": "Ошибка при сохранении товара",
+            "delete_confirm": "Вы уверены, что хотите удалить этот товар?",
+            "delete_error": "Ошибка при удалении товара"
+        }
     },
-    "errors": {
-      "name_length": "Название должно содержать минимум 3 символа",
-      "price_positive": "Цена должна быть больше 0",
-      "category_length": "Категория должна содержать минимум 2 символа",
-      "description_length": "Описание должно содержать минимум 10 символов"
-    },
-    "messages": {
-      "save_success": "Товар успешно сохранён!",
-      "save_error": "Ошибка сохранения товара. Попробуйте снова.",
-      "delete_confirm": "Вы уверены, что хотите удалить этот товар?",
-      "delete_error": "Ошибка удаления товара"
+    "reviews": {
+        "title": "Отзывы клиентов",
+        "filter_product": "Фильтр по товару:",
+        "filter_user": "Фильтр по пользователю:",
+        "all_products": "Все товары",
+        "all_users": "Все пользователи",
+        "table": {
+            "id": "ID",
+            "product": "Товар",
+            "user": "Пользователь",
+            "rating": "Рейтинг",
+            "text": "Текст отзыва",
+            "date": "Дата",
+            "actions": "Действия"
+        },
+        "actions": {
+            "delete": "Удалить"
+        },
+        "messages": {
+            "unknown_product": "Неизвестный товар",
+            "unknown_user": "Неизвестный пользователь",
+            "no_text": "Текст отсутствует",
+            "delete_confirm": "Вы уверены, что хотите удалить этот отзыв?",
+            "delete_error": "Ошибка при удалении отзыва"
+        }
     }
-  },
-  "reviews": {
-    "title": "Отзывы клиентов",
-    "filter_product": "Фильтр по товару:",
-    "all_products": "Все товары",
-    "filter_user": "Фильтр по пользователю:",
-    "all_users": "Все пользователи",
-    "table": {
-      "id": "ID",
-      "product": "Товар",
-      "user": "Пользователь",
-      "rating": "Рейтинг",
-      "text": "Текст отзыва",
-      "date": "Дата",
-      "actions": "Действия"
-    },
-    "actions": {
-      "delete": "Удалить"
-    },
-    "messages": {
-      "delete_confirm": "Вы уверены, что хотите удалить этот отзыв?",
-      "delete_error": "Ошибка удаления отзыва",
-      "unknown_product": "Неизвестно",
-      "unknown_user": "Неизвестно",
-      "no_text": "Без текста"
-    }
-  }
 }

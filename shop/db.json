@@ -1,7 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
       "name": "Premium Bypass Pruners",
       "ru_name": "Премиальные секаторы обводного типа",
       "price": 18.99,
@@ -9,7 +8,8 @@
       "ru_category": "Инструменты",
       "description": "Professional-grade pruning shears with ergonomic handles.",
       "ru_description": "Профессиональные секаторы с эргономичными ручками.",
-      "rating": 5
+      "rating": 0,
+      "id": "1"
     },
     {
       "id": "2",
@@ -329,6 +329,17 @@
       "description": "Analog thermometer with humidity gauge.",
       "ru_description": "Аналоговый термометр с гигрометром.",
       "rating": 4.3
+    },
+    {
+      "name": "Hat",
+      "ru_name": "Шляпа",
+      "price": 100,
+      "category": "Hats",
+      "ru_category": "Шляпы",
+      "description": "hathathathat",
+      "ru_description": "шляпашляпашляпа",
+      "rating": 0,
+      "id": "31"
     }
   ],
   "favorites": [
@@ -375,6 +386,12 @@
       "quantity": 1,
       "userId": 2,
       "id": 3
+    },
+    {
+      "productId": 1,
+      "quantity": 1,
+      "userId": 1,
+      "id": 4
     }
   ],
   "users": [

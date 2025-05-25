@@ -7,7 +7,7 @@
     "message": "Ваш список избранного пуст",
     "browse_products": "Перейти к товарам"
   },
-  "buttons": {
+  "favourite": {
     "add_to_cart": "В корзину",
     "remove": "Удалить"
   },

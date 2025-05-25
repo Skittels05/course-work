@@ -7,7 +7,7 @@
     "message": "Your favorites list is empty",
     "browse_products": "Browse Products"
   },
-  "buttons": {
+  "favourite": {
     "add_to_cart": "Add to Cart",
     "remove": "Remove"
   },

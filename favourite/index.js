@@ -11,6 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let favorites = [];
     let products = [];
     
+    // Функция для получения переведенных полей продукта
+    function getTranslatedProductField(product, field) {
+        const lang = window.i18n?.currentLang || 'en';
+        const translatedField = `ru_${field}`;
+        return (lang === 'ru' && product[translatedField]) 
+            ? product[translatedField] 
+            : product[field];
+    }
+
     async function loadFavoritesData() {
         try {
             const [favoritesResponse, productsResponse] = await Promise.all([
@@ -22,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
             displayFavoritesItems();
         } catch (error) {
             console.error('Error loading favorites data:', error);
+            const message = getTranslation('errors.load_favorites') || 'Error loading favorites';
+            favoritesContainer.innerHTML = `<p class="error-message">${message}</p>`;
         }
     }
 
@@ -30,8 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
             favoritesContainer.innerHTML = `
                 <div class="empty-favorites">
                     <i class="fas fa-heart"></i>
-                    <p data-i18n="empty_favorites.message">Your favorites list is empty</p>
-                    <a href="../shop/index.html" class="continue-shopping" data-i18n="empty_favorites.browse_products">Browse Products</a>
+                    <p data-i18n="favourite.empty_message">Your favorites list is empty</p>
+                    <a href="../shop/index.html" class="continue-shopping" data-i18n="favourite.browse_products">Browse Products</a>
                 </div>
             `;
             applyTranslations(favoritesContainer);
@@ -41,17 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
         favoritesContainer.innerHTML = favorites.map(fav => {
             const product = products.find(p => p.id == fav.productId);
             if (!product) return '';
+            
+            // Используем переведенные поля
+            const name = getTranslatedProductField(product, 'name');
+            const category = getTranslatedProductField(product, 'category');
+            
             return `
                 <div class="favorite-item" data-id="${fav.id}">
-                    <img src="../assets/shop/${product.id}.jpg" alt="${product.name}" 
+                    <img src="../assets/shop/${product.id}.jpg" alt="${name}" 
                          onerror="this.src='../assets/shop/placeholder.jpg'">
                     <div class="favorite-item-info">
-                        <h3>${product.name}</h3>
-                        <p>${product.category}</p>
+                        <h3>${name}</h3>
+                        <p>${category}</p>
                         <div class="favorite-item-price">$${product.price.toFixed(2)}</div>
                         <div class="favorite-item-actions">
-                            <button class="add-to-cart-btn" data-i18n="buttons.add_to_cart">Add to Cart</button>
-                            <button class="remove-favorite-btn" title="Remove">
+                            <button class="add-to-cart-btn" data-i18n="favourite.add_to_cart">Add to Cart</button>
+                            <button class="remove-favorite-btn" data-i18n="[title]favourite.remove_title">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
@@ -60,14 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }).join('');
 
+        // Применяем переводы для динамических элементов
         document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
             btn.addEventListener('click', addToCart);
-            applyTranslation(btn, 'buttons.add_to_cart');
+            applyTranslation(btn, 'favourite.add_to_cart');
         });
         
         document.querySelectorAll('.remove-favorite-btn').forEach(btn => {
             btn.addEventListener('click', removeFavorite);
-            const title = getTranslation('buttons.remove');
+            const title = getTranslation('favourite.remove_title');
             if (title) btn.setAttribute('title', title);
         });
     }
@@ -83,16 +100,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (existingItems.length > 0) {
                 await fetch(`${apiUrl}/cart/${existingItems[0].id}`, {
-                    method: 'PATCH',
-                    headers: { 'Content-Type': 'application/json' },
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         quantity: existingItems[0].quantity + 1
                     })
                 });
             } else {
                 await fetch(`${apiUrl}/cart`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         productId: favorite.productId,
                         quantity: 1,
@@ -101,11 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             
-            const message = getTranslation('messages.added_to_cart') || 'Product added to cart!';
+            const message = getTranslation('favourite.added_to_cart') || 'Product added to cart!';
             alert(message);
         } catch (error) {
             console.error('Error adding to cart:', error);
-            const message = getTranslation('messages.add_to_cart_error') || 'There was an error adding the product to cart.';
+            const message = getTranslation('favourite.add_to_cart_error') || 'Error adding to cart';
             alert(message);
         }
     }
@@ -116,17 +133,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         try {
             await fetch(`${apiUrl}/favorites/${favId}`, {
-                method: 'DELETE'
+                method: "DELETE"
             });
             
-            favorites = favorites.filter(f => f.id !== favId);
+            favorites = favorites.filter(f => f.id != favId);
             displayFavoritesItems();
             
-            const message = getTranslation('messages.removed_from_favorites') || 'Item removed from favorites';
+            const message = getTranslation('favourite.removed_from_favorites') || 'Removed from favorites';
             alert(message);
         } catch (error) {
             console.error('Error removing favorite:', error);
-            const message = getTranslation('messages.remove_favorite_error') || 'There was an error removing the item from favorites.';
+            const message = getTranslation('favourite.remove_favorite_error') || 'Error removing from favorites';
             alert(message);
         }
     }
@@ -139,7 +156,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyTranslation(element, key) {
         const translation = getTranslation(key);
         if (translation) {
-            element.textContent = translation;
+            if (element.hasAttribute('title')) {
+                element.setAttribute('title', translation);
+            } else {
+                element.textContent = translation;
+            }
         }
     }
 
@@ -150,16 +171,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const key = el.getAttribute('data-i18n');
             const translation = getTranslation(key);
             if (translation) {
-                el.textContent = translation;
+                if (el.hasAttribute('title')) {
+                    el.setAttribute('title', translation);
+                } else {
+                    el.textContent = translation;
+                }
             }
         });
     }
 
-    // Handle language changes
+    // Обработчик изменения языка
     window.addEventListener('languageChanged', () => {
         if (window.i18n) {
             window.i18n.applyTranslations('favourite');
-            displayFavoritesItems();
+            displayFavoritesItems(); // Перерисовываем элементы с новыми переводами
         }
     });
 

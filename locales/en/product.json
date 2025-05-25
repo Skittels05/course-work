@@ -3,11 +3,41 @@
   "reviews": {
     "title": "Customer Reviews",
     "write_review": "Write a Review",
+    "edit_review": "Edit Your Review",
     "rating": "Rating",
     "your_review": "Your Review",
-    "placeholder": "Write your review (minimum 30 characters)",
+    "placeholder": "Share your thoughts about this product...",
     "submit": "Submit Review",
+    "no_reviews": "No reviews yet. Be the first to review!",
+    "login_required": "Please <a href='../login/index.html'>sign in</a> to leave a review.",
     "not_purchased": "You need to purchase this product before leaving a review.",
-    "login_to_review": "Please <a href=\"../login/index.html\">sign in</a> to leave a review."
+    "purchase_required": "You need to purchase this product before leaving a review.",
+    "admin_restriction": "Review functionality is not available for your role.",
+    "rating_required": "Please select a rating",
+    "min_length": "Review must be at least 30 characters long"
+  },
+  "buttons": {
+    "add_to_cart": "Add to Cart",
+    "buy_now": "Buy Now",
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "messages": {
+    "delete_confirm": "Are you sure you want to delete your review?",
+    "delete_success": "Your review has been deleted.",
+    "review_updated": "Your review has been updated!",
+    "review_thanks": "Thank you for your review!",
+    "added_to_cart": "Added to cart! Complete your purchase to leave a review."
+  },
+  "errors": {
+    "load_product": "Error loading product details",
+    "load_reviews": "Error loading reviews",
+    "submit_review": "Error submitting review. Please try again.",
+    "delete_review": "Error deleting review. Please try again.",
+    "add_to_cart": "Error adding to cart. Please try again.",
+    "product_not_found": "Product not found"
+  },
+  "product": {
+    "no_ratings": "No ratings yet"
   }
 }

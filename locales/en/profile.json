@@ -31,6 +31,8 @@
     }
   },
   "logout": "Logout",
+  "clear_storage": "Reset Settings",
+  "clear_storage_confirm": "Are you sure you want to reset all settings? This will reset your theme, language and other preferences.",
   "not_auth_message": "Please sign in to view your profile",
   "login_link": "Go to Login Page"
 }

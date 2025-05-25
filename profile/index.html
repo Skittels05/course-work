@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,81 +10,92 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="preloader">
         <div class="spinner"></div>
     </div>
     <main>
         <div class="container">
-        <div id="authOnlyContent" style="display: none;">
-            <h1 data-i18n="header.title">User Profile</h1>
+            <div id="authOnlyContent" style="display: none;">
+                <h1 data-i18n="header.title">User Profile</h1>
 
-            <div class="profile-info">
-                <div class="user-details">
-                    <p><span class="detail-label" data-i18n="form.name_label">Name:</span> <span id="userFullName"></span></p>
-                    <p><span class="detail-label" data-i18n="form.email_label">Email:</span> <span id="userEmail"></span></p>
-                    <p><span class="detail-label" data-i18n="form.phone_label">Phone:</span> <span id="userPhone"></span></p>
-                    <p><span class="detail-label" data-i18n="form.registered_label">Registered:</span> <span id="userRegDate"></span></p>
+                <div class="profile-info">
+                    <div class="user-details">
+                        <p><span class="detail-label" data-i18n="form.name_label">Name:</span> <span
+                                id="userFullName"></span></p>
+                        <p><span class="detail-label" data-i18n="form.email_label">Email:</span> <span
+                                id="userEmail"></span></p>
+                        <p><span class="detail-label" data-i18n="form.phone_label">Phone:</span> <span
+                                id="userPhone"></span></p>
+                        <p><span class="detail-label" data-i18n="form.registered_label">Registered:</span> <span
+                                id="userRegDate"></span></p>
+                    </div>
                 </div>
+
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="nickname" data-i18n="form.nickname_label">Nickname</label>
+                        <div class="input-with-button">
+                            <input type="text" id="nickname" data-i18n="[placeholder]form.nickname_placeholder">
+                            <button type="button" id="generateNickname" class="icon-btn"
+                                data-i18n="[title]form.generate_nickname_title">
+                                <i class="fas fa-dice"></i>
+                            </button>
+                        </div>
+                        <div class="error-message" id="nicknameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentPassword" data-i18n="form.current_password_label">Current Password</label>
+                        <div class="password-input">
+                            <input type="password" id="currentPassword"
+                                data-i18n="[placeholder]form.current_password_placeholder">
+                            <button type="button" class="toggle-password icon-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newPassword" data-i18n="form.new_password_label">New Password</label>
+                        <div class="password-input">
+                            <input type="password" id="newPassword"
+                                data-i18n="[placeholder]form.new_password_placeholder">
+                            <button type="button" class="toggle-password icon-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button type="button" id="generatePassword" class="icon-btn"
+                                data-i18n="[title]form.generate_password_title">
+                                <i class="fas fa-key"></i>
+                            </button>
+                        </div>
+                        <div class="error-message" id="passwordError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" data-i18n="form.confirm_password_label">Confirm New
+                            Password</label>
+                        <div class="password-input">
+                            <input type="password" id="confirmPassword"
+                                data-i18n="[placeholder]form.confirm_password_placeholder">
+                            <button type="button" class="toggle-password icon-btn">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" data-i18n="form.submit">Save Changes</button>
+                    <div class="success-message" id="successMessage"></div>
+                </form>
+                <button id="clearStorageBtn" class="logout-btn" data-i18n="clear_storage">Reset Settings</button>
+                <button id="logoutBtn" class="logout-btn" data-i18n="logout">Logout</button>
             </div>
 
-            <form id="profileForm">
-                <div class="form-group">
-                    <label for="nickname" data-i18n="form.nickname_label">Nickname</label>
-                    <div class="input-with-button">
-                        <input type="text" id="nickname" data-i18n="[placeholder]form.nickname_placeholder">
-                        <button type="button" id="generateNickname" class="icon-btn" data-i18n="[title]form.generate_nickname_title">
-                            <i class="fas fa-dice"></i>
-                        </button>
-                    </div>
-                    <div class="error-message" id="nicknameError"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="currentPassword" data-i18n="form.current_password_label">Current Password</label>
-                    <div class="password-input">
-                        <input type="password" id="currentPassword" data-i18n="[placeholder]form.current_password_placeholder">
-                        <button type="button" class="toggle-password icon-btn">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="newPassword" data-i18n="form.new_password_label">New Password</label>
-                    <div class="password-input">
-                        <input type="password" id="newPassword" data-i18n="[placeholder]form.new_password_placeholder">
-                        <button type="button" class="toggle-password icon-btn">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                        <button type="button" id="generatePassword" class="icon-btn" data-i18n="[title]form.generate_password_title">
-                            <i class="fas fa-key"></i>
-                        </button>
-                    </div>
-                    <div class="error-message" id="passwordError"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword" data-i18n="form.confirm_password_label">Confirm New Password</label>
-                    <div class="password-input">
-                        <input type="password" id="confirmPassword" data-i18n="[placeholder]form.confirm_password_placeholder">
-                        <button type="button" class="toggle-password icon-btn">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn" data-i18n="form.submit">Save Changes</button>
-                <div class="success-message" id="successMessage"></div>
-            </form>
-
-            <button id="logoutBtn" class="logout-btn" data-i18n="logout">Logout</button>
-        </div>
-
-        <div id="notAuthContent" class="not-auth-message">
-            <h2 data-i18n="not_auth_message">Please sign in to view your profile</h2>
-            <a href="../login/index.html" class="login-link" data-i18n="login_link">Go to Login Page</a>
-        </div>
+            <div id="notAuthContent" class="not-auth-message">
+                <h2 data-i18n="not_auth_message">Please sign in to view your profile</h2>
+                <a href="../login/index.html" class="login-link" data-i18n="login_link">Go to Login Page</a>
+            </div>
         </div>
     </main>
     <script src="../base_js/langSwitcher.js"></script>
@@ -93,4 +105,5 @@
     <script src="../footer/footer.js"></script>
     <script src="../preloader/index.js"></script>
 </body>
+
 </html>

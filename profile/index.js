@@ -232,4 +232,11 @@ document.addEventListener('DOMContentLoaded', function() {
             generateRandomNickname();
         }
     });
+    document.getElementById('clearStorageBtn').addEventListener('click', function() {
+    if (confirm(i18n.getTranslation(i18n.translations.profile, 'clear_storage_confirm') || 
+                'Are you sure you want to reset all settings?')) {
+        localStorage.clear();
+        location.reload();
+    }
+});
 });

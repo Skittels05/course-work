@@ -127,7 +127,14 @@ h1 {
     cursor: pointer;
     transition: background 0.3s;
 }
+#clearStorageBtn {
+    background-color: #f44336;
+    margin-bottom: 15px;
+}
 
+#clearStorageBtn:hover {
+    background-color: #d32f2f;
+}
 .submit-btn:hover {
     background: var(--primary-dark);
 }
