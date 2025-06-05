@@ -1,10 +1,8 @@
 {
-  "footer": {
-    "logo_alt": "Company logo",
-    "address": "1 Ivana Mazalova Street",
-    "phone_alt": "Phone icon",
-    "call_us": "Call us:",
-    "copyright": "© 2024 design and developed by",
-    "powered_by": ". Powered by"
-  }
+  "logo_alt": "Logo",
+  "phone_alt": "Phone",
+  "address": "1 Ivana Mazalova Street",
+  "call_us": "Call us:",
+  "copyright": "© 2024 design and developed by",
+  "powered_by": ". Powered by"
 }

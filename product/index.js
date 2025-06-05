@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let existingReviewId = null;
   let isEditMode = false;
 
-  // Функция для получения переведенных полей товара
   function getTranslatedProductField(product, field) {
     const lang = window.i18n?.currentLang || "en";
     const translatedField = `ru_${field}`;
@@ -26,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
       : product[field];
   }
 
-  // Функция для получения перевода
   function getTranslation(key) {
     if (!window.i18n) return null;
     return (
@@ -37,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  // Применение перевода к элементу
   function applyTranslation(element, key, attribute = "textContent") {
     const translation = getTranslation(key);
     if (translation) {
@@ -70,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function displayProduct(product) {
-    // Используем переведенные поля
+
     const name = getTranslatedProductField(product, "name");
     const description = getTranslatedProductField(product, "description");
     const ratingText = product.rating
@@ -96,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
         `;
 
-    // Применяем перевод для кнопки
+
     const addToCartBtn = document.querySelector(".add-to-cart");
     if (addToCartBtn) {
       addToCartBtn.addEventListener("click", addToCart);
@@ -143,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
                 reviewCard.appendChild(controls);
                 
-                // Применяем переводы к кнопкам
                 applyTranslation(controls.querySelector('.edit-review-btn'), 'buttons.edit');
                 applyTranslation(controls.querySelector('.delete-review-btn'), 'buttons.delete');
                 
@@ -449,7 +445,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Обработчики событий для рейтинга
   ratingStars.forEach((star) => {
     star.addEventListener("click", () => {
       selectedRating = parseInt(star.dataset.rating);
@@ -496,13 +491,11 @@ document.addEventListener("DOMContentLoaded", function () {
     return stars;
   }
 
-  // Обработчик смены языка
   window.addEventListener("languageChanged", () => {
     if (window.i18n) {
       window.i18n.applyTranslations("product");
       if (productId) loadProduct();
 
-      // Обновляем переводы для динамических элементов
       document.querySelectorAll("[data-i18n]").forEach((el) => {
         const key = el.getAttribute("data-i18n");
         applyTranslation(el, key);

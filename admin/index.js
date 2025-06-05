@@ -3,10 +3,11 @@ document.addEventListener("DOMContentLoaded", async function () {
     window.i18n = new I18nManager();
     await Promise.all([
       i18n.loadTranslations("header"),
-      i18n.loadTranslations("admin"),
+      i18n.loadTranslations("footer"),
     ]);
     i18n.applyTranslations("header");
     i18n.applyTranslations("admin");
+    i18n.applyTranslations("footer");
   }
 
   const t = (key) => {

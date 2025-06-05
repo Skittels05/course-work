@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const apiUrl = 'http://localhost:3000';
     let favorites = [];
     let products = [];
-    
-    // Функция для получения переведенных полей продукта
+
     function getTranslatedProductField(product, field) {
         const lang = window.i18n?.currentLang || 'en';
         const translatedField = `ru_${field}`;
@@ -52,8 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         favoritesContainer.innerHTML = favorites.map(fav => {
             const product = products.find(p => p.id == fav.productId);
             if (!product) return '';
-            
-            // Используем переведенные поля
+
             const name = getTranslatedProductField(product, 'name');
             const category = getTranslatedProductField(product, 'category');
             
@@ -76,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         }).join('');
 
-        // Применяем переводы для динамических элементов
         document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
             btn.addEventListener('click', addToCart);
             applyTranslation(btn, 'favourite.add_to_cart');
@@ -180,11 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Обработчик изменения языка
     window.addEventListener('languageChanged', () => {
         if (window.i18n) {
             window.i18n.applyTranslations('favourite');
-            displayFavoritesItems(); // Перерисовываем элементы с новыми переводами
+            displayFavoritesItems(); 
         }
     });
 

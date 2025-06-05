@@ -19,37 +19,37 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.getElementById("overlay");
   const applyFiltersBtn = document.getElementById("apply-filters");
 
-  let allProducts = [];
-  let filteredProducts = [];
+  let allCategories = [];
 
-  // Функция для получения переведенного поля продукта
   function getTranslatedProductField(product, field) {
     const lang = window.i18n?.currentLang || 'en';
     const translatedField = `ru_${field}`;
-    return (lang === 'ru' && product[translatedField]) 
-      ? product[translatedField] 
-      : product[field];
+    const result = (lang === 'ru' && product[translatedField]) ? product[translatedField] : product[field];
+    console.log("Translating:", { product, field, lang, result });
+    return result;
   }
 
-  // Функция для получения перевода из i18n
   function getTranslation(key, fallback) {
     const value = window.i18n?.getTranslation(window.i18n.translations.shop, key) || fallback;
     console.log(`Translation for ${key}: ${value}`);
     return value;
   }
 
-  // Загрузка всех продуктов
-  async function loadAllProducts() {
+  async function loadFilterData() {
     try {
-      const response = await fetch(apiUrl);
+      const lang = window.i18n?.currentLang || 'en';
+      const response = await fetch(`${apiUrl}?lang=${lang}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch products: ${response.status}`);
       }
-      allProducts = await response.json();
-      console.log("Loaded products:", allProducts.length);
-      generateCategoryFilters();
+      const data = await response.json();
+      console.log("Loaded data for filters:", data);
 
-      const prices = allProducts.map((product) => product.price);
+      const products = Array.isArray(data) ? data : data.products || [];
+      allCategories = [...new Set(products.map(p => p.category))];
+      generateCategoryFilters(products);
+
+      const prices = products.map((product) => product.price);
       const minPrice = Math.min(...prices) || 0;
       const maxPrice = Math.max(...prices) || 150;
 
@@ -65,12 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
       updateRange();
       fetchProducts();
     } catch (error) {
-      console.error("Error loading products:", error);
+      console.error("Error loading filter data:", error);
       productsContainer.innerHTML = `<p>${getTranslation("products.errors.load_products", "Error loading products. Please try again later.")}</p>`;
     }
   }
 
-  // Обновление диапазона цен
   function updateRange() {
     const minSlider = document.getElementById("price-slider-min");
     const maxSlider = document.getElementById("price-slider-max");
@@ -83,75 +82,65 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  // Фильтрация и сортировка продуктов
-  function fetchProducts() {
-    console.log("Fetching products, currentPage:", currentPage, "totalPages:", totalPages, "filteredProducts:", filteredProducts.length);
-    filteredProducts = [...allProducts];
+  async function fetchProducts() {
+    console.log("Fetching products, currentPage:", currentPage);
     const searchTerm = searchInput.value.trim().toLowerCase();
-
-    if (searchTerm) {
-      filteredProducts = filteredProducts.filter((product) => {
-        const name = getTranslatedProductField(product, 'name').toLowerCase();
-        const description = getTranslatedProductField(product, 'description').toLowerCase();
-        return name.includes(searchTerm) || description.includes(searchTerm);
-      });
-    }
-
     const checkedCategories = Array.from(
       document.querySelectorAll('input[name="category"]:checked')
     ).map((el) => el.value);
-
-    if (checkedCategories.length > 0) {
-      filteredProducts = filteredProducts.filter((product) => {
-        const category = getTranslatedProductField(product, 'category');
-        return checkedCategories.includes(category) || checkedCategories.includes(product.category);
-      });
-    }
-
     const minPrice = parseFloat(document.getElementById("min-price").value);
     const maxPrice = parseFloat(document.getElementById("max-price").value);
-    filteredProducts = filteredProducts.filter(
-      (product) => product.price >= minPrice && product.price <= maxPrice
-    );
+    const lang = window.i18n?.currentLang || 'en';
 
-    if (currentSortField && currentSortOrder) {
-      filteredProducts.sort((a, b) => {
-        if (currentSortField === "price" || currentSortField === "rating") {
-          return currentSortOrder === "asc"
-            ? a[currentSortField] - b[currentSortField]
-            : b[currentSortField] - a[currentSortField];
-        }
+    const params = new URLSearchParams({
+      _page: currentPage,
+      _limit: itemsPerPage,
+      _sort: currentSortField,
+      _order: currentSortOrder,
+      lang: lang,
+    });
 
-        const aValue = getTranslatedProductField(a, currentSortField).toLowerCase();
-        const bValue = getTranslatedProductField(b, currentSortField).toLowerCase();
-
-        if (aValue < bValue) {
-          return currentSortOrder === "asc" ? -1 : 1;
-        }
-        if (aValue > bValue) {
-          return currentSortOrder === "asc" ? 1 : -1;
-        }
-        return 0;
+    if (searchTerm) {
+      params.append('q', searchTerm);
+    }
+    if (minPrice > 0) {
+      params.append('price_gte', minPrice);
+    }
+    if (maxPrice < 150) {
+      params.append('price_lte', maxPrice);
+    }
+    if (checkedCategories.length > 0 && checkedCategories.length < allCategories.length) {
+      checkedCategories.forEach(category => {
+        params.append('category', category.trim());
       });
+      console.log("Selected categories:", checkedCategories);
+    } else if (checkedCategories.length === 0) {
+      console.log("No categories selected");
     }
 
-    totalPages = Math.max(1, Math.ceil(filteredProducts.length / itemsPerPage));
-    console.log("After filtering, totalPages:", totalPages, "filteredProducts:", filteredProducts.length);
-    updatePagination(filteredProducts.length);
+    console.log("Request URL:", `${apiUrl}?${params.toString()}`);
+    try {
+      const response = await fetch(`${apiUrl}?${params.toString()}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch products: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Server response:", data);
 
-    if (currentPage > totalPages) {
-      currentPage = totalPages;
+      let paginatedProducts = Array.isArray(data) ? data : data.products || [];
+      const totalItems = parseInt(response.headers.get('X-Total-Count')) || paginatedProducts.length;
+      totalPages = Math.ceil(totalItems / itemsPerPage);
+
+      console.log("Fetched products:", paginatedProducts.length, "totalPages:", totalPages, "totalItems:", totalItems);
+      updatePagination(totalItems);
+      displayProducts(paginatedProducts);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      productsContainer.innerHTML = `<p>${getTranslation("products.errors.load_products", "Error loading products. Please try again later.")}</p>`;
     }
-
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
-
-    displayProducts(paginatedProducts);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  // Проверка, есть ли продукт в избранном
   async function checkFavorite(productId) {
     const authUser = JSON.parse(sessionStorage.getItem("authUser"));
     if (!authUser) return false;
@@ -168,15 +157,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Отображение продуктов
   async function displayProducts(products) {
+    console.log("Displaying products:", products);
     const productsHTML = await Promise.all(
       products.map(async (product) => {
         const isFavorite = await checkFavorite(product.id);
         const name = getTranslatedProductField(product, 'name');
         const description = getTranslatedProductField(product, 'description');
         const category = getTranslatedProductField(product, 'category');
-
+        console.log("Rendered product:", { id: product.id, name, description, category, isFavorite });
         return `
           <div class="product-card" data-id="${product.id}">
             <button class="favorite-btn ${isFavorite ? "active" : ""}" data-id="${product.id}">
@@ -207,8 +196,10 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     );
 
+    console.log("Generated HTML array:", productsHTML);
     productsContainer.innerHTML =
       productsHTML.join("") || `<p class="no-results"><span data-i18n="products.no_results">No products found</span></p>`;
+    console.log("Set HTML to container:", productsContainer.innerHTML);
 
     document.querySelectorAll(".add-to-cart").forEach((btn) => {
       btn.addEventListener("click", addToCart);
@@ -218,14 +209,12 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.addEventListener("click", toggleFavorite);
     });
 
-    // Применяем переводы для динамически созданных элементов
     if (window.i18n) {
       window.i18n.applyTranslations('shop');
       console.log("Applied translations to dynamically created elements");
     }
   }
 
-  // Добавление/удаление из избранного
   async function toggleFavorite(event) {
     event.stopPropagation();
     const authUser = JSON.parse(sessionStorage.getItem("authUser"));
@@ -235,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const btn = event.currentTarget;
-    const productId = btn.dataset.id;
+    const productId = btn.closest(".product-card").dataset.id;
     const heartIcon = btn.querySelector("i");
     const isCurrentlyFavorite = btn.classList.contains("active");
 
@@ -270,7 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Настройка сортировки
   function setupSorting() {
     const sortContainer = document.querySelector(".sort-button");
     sortContainer.innerHTML = '';
@@ -322,21 +310,18 @@ document.addEventListener("DOMContentLoaded", () => {
       sortOptions.classList.remove("active");
     });
 
-    // Применяем переводы после создания сортировки
     if (window.i18n) {
       window.i18n.applyTranslations('shop');
       console.log("Applied translations after setupSorting");
     }
   }
 
-  // Применение сортировки
   function applySort(field, order) {
     currentSortField = field;
     currentSortOrder = order;
     resetToFirstPage();
   }
 
-  // Настройка пагинации
   function setupPagination() {
     firstPageBtn.addEventListener("click", () => {
       if (currentPage > 1) {
@@ -364,10 +349,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Обновление пагинации
   function updatePagination(totalItems) {
     totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
-    console.log("Updating pagination, totalItems:", totalItems, "totalPages:", totalPages, "currentPage:", currentPage);
+    console.log("Pagination data:", { totalItems, totalPages, currentPage });
     pageNumbersContainer.innerHTML = "";
 
     let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
@@ -401,34 +385,39 @@ document.addEventListener("DOMContentLoaded", () => {
     nextPageBtn.disabled = currentPage === totalPages;
     lastPageBtn.disabled = currentPage === totalPages;
 
-    // Убедимся, что контейнер пагинации виден
     pageNumbersContainer.style.display = 'flex';
     pageNumbersContainer.parentElement.style.display = 'flex';
   }
 
-  // Генерация фильтров по категориям
-  function generateCategoryFilters() {
-  const categoryFiltersContainer = document.querySelector(".category-filters");
-  const allCategories = [...new Set(allProducts.map(p => p.category))];
-  const lang = window.i18n?.currentLang || 'en';
+  function generateCategoryFilters(products) {
+    const categoryFiltersContainer = document.querySelector(".category-filters");
+    const lang = window.i18n?.currentLang || 'en';
 
-  categoryFiltersContainer.innerHTML = "";
+    categoryFiltersContainer.innerHTML = "";
 
-  allCategories.forEach(category => {
-    const label = document.createElement("label");
-    const categoryName = lang === 'ru' 
-      ? allProducts.find(p => p.category === category)?.ru_category || category
-      : category;
-    
-    label.innerHTML = `
-      <input type="checkbox" name="category" value="${category}" checked>
-      ${categoryName}
-    `;
-    categoryFiltersContainer.appendChild(label);
-  });
-}
+    allCategories.forEach(category => {
+      const productWithCategory = products.find(p => {
+        const productCategory = lang === 'ru' ? (p.ru_category || p.category) : p.category;
+        return productCategory === category;
+      });
 
-  // Настройка фильтров
+      const categoryName = productWithCategory ? getTranslatedProductField(productWithCategory, 'category') : category;
+
+      const label = document.createElement("label");
+      label.innerHTML = `
+        <input type="checkbox" name="category" value="${category}" ${lang === 'ru' ? '' : 'checked'}>
+        ${categoryName}
+      `;
+      categoryFiltersContainer.appendChild(label);
+    });
+
+    document.querySelectorAll('input[name="category"]').forEach(checkbox => {
+      checkbox.addEventListener('change', () => {
+        resetToFirstPage();
+      });
+    });
+  }
+
   function setupFilters() {
     filterToggle.addEventListener("click", () => {
       filtersSidebar.classList.add("active");
@@ -499,7 +488,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Настройка поиска
   function setupSearch() {
     let searchTimeout;
     searchInput.addEventListener("input", () => {
@@ -508,35 +496,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Сброс фильтров
   document.getElementById("reset-filters").addEventListener("click", () => {
     document.querySelectorAll('input[name="category"]').forEach((checkbox) => {
       checkbox.checked = true;
     });
 
-    const prices = allProducts.map((p) => p.price);
-    const minPrice = Math.min(...prices) || 0;
-    const maxPrice = Math.max(...prices) || 150;
-
-    document.getElementById("min-price").value = minPrice.toFixed(2);
-    document.getElementById("max-price").value = maxPrice.toFixed(2);
-
+    const minPriceInput = document.getElementById("min-price");
+    const maxPriceInput = document.getElementById("max-price");
     const minSlider = document.getElementById("price-slider-min");
     const maxSlider = document.getElementById("price-slider-max");
-    minSlider.value = minPrice;
-    maxSlider.value = maxPrice;
+    minPriceInput.value = minSlider.min;
+    maxPriceInput.value = maxSlider.max;
+    minSlider.value = minSlider.min;
+    maxSlider.value = maxSlider.max;
 
     updateRange();
+    currentSortField = "";
+    currentSortOrder = "";
     resetToFirstPage();
   });
 
-  // Сброс на первую страницу
   function resetToFirstPage() {
     currentPage = 1;
     fetchProducts();
   }
 
-  // Добавление в корзину
   async function addToCart(event) {
     const authUser = JSON.parse(sessionStorage.getItem("authUser"));
     if (!authUser) {
@@ -566,7 +550,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Обработчик изменения языка
   function handleLanguageChange() {
     console.log("Language changed, applying translations...");
     if (window.i18n) {
@@ -574,26 +557,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     fetchProducts();
     setupSorting();
-    generateCategoryFilters();
+    loadFilterData();
   }
 
-  // Инициализация
   function init() {
+    console.log("Initializing app...");
     setupSearch();
     setupSorting();
     setupFilters();
     setupPagination();
-    loadAllProducts();
+    loadFilterData();
 
-    // Добавляем обработчик изменения языка
     window.addEventListener('languageChanged', handleLanguageChange);
 
-    // Применяем переводы при первой загрузке
     if (window.i18n) {
       window.i18n.applyTranslations('shop');
+      console.log("Initial translations applied");
     }
   }
 
-  // Запуск приложения
   init();
 });

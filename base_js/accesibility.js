@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.classList.remove("a11y-font-changed");
     }
 
-    // Обработка хедера
+  
     const header = document.querySelector("header");
     if (header) {
       if (
@@ -252,7 +252,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Применяем стили переноса только к элементам внутри main
     const main = document.querySelector("main");
     if (main) {
       const textElements = main.querySelectorAll(

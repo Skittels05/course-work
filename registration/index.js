@@ -9,9 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const termsModal = document.getElementById("termsModal");
   const termsLink = document.getElementById("termsLink");
   const closeModal = document.querySelector(".close");
+  const agreementCheckbox = document.getElementById("agreement");
+  const acceptTermsBtn = document.getElementById("acceptTerms");
+  const termsContent = document.querySelector(".terms-content");
 
   let nicknameAttempts = 0;
   const maxNicknameAttempts = 5;
+  let isTermsRead = false;
+  let termsModalOpenTime = null;
 
   const commonPasswords = [
     "password",
@@ -39,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
     "2024",
   ];
 
-  // Helper function to get translations with fallback
   function getTranslation(key, fallback) {
     return window.i18n && window.i18n.getTranslation(window.i18n.translations.registration, key) || fallback;
   }
@@ -54,7 +58,43 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     birthDateInput.max = maxDate.toISOString().split("T")[0];
     manualPasswordFields.style.display = "none";
+    agreementCheckbox.disabled = true;
+    submitBtn.disabled = true;
+    setupTermsListener();
   }
+
+  function setupTermsListener() {
+    if (termsContent) {
+      // Проверка прокрутки
+      termsContent.addEventListener("scroll", function () {
+        const isAtBottom =
+          termsContent.scrollTop + termsContent.clientHeight >=
+          termsContent.scrollHeight - 10;
+        if (isAtBottom) {
+          isTermsRead = true;
+          console.log("Terms fully scrolled, isTermsRead set to true");
+        }
+      });
+    } else {
+      console.warn("Terms content element (.terms-content) not found");
+    }
+
+    // Таймер для модального окна
+    termsLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      termsModal.style.display = "block";
+      termsModalOpenTime = Date.now();
+      console.log("Terms modal opened at:", termsModalOpenTime);
+    });
+  }
+
+  agreementCheckbox.addEventListener("click", function (e) {
+    if (agreementCheckbox.disabled) {
+      e.preventDefault();
+      showError("agreementError", getTranslation("registration.form.errors.terms_not_read", "You must read and accept the terms"));
+      console.log("Checkbox click prevented, terms not read");
+    }
+  });
 
   generateNicknameBtn.addEventListener("click", function () {
     const firstName = document.getElementById("firstName").value.trim();
@@ -250,7 +290,14 @@ document.addEventListener("DOMContentLoaded", function () {
       isValid = false;
     }
 
-    if (!document.getElementById("agreement").checked) {
+    if (!validatePassword()) {
+      isValid = false;
+    }
+
+    if (!isTermsRead) {
+      showError("agreementError", getTranslation("registration.form.errors.terms_not_read", "You must read the terms and conditions"));
+      isValid = false;
+    } else if (!agreementCheckbox.checked) {
       showError("agreementError", getTranslation("registration.form.errors.agreement_error", "You must accept the agreement terms"));
       isValid = false;
     } else {
@@ -426,7 +473,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nickname: nickname,
       password: document.getElementById("password").value,
       registrationDate: new Date().toISOString(),
-      agreement: document.getElementById("agreement").checked,
+      agreement: agreementCheckbox.checked,
     };
 
     try {
@@ -448,6 +495,8 @@ document.addEventListener("DOMContentLoaded", function () {
         encodeURIComponent(userData.email);
       form.reset();
       submitBtn.disabled = true;
+      agreementCheckbox.disabled = true;
+      isTermsRead = false;
     } catch (error) {
       console.error("Registration error:", error);
       alert(getTranslation("registration.form.errors.server_error", "Registration error. Please try again."));
@@ -461,18 +510,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   closeModal.addEventListener("click", function () {
     termsModal.style.display = "none";
+    console.log("Terms modal closed");
   });
 
   window.addEventListener("click", function (event) {
     if (event.target === termsModal) {
       termsModal.style.display = "none";
+      console.log("Terms modal closed by clicking outside");
     }
   });
 
-  document.getElementById("acceptTerms").addEventListener("click", function () {
-    document.getElementById("agreement").checked = true;
-    termsModal.style.display = "none";
-    hideError("agreementError");
+  acceptTermsBtn.addEventListener("click", function () {
+    console.log("Accept terms button clicked, isTermsRead:", isTermsRead);
+    const timeSpent = Date.now() - termsModalOpenTime;
+    if (!isTermsRead && timeSpent >= 3000) {
+      isTermsRead = true;
+      console.log("3 seconds elapsed, isTermsRead set to true");
+    }
+    if (isTermsRead) {
+      agreementCheckbox.disabled = false;
+      agreementCheckbox.checked = true;
+      termsModal.style.display = "none";
+      hideError("agreementError");
+      validateForm();
+      console.log("Terms accepted, checkbox enabled and checked");
+    } else {
+      showError("agreementError", getTranslation("registration.form.errors.terms_not_read", "Please read the terms (scroll or wait 3 seconds)"));
+      console.log("Terms not read, showing error");
+    }
   });
 
   form.addEventListener("input", function () {

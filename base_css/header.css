@@ -120,14 +120,27 @@ ul a {
 
 .lang_view {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
 }
-
+.header_icons button
+{
+    background:none;
+    border:none;
+    transition: transform 0.3s ease;
+}
+#lang-switcher
+{
+    margin-top: -0.5rem;
+}
+.header_icons button:hover
+{
+    transform: scale(1.1);
+}
 .lang_view p {
-    margin-top: -1rem;
     color: var(--text-light);
     text-align: center;
 }
-
 .first_group {
     display: flex;
 }

@@ -1,14 +1,14 @@
 {
   "products": [
     {
-      "name": "Premium Bypass Pruners",
+      "name": "Premium scissors",
       "ru_name": "Премиальные секаторы обводного типа",
       "price": 18.99,
       "category": "Tools",
       "ru_category": "Инструменты",
-      "description": "Professional-grade pruning shears with ergonomic handles.",
+      "description": "Professional seccators.",
       "ru_description": "Профессиональные секаторы с эргономичными ручками.",
-      "rating": 0,
+      "rating": 5,
       "id": "1"
     },
     {
@@ -340,14 +340,20 @@
       "ru_description": "шляпашляпашляпа",
       "rating": 0,
       "id": "31"
+    },
+    {
+      "name": "Scis",
+      "ru_name": "scis",
+      "price": 100,
+      "category": "Tools",
+      "ru_category": "Инструмент",
+      "description": "акпмроглшдзжхъ",
+      "ru_description": "аепронглшжх",
+      "rating": 0,
+      "id": "32"
     }
   ],
   "favorites": [
-    {
-      "productId": 1,
-      "userId": 1,
-      "id": 6
-    },
     {
       "productId": 2,
       "userId": 1,
@@ -364,14 +370,24 @@
       "id": 10
     },
     {
-      "productId": 30,
-      "userId": 1,
-      "id": 11
-    },
-    {
       "productId": 5,
       "userId": 2,
       "id": 12
+    },
+    {
+      "productId": 3,
+      "userId": 1,
+      "id": 13
+    },
+    {
+      "productId": 4,
+      "userId": 1,
+      "id": 14
+    },
+    {
+      "productId": 5,
+      "userId": 1,
+      "id": 15
     }
   ],
   "cart": [
@@ -392,6 +408,12 @@
       "quantity": 1,
       "userId": 1,
       "id": 4
+    },
+    {
+      "productId": 1,
+      "quantity": 1,
+      "userId": 2,
+      "id": 5
     }
   ],
   "users": [
@@ -402,7 +424,7 @@
       "birthDate": "2009-05-08",
       "phone": "+375257777777",
       "email": "skittels261105@gmail.com",
-      "nickname": "v_v h941",
+      "nickname": "redouter",
       "password": "^0rrfMnt7*%O",
       "registrationDate": "2025-05-15T14:56:35.237Z",
       "agreement": true,
@@ -448,17 +470,43 @@
       "registrationDate": "2025-05-18T08:16:07.633Z",
       "agreement": true,
       "id": 4
+    },
+    {
+      "firstName": "Владислав",
+      "lastName": "Петушков",
+      "middleName": "",
+      "birthDate": "2009-06-01",
+      "phone": "+375295319741",
+      "email": "admin05@hgmail.com",
+      "nickname": "В_Пет181",
+      "password": "bSHk6U(HR#!u",
+      "registrationDate": "2025-06-04T08:16:41.379Z",
+      "agreement": true,
+      "id": 5
+    },
+    {
+      "firstName": "ироор",
+      "lastName": "Петушков",
+      "middleName": "",
+      "birthDate": "2009-06-02",
+      "phone": "+375257797777",
+      "email": "skitts261105@gmail.com",
+      "nickname": "иро385Z",
+      "password": "$Ko2ISWmU6Os",
+      "registrationDate": "2025-06-04T09:34:25.725Z",
+      "agreement": true,
+      "id": 6
     }
   ],
   "feedbacks": [
     {
-      "id": 1,
       "productId": 1,
       "userId": 1,
-      "userName": "Степан Сикорин",
+      "userName": "coolName",
       "rating": 5,
-      "text": "Отличные секаторы! Очень удобные и острые.",
-      "date": "2025-05-16T10:00:00Z"
+      "text": "Отличные секторы!. Посоветовал их всем своим друзьям",
+      "date": "2025-05-20T10:17:19.254Z",
+      "id": 2
     },
     {
       "productId": 5,

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="page_title">Document</title>
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
 </head>
 
 <body>
@@ -35,15 +36,23 @@
         </div>
         <div class="header_icons">
             <div class="lang_view" id="accessibility-toggle">
-                <img src="../assets/view.svg" alt="Версия для слабовидящих" class="accessibility-icon">
-                <div id="lang-switcher">
+                <button class="accessibility-icon"><img src="../assets/view.svg" alt="Версия для слабовидящих"></button>
+                <button id="lang-switcher">
                     <p data-i18n="lang">ENG</p>
-                </div>
+                </button>
             </div>
-            <a href="../profile/index.html"><img src="../assets/login.svg" alt="login" data-i18n="[alt]login_alt"></a>
-            <a href="../cart/index.html"><img src="../assets/korzina.svg" alt="korzina" data-i18n="[alt]cart_alt"></a>
-            <a href="../favourite/index.html"><img src="../assets/wish.svg" alt="wish" data-i18n="[alt]wish_alt"></a>
-            <a href="../admin/index.html" class="admin-link"><i class="fas fa-cog"></i></a>
+            <button>
+                <a href="../profile/index.html"><img src="../assets/login.svg" alt="login" data-i18n="[alt]login_alt"></a>
+            </button>
+            <button>
+                <a href="../cart/index.html"><img src="../assets/korzina.svg" alt="korzina" data-i18n="[alt]cart_alt"></a>
+            </button>
+            <button>
+                <a href="../favourite/index.html"><img src="../assets/wish.svg" alt="wish" data-i18n="[alt]wish_alt"></a>
+            </button>
+            <button>
+                <a href="../admin/index.html" class="admin-link"><i class="fas fa-cog"></i></a>
+            </button>
         </div>
         <div class="accessibility-modal" id="accessibility-modal">
             <div class="modal-content">
