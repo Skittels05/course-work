@@ -35,31 +35,32 @@ class I18nManager {
   }
 
   applyTranslations(page) {
-    if (!this.translations[page]) return;
+  if (!this.translations[page]) return;
 
-    const scope = page === 'header' ? document : document.querySelector('main');
-    if (!scope) return;
+  // Use document as scope for header, registration, and footer pages to include modal and footer
+  const scope = page === 'header' || page === 'registration' || page === 'footer' ? document : document.querySelector('main');
+  if (!scope) return;
 
-    scope.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      
-      if (key.startsWith('[')) {
-        const [_, attr, transKey] = key.match(/\[(.*?)\](.*)/) || [];
-        if (attr && transKey) {
-          const value = this.getTranslation(this.translations[page], transKey);
-          if (value) el.setAttribute(attr, value);
-        }
-      } else {
-        const value = this.getTranslation(this.translations[page], key);
-        if (value) el.textContent = value;
+  scope.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    
+    if (key.startsWith('[')) {
+      const [_, attr, transKey] = key.match(/\[(.*?)\](.*)/) || [];
+      if (attr && transKey) {
+        const value = this.getTranslation(this.translations[page], transKey);
+        if (value) el.setAttribute(attr, value);
       }
-    });
-
-    if (page === this.currentPage) {
-      document.documentElement.lang = this.currentLang;
-      document.title = this.getTranslation(this.translations[page], 'page_title') || document.title;
+    } else {
+      const value = this.getTranslation(this.translations[page], key);
+      if (value) el.textContent = value;
     }
+  });
+
+  if (page === this.currentPage) {
+    document.documentElement.lang = this.currentLang;
+    document.title = this.getTranslation(this.translations[page], 'page_title') || document.title;
   }
+}
 
   getTranslation(obj, key) {
     return key.split('.').reduce((o, k) => o?.[k], obj);
@@ -69,9 +70,11 @@ class I18nManager {
     this.currentLang = lang;
     localStorage.setItem('preferredLang', lang);
     await this.loadTranslations('header');
+    await this.loadTranslations('footer');
     await this.loadTranslations(this.currentPage);
     
     this.applyTranslations('header');
+    this.applyTranslations('footer');
     this.applyTranslations(this.currentPage);
 
     window.dispatchEvent(new CustomEvent('languageChanged', { detail: lang }));
@@ -83,8 +86,10 @@ class I18nManager {
 document.addEventListener('DOMContentLoaded', async () => {
   window.i18n = new I18nManager();
   await i18n.loadTranslations('header');
+  await i18n.loadTranslations('footer');
   await i18n.loadTranslations(i18n.currentPage);
   i18n.applyTranslations('header');
+  i18n.applyTranslations('footer');
   i18n.applyTranslations(i18n.currentPage);
   
   const langSwitcher = document.getElementById('lang-switcher');

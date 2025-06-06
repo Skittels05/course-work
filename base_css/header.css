@@ -14,7 +14,6 @@
     --text-dark: #333;
     --text: #777;
     --text-light: #FFFFFF;
-    --accent-color: #FFD700;
     --primary-text: var(--primary-color);
     --bg-color: #FFFFFF;
     --copyright:#0A312C;
@@ -30,7 +29,6 @@ body.dark-theme {
     --text-dark: #E1F4F2;
     --text: #A4D6CF;
     --text-light: #FFFFFF;
-    --accent-color: #FFD700;
     --primary-text: var(--primary-light);
     --bg-color: #121212;
     --copyright:var(--bg-color);
@@ -129,10 +127,7 @@ ul a {
     border:none;
     transition: transform 0.3s ease;
 }
-#lang-switcher
-{
-    margin-top: -0.5rem;
-}
+
 .header_icons button:hover
 {
     transform: scale(1.1);

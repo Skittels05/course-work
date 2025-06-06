@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const applyFiltersBtn = document.getElementById("apply-filters");
 
   let allCategories = [];
+  let categoryTranslationMap = new Map(); // Для хранения соответствия исходных и переведенных категорий
 
   function getTranslatedProductField(product, field) {
     const lang = window.i18n?.currentLang || 'en';
@@ -46,7 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Loaded data for filters:", data);
 
       const products = Array.isArray(data) ? data : data.products || [];
-      allCategories = [...new Set(products.map(p => p.category))];
+      // Формируем allCategories и map для соответствия переведенных и исходных категорий
+      categoryTranslationMap.clear();
+      allCategories = [...new Set(products.map(p => {
+        const originalCategory = p.category;
+        const translatedCategory = getTranslatedProductField(p, 'category');
+        categoryTranslationMap.set(translatedCategory, originalCategory);
+        return translatedCategory;
+      }))];
+      console.log("Categories and translation map:", { allCategories, categoryTranslationMap });
+
       generateCategoryFilters(products);
 
       const prices = products.map((product) => product.price);
@@ -87,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchTerm = searchInput.value.trim().toLowerCase();
     const checkedCategories = Array.from(
       document.querySelectorAll('input[name="category"]:checked')
-    ).map((el) => el.value);
+    ).map((el) => categoryTranslationMap.get(el.value) || el.value); // Используем исходные категории
     const minPrice = parseFloat(document.getElementById("min-price").value);
     const maxPrice = parseFloat(document.getElementById("max-price").value);
     const lang = window.i18n?.currentLang || 'en';
@@ -113,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
       checkedCategories.forEach(category => {
         params.append('category', category.trim());
       });
-      console.log("Selected categories:", checkedCategories);
+      console.log("Selected categories (original):", checkedCategories);
     } else if (checkedCategories.length === 0) {
       console.log("No categories selected");
     }
@@ -282,13 +292,13 @@ document.addEventListener("DOMContentLoaded", () => {
       { name: getTranslation("sort.options.5.name", "Rating (Worst first)"), value: "rating", order: "asc" }
     ];
 
-    sortCriteria.forEach((criterion) => {
+    sortCriteria.forEach((criterion, index) => {
       const option = document.createElement("div");
       option.className = "sort-option";
-      option.innerHTML = `<span data-i18n="sort.options.${sortCriteria.indexOf(criterion)}.name">${criterion.name}</span>`;
+      option.innerHTML = `<span data-i18n="sort.options.${index}.name">${criterion.name}</span>`;
       option.addEventListener("click", () => {
         applySort(criterion.value, criterion.order);
-        sortButton.innerHTML = `<i class="fas fa-sort"></i> <span data-i18n="sort.options.${sortCriteria.indexOf(criterion)}.name">${criterion.name}</span>`;
+        sortButton.innerHTML = `<i class="fas fa-sort"></i> <span data-i18n="sort.options.${index}.name">${criterion.name}</span>`;
         if (window.i18n) {
           window.i18n.applyTranslations('shop');
           console.log("Applied translations after sort option click");
@@ -398,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
     allCategories.forEach(category => {
       const productWithCategory = products.find(p => {
         const productCategory = lang === 'ru' ? (p.ru_category || p.category) : p.category;
-        return productCategory === category;
+        return productCategory === categoryTranslationMap.get(category) || productCategory === category;
       });
 
       const categoryName = productWithCategory ? getTranslatedProductField(productWithCategory, 'category') : category;
@@ -406,10 +416,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const label = document.createElement("label");
       label.innerHTML = `
         <input type="checkbox" name="category" value="${category}" ${lang === 'ru' ? '' : 'checked'}>
-        ${categoryName}
+        <span data-i18n="category.${categoryTranslationMap.get(category) || category}">${categoryName}</span>
       `;
       categoryFiltersContainer.appendChild(label);
     });
+
+    if (window.i18n) {
+      window.i18n.applyTranslations('shop');
+      console.log("Applied translations to category filters");
+    }
 
     document.querySelectorAll('input[name="category"]').forEach(checkbox => {
       checkbox.addEventListener('change', () => {
@@ -555,9 +570,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.i18n) {
       window.i18n.applyTranslations('shop');
     }
-    fetchProducts();
     setupSorting();
     loadFilterData();
+    fetchProducts();
   }
 
   function init() {

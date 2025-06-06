@@ -322,3 +322,107 @@ li {
         margin-bottom: 1rem;
     }
 }
+/* Animation Keyframes */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Section Animations */
+.services, .flower, .tree, .rush, .water, .action {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.services.visible, .flower.visible, .tree.visible, .rush.visible, .water.visible, .action.visible {
+    opacity: 1;
+}
+
+/* Header and Text Animations */
+.services h1, .services h4, .content h2, .content h4, .content p, .action h2 {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Image Animations */
+.flower img, .rush img {
+    opacity: 0;
+    animation: slideInLeft 0.8s ease-out 0.3s forwards;
+}
+
+.tree img, .water img {
+    opacity: 0;
+    animation: slideInRight 0.8s ease-out 0.3s forwards;
+}
+
+/* List Item Animations */
+section ul li {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+section ul li:nth-child(1) { animation-delay: 0.2s; }
+section ul li:nth-child(2) { animation-delay: 0.4s; }
+section ul li:nth-child(3) { animation-delay: 0.6s; }
+
+/* Call-to-Action Hover Effect */
+.call_us {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.call_us:hover {
+    transform: scale(1.05);
+    background-color: var(--primary-color);
+}
+
+.call_us img {
+    transition: transform 0.3s ease;
+}
+
+.call_us:hover img {
+    transform: rotate(10deg);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .flower img, .rush img, .tree img, .water img {
+        animation: fadeInUp 0.8s ease-out 0.3s forwards;
+    }
+}

@@ -8,7 +8,7 @@
     --text-dark: #333;
     --text: #777;
     --text-light: #FFFFFF;
-    --accent-color: #FFD700;
+    --accent-color: #ff0000;
     --primary-text: var(--primary-color);
     --bg-color: #FFFFFF;
     --copyright:#0A312C;
@@ -27,7 +27,7 @@ body.dark-theme {
     --text-dark: #E1F4F2;
     --text: #A4D6CF;
     --text-light: #FFFFFF;
-    --accent-color: #FFD700;
+    --accent-color: #ff0000;
     --primary-text: var(--primary-light);
     --bg-color: #121212;
     --copyright:var(--bg-color);
@@ -125,7 +125,7 @@ body
 }
 
 .add-to-cart-btn:hover {
-    background: var(--primary-dark);
+    opacity: 50%;
 }
 
 .remove-favorite-btn {
@@ -139,7 +139,7 @@ body
 }
 
 .remove-favorite-btn:hover {
-    background: var(--primary-extra-light);
+    opacity: 50%;
 }
 
 .empty-favorites {

@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function setupTermsListener() {
     if (termsContent) {
-      // Проверка прокрутки
+      
       termsContent.addEventListener("scroll", function () {
         const isAtBottom =
           termsContent.scrollTop + termsContent.clientHeight >=
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.warn("Terms content element (.terms-content) not found");
     }
 
-    // Таймер для модального окна
+    
     termsLink.addEventListener("click", function (e) {
       e.preventDefault();
       termsModal.style.display = "block";
